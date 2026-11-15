@@ -12,7 +12,7 @@
     </div>
     <figcaption v-if="caption || slide" class="lecture-fig-caption">
       <div class="lecture-fig-meta">
-        <span class="lecture-fig-badge">📐 Lecture Figure</span>
+        <span class="lecture-fig-badge">{{ badge }}</span>
         <span v-if="slide" class="lecture-fig-slide">{{ slide }}</span>
       </div>
       <span v-if="caption" class="lecture-fig-text">{{ caption }}</span>
@@ -41,6 +41,7 @@ const props = withDefaults(defineProps<{
   alt2?: string;
   caption?: string;
   slide?: string;
+  badge?: string;
   maxWidth?: string;
 }>(), {
   alt: '',
@@ -48,6 +49,7 @@ const props = withDefaults(defineProps<{
   alt2: '',
   caption: '',
   slide: '',
+  badge: '📐 Lecture Figure',
   maxWidth: '680px'
 });
 

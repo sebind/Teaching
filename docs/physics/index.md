@@ -89,11 +89,11 @@ import { withBase } from 'vitepress'
   <a :href="withBase('/physics/module-5/impulse-and-momentum')" class="portal-card">
     <div class="portal-card-header">
       <span class="portal-card-badge physics">Module 5</span>
-      <span style="font-size: 0.78rem; font-weight: 700; color: #2563eb;">3 Chapters · 1 Lab</span>
+      <span style="font-size: 0.78rem; font-weight: 700; color: #2563eb;">3 Chapters · 3 Labs</span>
     </div>
     <h3 class="portal-card-title">Kinetics: Momentum Methods</h3>
     <p class="portal-card-desc">
-      Impulse-momentum theorem, conservation of linear momentum, direct and oblique central impact mechanics, coefficient of restitution <em>e</em>, line of impact vs plane of contact, and kinetic energy dissipation.
+      Impulse-momentum theorem, conservation of linear momentum, direct, oblique, and constrained central impacts, coefficient of restitution <em>e</em>, multi-principle pendulum impacts, and SMART kinetics synthesis.
     </p>
     <div class="portal-card-footer">
       <span>Chapters 5.1 – 5.3 & Quiz</span>
@@ -164,4 +164,6 @@ Access the simulation experiments directly within the relevant module chapters:
 - [Module 2.3: Projectile Trajectory & Rolling Cycloid Simulator](/physics/module-2/projectile-and-rotary)
 - [Module 3.2: Coulomb Friction Incline & Capstan Belt Bollard Lab](/physics/module-3/dry-wedge-screw-belt-friction)
 - [Module 4.2: Spring-Collar Energy Exchange & Motor Power Sim](/physics/module-4/conservation-power-efficiency)
-- [Module 5.2: Direct & Oblique Central Impact Simulator](/physics/module-5/impact-and-restitution)
+- [Module 5.1: Two-Boat Momentum Tug & Impulsive Baseball Strike Lab](/physics/module-5/impulse-and-momentum)
+- [Module 5.2a: Direct, Oblique, Constrained Wedge & Bounce Impact Lab](/physics/module-5/impact-and-restitution)
+- [Module 5.2b: Two-Pendulum Impact & Energy Synthesis Lab](/physics/module-5/impact-and-restitution)

@@ -29,10 +29,10 @@ import { withBase } from 'vitepress'
     </div>
     <h3 class="portal-card-title">Physics (Engineering Mechanics)</h3>
     <p class="portal-card-desc">
-      Comprehensive coverage of Newtonian statics, 2D/3D force systems, particle kinematics, Newton's 2nd law, Coulomb friction, work-energy principles, impulse-momentum, and impact mechanics. Includes 70 lecture figures, 8 interactive simulation labs, and complete numerical solutions.
+      Comprehensive coverage of Newtonian statics, 2D/3D force systems, particle kinematics, Newton's 2nd law, Coulomb friction, work-energy principles, impulse-momentum, and impact mechanics. Includes 87 lecture & textbook figures, 10 interactive simulation labs, and complete numerical solutions.
     </p>
     <div class="portal-card-footer">
-      <span>5 Modules · 8 Interactive Labs</span>
+      <span>5 Modules · 10 Interactive Labs</span>
       <span>Explore Course →</span>
     </div>
   </a>
@@ -69,7 +69,7 @@ Every analytical example and textbook numerical in this portal is structured fol
 
 ### Interactive Computational Laboratories
 
-This portal incorporates 8 bespoke interactive engineering laboratories built natively with Vue 3, HTML5 Canvas, SVG, and Three.js, modeled directly on the official lecture slide diagrams:
+This portal incorporates 10 bespoke interactive engineering laboratories built natively with Vue 3, HTML5 Canvas, SVG, and Three.js, modeled directly on the official lecture slide and Beer & Johnston textbook diagrams:
 
 | Module | Lab Component | Key Interactive Concepts |
 | :--- | :--- | :--- |
@@ -80,7 +80,9 @@ This portal incorporates 8 bespoke interactive engineering laboratories built na
 | **Module 2** | `<ProjectileAndRollingLab />` | Parabolic 150-m cliff projectile trajectory with hodograph inset; pure rolling wheel cycloid trace. |
 | **Module 3** | `<InclinedFrictionAndBeltLab />` | Coulomb dry friction, impending slip vs tipping, Capstan exponential belt tension bollard. |
 | **Module 4** | `<EnergyCollarAndDumbwaiterSim />` | Spring-collar mechanical energy exchange ($T, V_g, V_e$) and dumbwaiter hoist motor power. |
-| **Module 5** | `<ImpactCollisionLab />` | Direct & oblique central impact, restitution coefficient $e$, energy dissipation and vector conservation. |
+| **Module 5** | `<ImpulseAndBoatsLab />` | Two-boat rope tug momentum conservation (mass center $G$) and impulsive baseball bat strike ($F\text{–}t$ area). |
+| **Module 5** | `<ImpactCollisionLab />` | Direct, oblique, constrained rolling wedge-block & ball impact, and stroboscopic tennis ball bounce. |
+| **Module 5** | `<PendulumImpactEnergySim />` | Multi-principle two-pendulum collision combining energy conservation, restitution $e$, and cord tension. |
 
 ---
 
