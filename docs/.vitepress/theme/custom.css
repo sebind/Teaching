@@ -1,0 +1,362 @@
+/**
+ * GitBook-Inspired Academic Styling for PSG IAS Courseware
+ * Primary Accent: Deep Indigo / Royal Blue (#2563eb / #3b82f6)
+ */
+
+:root {
+  /* Brand color scales */
+  --vp-c-brand-1: #2563eb;
+  --vp-c-brand-2: #3b82f6;
+  --vp-c-brand-3: #1d4ed8;
+  --vp-c-brand-soft: rgba(37, 99, 235, 0.1);
+
+  /* Light mode palette */
+  --vp-c-bg: #ffffff;
+  --vp-c-bg-alt: #f8fafc;
+  --vp-c-bg-soft: #f1f5f9;
+  --vp-c-bg-elv: #ffffff;
+  --vp-sidebar-bg-color: #f8fafc;
+  
+  /* Borders & Dividers */
+  --vp-c-divider: #e2e8f0;
+  --vp-c-gutter: #cbd5e1;
+
+  /* Typography */
+  --vp-font-family-base: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --vp-font-family-mono: 'JetBrains Mono', 'Fira Code', Menlo, Monaco, Consolas, monospace;
+}
+
+.dark {
+  /* Dark mode brand colors */
+  --vp-c-brand-1: #3b82f6;
+  --vp-c-brand-2: #60a5fa;
+  --vp-c-brand-3: #2563eb;
+  --vp-c-brand-soft: rgba(59, 130, 246, 0.16);
+
+  /* Dark mode background */
+  --vp-c-bg: #0b0f17;
+  --vp-c-bg-alt: #111827;
+  --vp-c-bg-soft: #1a2234;
+  --vp-c-bg-elv: #151d2d;
+  --vp-sidebar-bg-color: #0d121c;
+
+  /* Dark borders */
+  --vp-c-divider: #1f293d;
+  --vp-c-gutter: #2d3b55;
+}
+
+/* ==========================================================================
+   GitBook-Style Sidebar Navigation
+   ========================================================================== */
+
+.VPSidebar {
+  background-color: var(--vp-sidebar-bg-color) !important;
+  border-right: 1px solid var(--vp-c-divider) !important;
+}
+
+/* Sidebar Group Headers */
+.VPSidebarItem.level-0 > .item {
+  padding-top: 14px;
+  padding-bottom: 6px;
+}
+
+.VPSidebarItem.level-0 > .item .text {
+  font-size: 0.72rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  color: var(--vp-c-text-2) !important;
+}
+
+/* Sidebar Item Links */
+.VPSidebarItem .item .link {
+  padding: 6px 12px !important;
+  border-radius: 6px !important;
+  margin: 1px 0 !important;
+  font-size: 0.88rem !important;
+  line-height: 1.4 !important;
+  color: var(--vp-c-text-1) !important;
+  transition: all 0.15s ease-in-out !important;
+  border-left: 3px solid transparent !important;
+}
+
+.VPSidebarItem .item .link:hover {
+  background-color: var(--vp-c-bg-soft) !important;
+  color: var(--vp-c-brand-1) !important;
+}
+
+/* Active Sidebar Link: GitBook Rounded Pill with Left Accent Border */
+.VPSidebarItem.is-active > .item > .link {
+  background-color: var(--vp-c-brand-soft) !important;
+  color: var(--vp-c-brand-1) !important;
+  font-weight: 600 !important;
+  border-left: 3px solid var(--vp-c-brand-1) !important;
+}
+
+.VPSidebarItem.is-active > .item > .link .text {
+  color: var(--vp-c-brand-1) !important;
+}
+
+/* ==========================================================================
+   MathJax Horizontal Scroll & Display Formatting
+   ========================================================================== */
+
+mjx-container[display="true"],
+.MathJax_Display {
+  display: block !important;
+  max-width: 100% !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  padding: 0.75rem 0.5rem !important;
+  margin: 1.25rem 0 !important;
+  border-radius: 6px !important;
+  background: var(--vp-c-bg-soft);
+  text-align: center;
+}
+
+mjx-container[display="true"]::-webkit-scrollbar {
+  height: 5px;
+}
+
+mjx-container[display="true"]::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+mjx-container[display="true"]::-webkit-scrollbar-thumb {
+  background: var(--vp-c-divider);
+  border-radius: 4px;
+}
+
+mjx-container[display="true"]::-webkit-scrollbar-thumb:hover {
+  background: var(--vp-c-text-3);
+}
+
+/* Inline math safety */
+mjx-container:not([display="true"]) {
+  display: inline-block;
+  margin: 0 0.15em;
+  vertical-align: middle;
+}
+
+/* ==========================================================================
+   GitBook-Style Prev/Next Pager Navigation Cards (VPDocFooter)
+   ========================================================================== */
+
+.VPDocFooter .pager-link {
+  display: flex !important;
+  flex-direction: column !important;
+  padding: 14px 18px !important;
+  border: 1px solid var(--vp-c-divider) !important;
+  border-radius: 10px !important;
+  background: var(--vp-c-bg) !important;
+  transition: all 0.2s ease !important;
+  text-decoration: none !important;
+}
+
+.VPDocFooter .pager-link:hover {
+  border-color: var(--vp-c-brand-1) !important;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.08) !important;
+  transform: translateY(-2px) !important;
+}
+
+.VPDocFooter .pager-link .desc {
+  font-size: 0.72rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.06em !important;
+  color: var(--vp-c-text-3) !important;
+  margin-bottom: 4px !important;
+}
+
+.VPDocFooter .pager-link .title {
+  font-size: 0.96rem !important;
+  font-weight: 600 !important;
+  color: var(--vp-c-brand-1) !important;
+}
+
+/* ==========================================================================
+   Custom Block Callouts
+   ========================================================================== */
+
+.custom-block {
+  border-radius: 8px !important;
+  margin: 1.5rem 0 !important;
+  padding: 1rem 1.25rem !important;
+  border-left-width: 4px !important;
+}
+
+.custom-block.tip {
+  border-color: #2563eb !important;
+  background-color: rgba(37, 99, 235, 0.06) !important;
+}
+
+.custom-block.info {
+  border-color: #0284c7 !important;
+  background-color: rgba(2, 132, 199, 0.06) !important;
+}
+
+.custom-block.warning {
+  border-color: #d97706 !important;
+  background-color: rgba(217, 119, 6, 0.06) !important;
+}
+
+.custom-block.danger {
+  border-color: #dc2626 !important;
+  background-color: rgba(220, 38, 38, 0.06) !important;
+}
+
+.custom-block-title {
+  font-weight: 700 !important;
+  font-size: 0.92rem !important;
+  margin-bottom: 0.4rem !important;
+}
+
+/* ==========================================================================
+   Table of Contents & On This Page (VPDocAside)
+   ========================================================================== */
+
+.VPDocAsideOutline .outline-title {
+  font-size: 0.75rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.06em !important;
+  text-transform: uppercase !important;
+  color: var(--vp-c-text-2) !important;
+}
+
+.VPDocAsideOutline .outline-link {
+  font-size: 0.82rem !important;
+  line-height: 1.5 !important;
+  padding: 2px 0 !important;
+}
+
+.VPDocAsideOutline .outline-link.active {
+  color: var(--vp-c-brand-1) !important;
+  font-weight: 600 !important;
+}
+
+/* ==========================================================================
+   Card Grids & Utility Layouts for Course Portal
+   ========================================================================== */
+
+.portal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.25rem;
+  margin: 1.75rem 0;
+}
+
+.portal-card {
+  display: flex;
+  flex-direction: column;
+  padding: 1.4rem;
+  border-radius: 10px;
+  background: var(--vp-c-bg-soft);
+  border: 1px solid var(--vp-c-divider);
+  text-decoration: none !important;
+  color: inherit !important;
+  transition: all 0.2s ease;
+}
+
+.portal-card:hover {
+  border-color: var(--vp-c-brand-1);
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.08);
+  transform: translateY(-2px);
+}
+
+.portal-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.portal-card-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  text-transform: uppercase;
+}
+
+.portal-card-badge.physics {
+  background: rgba(37, 99, 235, 0.12);
+  color: #2563eb;
+}
+
+.portal-card-badge.stage2 {
+  background: rgba(245, 158, 11, 0.12);
+  color: #d97706;
+}
+
+.portal-card-title {
+  margin: 0 0 0.4rem 0 !important;
+  font-size: 1.2rem !important;
+  font-weight: 700 !important;
+  color: var(--vp-c-text-1) !important;
+}
+
+.portal-card-desc {
+  margin: 0 0 1rem 0 !important;
+  font-size: 0.88rem !important;
+  color: var(--vp-c-text-2) !important;
+  line-height: 1.5 !important;
+  flex: 1;
+}
+
+.portal-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--vp-c-brand-1);
+  border-top: 1px solid var(--vp-c-divider);
+  padding-top: 0.75rem;
+}
+
+/* Instructor Banner */
+.instructor-profile-card {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 1.25rem 1.5rem;
+  margin: 1.5rem 0;
+  border-radius: 12px;
+  background: var(--vp-c-bg-soft);
+  border: 1px solid var(--vp-c-divider);
+}
+
+.instructor-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.instructor-details h3 {
+  margin: 0 0 0.25rem 0 !important;
+  font-size: 1.1rem !important;
+  font-weight: 700 !important;
+  color: var(--vp-c-text-1) !important;
+}
+
+.instructor-details p {
+  margin: 0 !important;
+  font-size: 0.86rem !important;
+  color: var(--vp-c-text-2) !important;
+}
+
+.instructor-email {
+  display: inline-block;
+  margin-top: 0.25rem !important;
+  font-size: 0.82rem !important;
+  font-family: var(--vp-font-family-mono);
+  color: var(--vp-c-brand-1) !important;
+}

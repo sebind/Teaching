@@ -1,0 +1,20 @@
+{
+  "name": "psg-ias-courseware",
+  "version": "1.0.0",
+  "description": "Interactive Engineering Mechanics & Electronics Courseware — Dr. Sebin Devasia",
+  "type": "module",
+  "scripts": {
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
+  },
+  "dependencies": {
+    "three": "^0.170.0",
+    "vue": "^3.5.13"
+  },
+  "devDependencies": {
+    "@types/three": "^0.170.0",
+    "markdown-it-mathjax3": "^4.3.2",
+    "vitepress": "^1.6.3"
+  }
+}
