@@ -3,6 +3,7 @@ import DefaultTheme from 'vitepress/theme';
 import { h } from 'vue';
 import CourseSwitcher from './CourseSwitcher.vue';
 import QuizModule from './components/QuizModule.vue';
+import LectureFigure from './components/LectureFigure.vue';
 import './custom.css';
 
 export default {
@@ -13,8 +14,9 @@ export default {
     });
   },
   enhanceApp({ app }) {
-    // Register interactive assessment quiz module globally
+    // Register interactive assessment quiz module and lecture figure component globally
     app.component('QuizModule', QuizModule);
+    app.component('LectureFigure', LectureFigure);
 
     // Dynamically discover and register all simulation lab components from ./components/sims/*.vue
     const sims = import.meta.glob<{ default: any }>('./components/sims/*.vue', { eager: true });

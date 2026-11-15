@@ -1,14 +1,40 @@
 <template>
   <div class="sim-card">
     <div class="sim-header">
-      <div class="sim-badge-group">
-        <span class="sim-badge">MODULE 3</span>
-        <span class="sim-badge-secondary">KINETICS & DRY FRICTION</span>
+      <div class="sim-header-top">
+        <div class="sim-badge-group">
+          <span class="sim-badge">MODULE 3</span>
+          <span class="sim-badge-secondary">KINETICS & DRY FRICTION</span>
+        </div>
+        <button class="ref-toggle-btn" @click="showSlideRef = !showSlideRef">
+          📐 {{ showSlideRef ? 'Hide' : 'Show' }} PDF Slide Figure
+        </button>
       </div>
       <h3 class="sim-title">Coulomb Incline (Slip vs Tip) & Capstan Belt Friction Lab</h3>
       <p class="sim-desc">
-        Investigate dry Coulomb friction on an inclined plane, Angle of Repose (φ<sub>s</sub>), Slipping vs Tipping criteria, and the exponential holding power of the Capstan Equation (T<sub>2</sub> = T<sub>1</sub> e<sup>μ<sub>s</sub>β</sup>).
+        Modeled directly on Dr. Sebin Devasia's Module 3 friction figures: Inclined Plane Angle of Repose <em>φ<sub>s</sub></em> & Resultant Reaction <strong>R</strong> (Slide 23), and Capstan Bollard Wrap <em>T<sub>2</sub> = T<sub>1</sub> e<sup>μ<sub>s</sub>β</sup></em> (Slides 28 & 30).
       </p>
+    </div>
+
+    <!-- Original PDF Slide Figure Reference -->
+    <div v-if="showSlideRef" class="slide-ref-panel">
+      <div class="slide-ref-img-wrap">
+        <img
+          :src="withBase(activeTab === 'incline' ? '/images/physics/mod3/mod3_incline_repose.png' : '/images/physics/mod3/mod3_belt_drive_example.png')"
+          :alt="activeTab === 'incline' ? 'Slide 23 Inclined Plane Angle of Repose' : 'Slide 28 Capstan Rope Wrap Figure'"
+        />
+      </div>
+      <div class="slide-ref-info">
+        <span class="slide-ref-tag">
+          {{ activeTab === 'incline' ? 'Original PDF · Module 3, Slide 23' : 'Original PDF · Module 3, Slides 28 & 30' }}
+        </span>
+        <p v-if="activeTab === 'incline'">
+          As incline angle <em>θ</em> rises toward the Angle of Repose <strong>φ<sub>s</sub> = tan<sup>−1</sup>(μ<sub>s</sub>)</strong>, the resultant contact reaction <strong>R = N + F</strong> tilts to oppose gravity <strong>W</strong> until impending slip occurs at <em>θ = φ<sub>s</sub></em>.
+        </p>
+        <p v-else>
+          Distributed radial normal forces around wrap angle <strong>β</strong> create exponential friction multiplication: 2 full turns (<em>β = 4π</em> rad, <em>μ<sub>s</sub> = 0.311</em>) allow <strong>T<sub>1</sub> = 150 N</strong> to hold a <strong>T<sub>2</sub> = 7500 N</strong> ship hawser.
+        </p>
+      </div>
     </div>
 
     <!-- Tab Selector -->
@@ -189,8 +215,10 @@
 
 <script setup lang="ts">
 import { ref, computed, watch, nextTick, onMounted, onBeforeUnmount } from 'vue'
+import { withBase } from 'vitepress'
 
 const activeTab = ref<'incline' | 'belt'>('incline')
+const showSlideRef = ref(true)
 
 // ================= INCLINE TAB STATE =================
 const inclineAngle = ref(20)
@@ -434,6 +462,22 @@ function drawIncline() {
     ctxIncline.closePath()
     ctxIncline.fill()
     ctxIncline.fillText('F', shiftPx - fArrowLen - 12, -6)
+
+    // Resultant Contact Reaction R = N + F (matching Slide 21-23 angle φ from normal)
+    ctxIncline.save()
+    ctxIncline.strokeStyle = '#c084fc'
+    ctxIncline.fillStyle = '#c084fc'
+    ctxIncline.lineWidth = 2
+    ctxIncline.setLineDash([4, 2])
+    ctxIncline.beginPath()
+    ctxIncline.moveTo(shiftPx + fArrowLen * 0.65, 42)
+    ctxIncline.lineTo(shiftPx, 0)
+    ctxIncline.stroke()
+    ctxIncline.setLineDash([])
+    const phiDeg = ((Math.atan2(frictionF.value, Math.max(0.1, normalN.value)) * 180) / Math.PI).toFixed(1)
+    ctxIncline.font = 'bold 9px monospace'
+    ctxIncline.fillText(`R (φ=${phiDeg}°)`, shiftPx + fArrowLen * 0.45 + 6, 48)
+    ctxIncline.restore()
   }
 
   // Weight Vector W (always pointing straight down in world coordinates)
@@ -754,7 +798,76 @@ onBeforeUnmount(() => {
 }
 
 .sim-header {
-  margin-bottom: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.sim-header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.4rem;
+}
+
+.ref-toggle-btn {
+  padding: 0.3rem 0.75rem;
+  border-radius: 8px;
+  border: 1px solid var(--vp-c-brand-1, #0284c7);
+  background: var(--vp-c-brand-soft, rgba(2, 132, 199, 0.1));
+  color: var(--vp-c-brand-1, #0284c7);
+  font-size: 0.76rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.slide-ref-panel {
+  display: grid;
+  grid-template-columns: minmax(180px, 260px) 1fr;
+  gap: 1rem;
+  align-items: center;
+  padding: 0.85rem 1rem;
+  margin-bottom: 1rem;
+  border-radius: 10px;
+  background: var(--vp-c-bg, #ffffff);
+  border: 1px solid var(--vp-c-divider, rgba(226, 232, 240, 0.8));
+}
+
+.slide-ref-img-wrap {
+  background: #ffffff;
+  padding: 0.45rem;
+  border-radius: 8px;
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  display: flex;
+  justify-content: center;
+}
+
+.slide-ref-img-wrap img {
+  max-height: 155px;
+  width: auto;
+  object-fit: contain;
+}
+
+.slide-ref-tag {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--vp-c-brand-1, #0284c7);
+  margin-bottom: 0.25rem;
+}
+
+.slide-ref-info p {
+  margin: 0 !important;
+  font-size: 0.83rem;
+  line-height: 1.5;
+  color: var(--vp-c-text-2, #475569);
+}
+
+@media (max-width: 680px) {
+  .slide-ref-panel {
+    grid-template-columns: 1fr;
+  }
 }
 
 .sim-badge-group {

@@ -1,14 +1,40 @@
 <template>
   <div class="sim-card">
     <div class="sim-header">
-      <div class="sim-badge-group">
-        <span class="sim-badge">MODULE 4</span>
-        <span class="sim-badge-secondary">ENERGY METHODS & POWER</span>
+      <div class="sim-header-top">
+        <div class="sim-badge-group">
+          <span class="sim-badge">MODULE 4</span>
+          <span class="sim-badge-secondary">ENERGY METHODS & POWER</span>
+        </div>
+        <button class="ref-toggle-btn" @click="showSlideRef = !showSlideRef">
+          📐 {{ showSlideRef ? 'Hide' : 'Show' }} PDF Slide Figure
+        </button>
       </div>
       <h3 class="sim-title">Conservation of Energy Collar & Dumbwaiter Power Simulator</h3>
       <p class="sim-desc">
-        Explore work-energy conservation on the vertical rod spring-collar system with real-time dynamic energy bar charts, and calculate instantaneous motor power for the 2:1 counterweighted dumbwaiter system.
+        Modeled directly on Dr. Sebin Devasia's Module 4 lecture figures: explore work-energy conservation on the 8 m × 6 m spring-collar rod (Slide 14) and instantaneous motor power for the counterweighted dumbwaiter (Slide 17).
       </p>
+    </div>
+
+    <!-- Original PDF Slide Figure Reference -->
+    <div v-if="showSlideRef" class="slide-ref-panel">
+      <div class="slide-ref-img-wrap">
+        <img
+          :src="withBase(activeTab === 'collar' ? '/images/physics/mod4/mod4_collar_spring_rod.png' : '/images/physics/mod4/mod4_dumbwaiter_motor.png')"
+          :alt="activeTab === 'collar' ? 'Module 4 Slide 14 Spring Collar Rod Figure' : 'Module 4 Slide 17 Dumbwaiter and Counterweight Figure'"
+        />
+      </div>
+      <div class="slide-ref-info">
+        <span class="slide-ref-tag">
+          {{ activeTab === 'collar' ? 'Original PDF Reference · Module 4, Slide 14' : 'Original PDF Reference · Module 4, Slide 17' }}
+        </span>
+        <p v-if="activeTab === 'collar'">
+          Fixed spring anchor on the left at 8 m span from the smooth vertical rod; the 2 kg collar drops 6 m from Position <strong>1</strong> (<em>x</em><sub>1</sub> = 4 m stretch) to Position <strong>2</strong> (<em>l</em><sub>2</sub> = 10 m, <em>x</em><sub>2</sub> = 6 m stretch), reaching <strong>v<sub>2</sub> = 9.36 m/s</strong>.
+        </p>
+        <p v-else>
+          Counterweight <strong>C</strong> (800 N) hangs on a 2:1 movable pulley (<em>v</em><sub>C</sub> = ½<em>v</em><sub>D</sub> downward, 2<em>T</em> upward), while Dumbwaiter <strong>D</strong> (600 N) is hoisted upward by cable <em>T</em> plus floor-mounted Motor <strong>M</strong> force <em>F</em>.
+        </p>
+      </div>
     </div>
 
     <!-- Tab Selector -->
@@ -133,7 +159,10 @@
           (a) Uniform Speed (a = 0 ⇒ P = 1600 W / 2.14 hp)
         </button>
         <button class="preset-btn" @click="applyDumbwaiterPreset('accelerated')">
-          (b) Accelerated (a = 2.5 m/s² ⇒ P = 3232.6 W / 4.33 hp)
+          (b) Accelerated (a = 2.5 m/s² ⇒ P = 3231 W / 4.33 hp)
+        </button>
+        <button class="preset-btn" :class="{ active: isHoistAnimating }" @click="isHoistAnimating = !isHoistAnimating">
+          {{ isHoistAnimating ? '⏸ Pause Hoist' : '▶ Animate Hoist' }}
         </button>
       </div>
 
@@ -203,8 +232,12 @@
 
 <script setup lang="ts">
 import { ref, computed, watch, nextTick, onMounted, onBeforeUnmount } from 'vue'
+import { withBase } from 'vitepress'
 
 const activeTab = ref<'collar' | 'dumbwaiter'>('collar')
+const showSlideRef = ref(true)
+const isHoistAnimating = ref(true)
+const hoistPhase = ref(0)
 
 // ================= COLLAR TAB STATE =================
 const collarMass = ref(2.0)
@@ -349,51 +382,98 @@ function drawCollar() {
   const chartLeft = simW + 20
   const chartW = w - chartLeft - 20
 
-  // 1. Physical System (responsive scale so Pin at 8m stays inside simW)
-  const rodX = 62
-  const topY = 54
-  const s = Math.min(36, Math.max(20, (simW - rodX - 38) / 8))
+  // 1. Physical System matching Module 4 Slide 14:
+  // Fixed clevis Pin on LEFT (pinX), smooth vertical rod 8 m to RIGHT (rodX = pinX + 8*s)
+  const pinX = 42
+  const topY = 66
+  const s = Math.min(34, Math.max(19, (simW - pinX - 58) / 8))
+  const rodX = pinX + 8 * s
   const bottomY = topY + 6 * s
-
-  // Pin Support at (8m, 0)
-  const pinX = rodX + 8 * s
   const pinY = topY
 
-  // Vertical Steel Rod
-  ctxCollar.fillStyle = '#64748b'
-  ctxCollar.fillRect(rodX - 5, topY - 20, 10, bottomY - topY + 40)
-  ctxCollar.strokeStyle = '#94a3b8'
-  ctxCollar.lineWidth = 1.5
-  ctxCollar.strokeRect(rodX - 5, topY - 20, 10, bottomY - topY + 40)
-
-  // Meter ticks along vertical rod
-  ctxCollar.fillStyle = 'rgba(148, 163, 184, 0.7)'
-  ctxCollar.font = '10px monospace'
-  ctxCollar.textAlign = 'right'
-  for (let m = 0; m <= 6; m++) {
-    const yPos = topY + m * s
-    ctxCollar.strokeStyle = '#94a3b8'
-    ctxCollar.beginPath()
-    ctxCollar.moveTo(rodX - 10, yPos)
-    ctxCollar.lineTo(rodX + 10, yPos)
-    ctxCollar.stroke()
-    ctxCollar.fillText(`y = ${m}m`, rodX - 14, yPos + 3)
-  }
-
-  // Pin Support Wall & Pivot at (pinX, pinY)
-  ctxCollar.fillStyle = '#334155'
-  ctxCollar.fillRect(pinX, pinY - 15, 20, 30)
-  ctxCollar.fillStyle = '#0284c7'
+  // Top 8 m horizontal dimension bar (|<--- 8 m --->|)
+  ctxCollar.strokeStyle = 'rgba(148, 163, 184, 0.75)'
+  ctxCollar.lineWidth = 1.2
   ctxCollar.beginPath()
-  ctxCollar.arc(pinX, pinY, 6, 0, Math.PI * 2)
+  ctxCollar.moveTo(pinX, topY - 30)
+  ctxCollar.lineTo(rodX, topY - 30)
+  ctxCollar.moveTo(pinX, topY - 36)
+  ctxCollar.lineTo(pinX, topY - 18)
+  ctxCollar.moveTo(rodX, topY - 36)
+  ctxCollar.lineTo(rodX, topY - 24)
+  ctxCollar.stroke()
+  ctxCollar.fillStyle = '#e2e8f0'
+  ctxCollar.font = 'bold 11px monospace'
+  ctxCollar.textAlign = 'center'
+  ctxCollar.fillText('8 m', (pinX + rodX) / 2, topY - 35)
+
+  // Right 6 m vertical dimension bar (Position 1 to Position 2)
+  const dimX = rodX + 34
+  ctxCollar.strokeStyle = 'rgba(148, 163, 184, 0.75)'
+  ctxCollar.beginPath()
+  ctxCollar.moveTo(rodX + 16, topY)
+  ctxCollar.lineTo(dimX + 6, topY)
+  ctxCollar.moveTo(rodX + 16, bottomY)
+  ctxCollar.lineTo(dimX + 6, bottomY)
+  ctxCollar.moveTo(dimX, topY)
+  ctxCollar.lineTo(dimX, bottomY)
+  ctxCollar.stroke()
+  ctxCollar.fillStyle = '#e2e8f0'
+  ctxCollar.textAlign = 'left'
+  ctxCollar.fillText('6 m', dimX + 6, (topY + bottomY) / 2 + 4)
+
+  // Vertical Steel Guide Rod on RIGHT (matching Slide 14 light-blue/steel shaft)
+  ctxCollar.fillStyle = '#64748b'
+  ctxCollar.fillRect(rodX - 5, topY - 22, 10, bottomY - topY + 44)
+  ctxCollar.strokeStyle = '#bae6fd'
+  ctxCollar.lineWidth = 1.5
+  ctxCollar.strokeRect(rodX - 5, topY - 22, 10, bottomY - topY + 44)
+
+  // Ghost collar outlines at Position 1 and Position 2
+  ctxCollar.save()
+  ctxCollar.setLineDash([3, 3])
+  ctxCollar.strokeStyle = 'rgba(148, 163, 184, 0.55)'
+  ctxCollar.strokeRect(rodX - 13, topY - 14, 26, 28)
+  ctxCollar.strokeRect(rodX - 13, bottomY - 14, 26, 28)
+  ctxCollar.restore()
+  ctxCollar.fillStyle = '#cbd5e1'
+  ctxCollar.font = 'bold 12px serif'
+  ctxCollar.fillText('1', rodX + 18, topY - 6)
+  ctxCollar.fillText('2', rodX + 18, bottomY + 14)
+
+  // Fixed Clevis Bracket & Pin on LEFT (matching Slide 14 pedestal pin)
+  ctxCollar.fillStyle = '#475569'
+  ctxCollar.fillRect(pinX - 18, pinY + 8, 36, 10)
+  ctxCollar.beginPath()
+  ctxCollar.moveTo(pinX - 10, pinY + 8)
+  ctxCollar.lineTo(pinX - 6, pinY - 6)
+  ctxCollar.arc(pinX, pinY - 2, 7, Math.PI, 0, false)
+  ctxCollar.lineTo(pinX + 10, pinY + 8)
+  ctxCollar.closePath()
+  ctxCollar.fillStyle = '#94a3b8'
   ctxCollar.fill()
-  ctxCollar.fillText('PIN (8m, 0)', pinX - 8, pinY - 12)
+  ctxCollar.fillStyle = '#0f172a'
+  ctxCollar.beginPath()
+  ctxCollar.arc(pinX, pinY, 3.5, 0, Math.PI * 2)
+  ctxCollar.fill()
 
   // Collar position along the rod
   const collarCenterY = topY + collarY.value * s
 
-  // Realistic Spring Coils from Pin to Collar
-  const dx = rodX - pinX
+  // Ghost initial horizontal spring if collar has moved
+  if (collarY.value > 0.15) {
+    ctxCollar.save()
+    ctxCollar.strokeStyle = 'rgba(148, 163, 184, 0.25)'
+    ctxCollar.setLineDash([4, 3])
+    ctxCollar.beginPath()
+    ctxCollar.moveTo(pinX, pinY)
+    ctxCollar.lineTo(rodX - 13, topY)
+    ctxCollar.stroke()
+    ctxCollar.restore()
+  }
+
+  // Realistic Spring Coils from Left Pin to Right Collar
+  const dx = (rodX - 12) - pinX
   const dy = collarCenterY - pinY
   const springLenPx = Math.sqrt(dx * dx + dy * dy)
   const springAngle = Math.atan2(dy, dx)
@@ -402,55 +482,56 @@ function drawCollar() {
   ctxCollar.translate(pinX, pinY)
   ctxCollar.rotate(springAngle)
 
-  ctxCollar.strokeStyle = '#c084fc'
-  ctxCollar.lineWidth = 2.5
+  ctxCollar.strokeStyle = '#93c5fd'
+  ctxCollar.lineWidth = 2.2
   ctxCollar.beginPath()
-  const numCoils = 14
-  const leadLen = 20
-  const coilSpan = springLenPx - 2 * leadLen
+  const numCoils = 16
+  const leadLen = 16
+  const coilSpan = Math.max(20, springLenPx - 2 * leadLen)
 
   ctxCollar.moveTo(0, 0)
   ctxCollar.lineTo(leadLen, 0)
 
   for (let c = 0; c <= numCoils; c++) {
     const cx = leadLen + (c / numCoils) * coilSpan
-    const amp = (c % 2 === 0 ? 1 : -1) * 9
+    const amp = (c % 2 === 0 ? 1 : -1) * 7.5
     ctxCollar.lineTo(cx, amp)
   }
   ctxCollar.lineTo(springLenPx, 0)
   ctxCollar.stroke()
   ctxCollar.restore()
 
-  // Collar Body (Bronze cylinder on rod)
-  ctxCollar.fillStyle = '#f59e0b'
-  ctxCollar.fillRect(rodX - 14, collarCenterY - 15, 28, 30)
-  ctxCollar.strokeStyle = '#ffffff'
+  // Collar Body (Green sleeve on rod matching Slide 14)
+  ctxCollar.fillStyle = '#22c55e'
+  ctxCollar.fillRect(rodX - 13, collarCenterY - 14, 26, 28)
+  ctxCollar.strokeStyle = '#f8fafc'
   ctxCollar.lineWidth = 2
-  ctxCollar.strokeRect(rodX - 14, collarCenterY - 15, 28, 30)
-
-  ctxCollar.fillStyle = '#0f172a'
-  ctxCollar.font = 'bold 9px sans-serif'
-  ctxCollar.textAlign = 'center'
-  ctxCollar.fillText('m', rodX, collarCenterY + 3)
+  ctxCollar.strokeRect(rodX - 13, collarCenterY - 14, 26, 28)
+  ctxCollar.fillStyle = '#052e16'
+  ctxCollar.beginPath()
+  ctxCollar.arc(rodX - 7, collarCenterY, 3, 0, Math.PI * 2)
+  ctxCollar.fill()
 
   // Velocity Vector Arrow on Collar
   const vel = curSpeedCollar.value
   if (vel > 0.1) {
-    const vArrowLen = Math.min(50, vel * 4.5)
+    const vArrowLen = Math.min(48, vel * 4.2)
     ctxCollar.strokeStyle = '#38bdf8'
     ctxCollar.fillStyle = '#38bdf8'
-    ctxCollar.lineWidth = 3
+    ctxCollar.lineWidth = 2.8
     ctxCollar.beginPath()
-    ctxCollar.moveTo(rodX + 22, collarCenterY)
-    ctxCollar.lineTo(rodX + 22, collarCenterY + vArrowLen)
+    ctxCollar.moveTo(rodX - 24, collarCenterY)
+    ctxCollar.lineTo(rodX - 24, collarCenterY + vArrowLen)
     ctxCollar.stroke()
     ctxCollar.beginPath()
-    ctxCollar.moveTo(rodX + 22, collarCenterY + vArrowLen)
-    ctxCollar.lineTo(rodX + 18, collarCenterY + vArrowLen - 6)
-    ctxCollar.lineTo(rodX + 26, collarCenterY + vArrowLen - 6)
+    ctxCollar.moveTo(rodX - 24, collarCenterY + vArrowLen)
+    ctxCollar.lineTo(rodX - 28, collarCenterY + vArrowLen - 6)
+    ctxCollar.lineTo(rodX - 20, collarCenterY + vArrowLen - 6)
     ctxCollar.closePath()
     ctxCollar.fill()
-    ctxCollar.fillText(`v`, rodX + 32, collarCenterY + vArrowLen)
+    ctxCollar.textAlign = 'right'
+    ctxCollar.font = 'bold 10px monospace'
+    ctxCollar.fillText(`${vel.toFixed(1)}m/s`, rodX - 30, collarCenterY + vArrowLen)
   }
 
   // ================= 2. DYNAMIC ENERGY BAR CHART =================
@@ -516,147 +597,211 @@ function drawDumbwaiter() {
 
   ctxDumb.clearRect(0, 0, w, h)
 
-  // Layout:
-  // Overhead beam at top with Motor drum M and Fixed Pulleys
-  const beamY = 50
-  ctxDumb.fillStyle = '#334155'
-  ctxDumb.fillRect(40, beamY - 8, w - 80, 14)
+  // Layout modeled directly on Module 4 Slide 17:
+  // Left half: Counterweight C on LEFT (2:1 movable pulley), Dumbwaiter D to its RIGHT, Motor M on floor at bottom-right
+  // Right half: Live Free-Body & Kinetic Diagrams (Fig. 1, Fig. 2, Fig. 3)
+  const hoistRight = Math.min(360, w * 0.52)
+  const beamY = 44
+  const floorY = h - 38
 
-  // Motor M (Spool Drum) on left
-  const motorX = 120
-  ctxDumb.fillStyle = '#0284c7'
-  ctxDumb.beginPath()
-  ctxDumb.arc(motorX, beamY, 22, 0, Math.PI * 2)
-  ctxDumb.fill()
-  ctxDumb.fillStyle = '#ffffff'
-  ctxDumb.font = 'bold 11px sans-serif'
-  ctxDumb.textAlign = 'center'
-  ctxDumb.fillText('MOTOR', motorX, beamY + 4)
+  // Overhead beam & floor
+  ctxDumb.fillStyle = '#475569'
+  ctxDumb.fillRect(34, beamY - 12, hoistRight - 20, 12)
+  ctxDumb.fillRect(34, floorY, hoistRight + 10, 8)
 
-  // Overhead Fixed Pulley 1 (above Counterweight)
-  const pulley1X = w * 0.58
-  const pulley2X = w * 0.76
+  const cwX = Math.max(82, hoistRight * 0.28)
+  const dumbX = Math.max(175, hoistRight * 0.62)
+  const motorX = Math.max(245, hoistRight * 0.86)
 
-  const drawPulley = (x: number, y: number, r: number) => {
-    ctxDumb!.fillStyle = '#64748b'
+  const drawSheave = (x: number, y: number, r: number) => {
+    ctxDumb!.fillStyle = '#cbd5e1'
     ctxDumb!.beginPath()
     ctxDumb!.arc(x, y, r, 0, Math.PI * 2)
     ctxDumb!.fill()
-    ctxDumb!.strokeStyle = '#94a3b8'
+    ctxDumb!.strokeStyle = '#334155'
     ctxDumb!.lineWidth = 2
     ctxDumb!.stroke()
+    ctxDumb!.fillStyle = '#334155'
+    ctxDumb!.beginPath()
+    ctxDumb!.arc(x, y, 3, 0, Math.PI * 2)
+    ctxDumb!.fill()
   }
 
-  drawPulley(pulley1X, beamY, 18)
-  drawPulley(pulley2X, beamY, 18)
+  // Animated vertical travel offset: D moves UP by dyD, C moves DOWN by 0.5 * dyD!
+  const dyD = (hoistPhase.value % 1) * 76 - 38 // -38 (higher) to +38 (lower), wait: rising means y decreases!
+  const offsetD = 38 - (hoistPhase.value % 1) * 76
+  const offsetC = -0.5 * offsetD
 
-  // Dumbwaiter D (suspended from motor cable)
-  const dumbX = motorX
-  const dumbY = 170
-  ctxDumb.fillStyle = '#38bdf8'
-  ctxDumb.fillRect(dumbX - 35, dumbY, 70, 80)
-  ctxDumb.strokeStyle = '#ffffff'
-  ctxDumb.lineWidth = 2
-  ctxDumb.strokeRect(dumbX - 35, dumbY, 70, 80)
+  const cwPulleyY = 178 + offsetC
+  const dumbY = 172 + offsetD
 
-  ctxDumb.fillStyle = '#0f172a'
-  ctxDumb.font = 'bold 11px sans-serif'
-  ctxDumb.fillText('DUMBWAITER', dumbX, dumbY + 36)
-  ctxDumb.fillText(`W_D = ${weightD.value}N`, dumbX, dumbY + 52)
+  // Overhead sheaves matching Slide 17
+  const topSheave1X = cwX + 13
+  const topSheave2X = dumbX - 12
+  const topSheave3X = dumbX + 14
+  drawSheave(topSheave1X, beamY + 14, 12)
+  drawSheave(topSheave2X, beamY + 14, 12)
+  drawSheave(topSheave3X, beamY + 28, 12)
 
-  // Cable from Motor down to Dumbwaiter
-  ctxDumb.strokeStyle = '#f43f5e'
-  ctxDumb.lineWidth = 3.5
-  ctxDumb.beginPath()
-  ctxDumb.moveTo(motorX, beamY + 22)
-  ctxDumb.lineTo(motorX, dumbY)
-  ctxDumb.stroke()
-
-  ctxDumb.fillStyle = '#f43f5e'
-  ctxDumb.font = 'bold 10px monospace'
-  ctxDumb.textAlign = 'left'
-  ctxDumb.fillText(`F = ${motorForceF.value.toFixed(1)} N`, motorX + 8, dumbY - 20)
-
-  // Upward velocity arrow on Dumbwaiter
-  ctxDumb.strokeStyle = '#22c55e'
-  ctxDumb.fillStyle = '#22c55e'
-  ctxDumb.lineWidth = 2.5
-  ctxDumb.beginPath()
-  ctxDumb.moveTo(dumbX - 45, dumbY + 50)
-  ctxDumb.lineTo(dumbX - 45, dumbY + 15)
-  ctxDumb.stroke()
-  ctxDumb.beginPath()
-  ctxDumb.moveTo(dumbX - 45, dumbY + 15)
-  ctxDumb.lineTo(dumbX - 49, dumbY + 22)
-  ctxDumb.lineTo(dumbX - 41, dumbY + 22)
-  ctxDumb.closePath()
-  ctxDumb.fill()
-  ctxDumb.fillText(`v_D = ${speedVD.value} m/s ↑`, dumbX - 52, dumbY + 8)
-
-  // Counterweight Moving Pulley (2:1 Ratio)
-  const cwPulleyX = (pulley1X + pulley2X) / 2
-  const cwPulleyY = 220
-  drawPulley(cwPulleyX, cwPulleyY, 16)
-
-  // Cable routing for 2:1 counterweight:
-  // From top of Dumbwaiter over pulley 1, down around cwPulley, back up to fixed anchor at pulley 2
+  // Counterweight Cable (Blue): Fixed ceiling anchor -> down around C's movable pulley -> up over Sheave 1 & 2 -> down to D
   ctxDumb.strokeStyle = '#38bdf8'
-  ctxDumb.lineWidth = 3
+  ctxDumb.lineWidth = 2.4
   ctxDumb.beginPath()
-  ctxDumb.moveTo(dumbX + 30, dumbY)
-  ctxDumb.lineTo(pulley1X, beamY)
-  ctxDumb.lineTo(cwPulleyX - 16, cwPulleyY)
-  ctxDumb.arc(cwPulleyX, cwPulleyY, 16, Math.PI, 0, true)
-  ctxDumb.lineTo(pulley2X, beamY)
+  ctxDumb.moveTo(cwX - 13, beamY)
+  ctxDumb.lineTo(cwX - 13, cwPulleyY)
+  ctxDumb.arc(cwX, cwPulleyY, 13, Math.PI, 0, true)
+  ctxDumb.lineTo(topSheave1X, beamY + 14)
+  ctxDumb.lineTo(topSheave2X, beamY + 2)
+  ctxDumb.moveTo(topSheave2X + 8, beamY + 14)
+  ctxDumb.lineTo(dumbX - 10, dumbY)
   ctxDumb.stroke()
 
-  // Tension T indicator
-  ctxDumb.fillStyle = '#38bdf8'
-  ctxDumb.font = 'bold 10px monospace'
-  ctxDumb.fillText(`T = ${cableTensionT.value.toFixed(1)} N`, cwPulleyX - 55, cwPulleyY - 30)
-  ctxDumb.fillText(`T = ${cableTensionT.value.toFixed(1)} N`, cwPulleyX + 25, cwPulleyY - 30)
+  drawSheave(cwX, cwPulleyY, 13)
 
-  // Counterweight block C (suspended from moving pulley)
-  ctxDumb.strokeStyle = '#94a3b8'
-  ctxDumb.lineWidth = 2
-  ctxDumb.beginPath()
-  ctxDumb.moveTo(cwPulleyX, cwPulleyY + 16)
-  ctxDumb.lineTo(cwPulleyX, cwPulleyY + 35)
-  ctxDumb.stroke()
-
-  const cwBlockY = cwPulleyY + 35
-  ctxDumb.fillStyle = '#f59e0b'
-  ctxDumb.fillRect(cwPulleyX - 30, cwBlockY, 60, 65)
-  ctxDumb.strokeStyle = '#ffffff'
-  ctxDumb.strokeRect(cwPulleyX - 30, cwBlockY, 60, 65)
-
+  // Counterweight C (slim vertical block on LEFT matching Slide 17)
+  ctxDumb.fillStyle = '#94a3b8'
+  ctxDumb.fillRect(cwX - 12, cwPulleyY + 16, 24, 68)
+  ctxDumb.strokeStyle = '#f8fafc'
+  ctxDumb.strokeRect(cwX - 12, cwPulleyY + 16, 24, 68)
   ctxDumb.fillStyle = '#0f172a'
   ctxDumb.font = 'bold 11px sans-serif'
   ctxDumb.textAlign = 'center'
-  ctxDumb.fillText('WEIGHT C', cwPulleyX, cwBlockY + 28)
-  ctxDumb.fillText(`${weightC.value} N`, cwPulleyX, cwBlockY + 44)
-
-  // Downward speed arrow for Counterweight
-  ctxDumb.strokeStyle = '#f59e0b'
+  ctxDumb.fillText('C', cwX, cwPulleyY + 52)
   ctxDumb.fillStyle = '#f59e0b'
-  ctxDumb.lineWidth = 2.5
+  ctxDumb.font = '10px monospace'
+  ctxDumb.fillText(`${(speedVD.value / 2).toFixed(1)}m/s ↓`, cwX, cwPulleyY + 98)
+
+  // Motor Cable F (Rose/Red): From D -> up over Sheave 3 -> down to floor-mounted Motor M
+  ctxDumb.strokeStyle = '#f43f5e'
+  ctxDumb.lineWidth = 2.6
   ctxDumb.beginPath()
-  ctxDumb.moveTo(cwPulleyX + 42, cwBlockY + 15)
-  ctxDumb.lineTo(cwPulleyX + 42, cwBlockY + 45)
+  ctxDumb.moveTo(dumbX + 10, dumbY)
+  ctxDumb.lineTo(topSheave3X - 6, beamY + 28)
+  ctxDumb.lineTo(motorX - 14, floorY - 18)
   ctxDumb.stroke()
+
+  // Floor-mounted Electric Motor M (bottom right of hoist, matching Slide 17)
+  ctxDumb.fillStyle = '#0284c7'
   ctxDumb.beginPath()
-  ctxDumb.moveTo(cwPulleyX + 42, cwBlockY + 45)
-  ctxDumb.lineTo(cwPulleyX + 38, cwBlockY + 38)
-  ctxDumb.lineTo(cwPulleyX + 46, cwBlockY + 38)
-  ctxDumb.closePath()
+  ctxDumb.arc(motorX, floorY - 16, 15, 0, Math.PI * 2)
   ctxDumb.fill()
-  ctxDumb.fillText(`v_C = ${(speedVD.value / 2).toFixed(1)} m/s ↓`, cwPulleyX + 48, cwBlockY + 58)
+  ctxDumb.strokeStyle = '#f8fafc'
+  ctxDumb.stroke()
+  ctxDumb.fillStyle = '#ffffff'
+  ctxDumb.font = 'bold 11px sans-serif'
+  ctxDumb.fillText('M', motorX, floorY - 12)
+
+  // Dumbwaiter Car D (box with shelf on RIGHT matching Slide 17)
+  ctxDumb.fillStyle = '#cbd5e1'
+  ctxDumb.fillRect(dumbX - 24, dumbY, 48, 66)
+  ctxDumb.strokeStyle = '#0284c7'
+  ctxDumb.lineWidth = 2.2
+  ctxDumb.strokeRect(dumbX - 24, dumbY, 48, 66)
+  ctxDumb.fillStyle = '#64748b'
+  ctxDumb.fillRect(dumbX - 18, dumbY + 34, 36, 5)
+  ctxDumb.fillStyle = '#0f172a'
+  ctxDumb.font = 'bold 12px sans-serif'
+  ctxDumb.fillText('D', dumbX, dumbY + 24)
+  ctxDumb.fillStyle = '#22c55e'
+  ctxDumb.font = '10px monospace'
+  ctxDumb.fillText(`${speedVD.value}m/s ↑`, dumbX, dumbY + 82)
+
+  // RIGHT PANEL: Live Free-Body Diagrams (matching Fig. 1, Fig. 2, Fig. 3 of Slide 17)
+  const fbdLeft = hoistRight + 26
+  const fbdW = w - fbdLeft - 18
+  if (fbdW > 180) {
+    ctxDumb.fillStyle = 'rgba(15, 23, 42, 0.92)'
+    ctxDumb.fillRect(fbdLeft, 30, fbdW, h - 60)
+    ctxDumb.strokeStyle = 'rgba(148, 163, 184, 0.3)'
+    ctxDumb.strokeRect(fbdLeft, 30, fbdW, h - 60)
+
+    ctxDumb.fillStyle = '#f8fafc'
+    ctxDumb.font = 'bold 12px sans-serif'
+    ctxDumb.textAlign = 'left'
+    ctxDumb.fillText('FREE-BODY & KINETIC BALANCE (SLIDE 17)', fbdLeft + 14, 52)
+
+    const cFbdX = fbdLeft + fbdW * 0.28
+    const dFbdX = fbdLeft + fbdW * 0.72
+    const boxMidY = 175
+
+    // Body C FBD
+    ctxDumb.fillStyle = '#94a3b8'
+    ctxDumb.fillRect(cFbdX - 14, boxMidY - 26, 28, 52)
+    ctxDumb.fillStyle = '#0f172a'
+    ctxDumb.textAlign = 'center'
+    ctxDumb.font = 'bold 11px sans-serif'
+    ctxDumb.fillText('C', cFbdX, boxMidY + 4)
+
+    // 2T Upward on C
+    ctxDumb.strokeStyle = '#38bdf8'
+    ctxDumb.lineWidth = 2.5
+    ctxDumb.beginPath()
+    ctxDumb.moveTo(cFbdX, boxMidY - 26)
+    ctxDumb.lineTo(cFbdX, boxMidY - 68)
+    ctxDumb.stroke()
+    ctxDumb.fillStyle = '#38bdf8'
+    ctxDumb.font = 'bold 10px monospace'
+    ctxDumb.fillText(`2T = ${(2 * cableTensionT.value).toFixed(0)} N ↑`, cFbdX, boxMidY - 74)
+
+    // W_C Downward on C
+    ctxDumb.strokeStyle = '#f59e0b'
+    ctxDumb.beginPath()
+    ctxDumb.moveTo(cFbdX, boxMidY + 26)
+    ctxDumb.lineTo(cFbdX, boxMidY + 66)
+    ctxDumb.stroke()
+    ctxDumb.fillStyle = '#f59e0b'
+    ctxDumb.fillText(`W_C = ${weightC.value} N ↓`, cFbdX, boxMidY + 80)
+    ctxDumb.fillStyle = '#cbd5e1'
+    ctxDumb.fillText(`a_C = ${(accelAD.value / 2).toFixed(2)} m/s² ↓`, cFbdX, boxMidY + 96)
+
+    // Body D FBD
+    ctxDumb.fillStyle = '#cbd5e1'
+    ctxDumb.fillRect(dFbdX - 20, boxMidY - 26, 40, 52)
+    ctxDumb.fillStyle = '#0f172a'
+    ctxDumb.font = 'bold 11px sans-serif'
+    ctxDumb.fillText('D', dFbdX, boxMidY + 4)
+
+    // T and F Upward on D
+    ctxDumb.strokeStyle = '#38bdf8'
+    ctxDumb.beginPath()
+    ctxDumb.moveTo(dFbdX - 10, boxMidY - 26)
+    ctxDumb.lineTo(dFbdX - 10, boxMidY - 64)
+    ctxDumb.stroke()
+    ctxDumb.strokeStyle = '#f43f5e'
+    ctxDumb.beginPath()
+    ctxDumb.moveTo(dFbdX + 10, boxMidY - 26)
+    ctxDumb.lineTo(dFbdX + 10, boxMidY - 68)
+    ctxDumb.stroke()
+
+    ctxDumb.font = 'bold 10px monospace'
+    ctxDumb.fillStyle = '#38bdf8'
+    ctxDumb.fillText(`T=${cableTensionT.value.toFixed(0)}N`, dFbdX - 24, boxMidY - 72)
+    ctxDumb.fillStyle = '#f43f5e'
+    ctxDumb.fillText(`F=${motorForceF.value.toFixed(0)}N`, dFbdX + 26, boxMidY - 72)
+
+    // W_D Downward on D
+    ctxDumb.strokeStyle = '#f59e0b'
+    ctxDumb.beginPath()
+    ctxDumb.moveTo(dFbdX, boxMidY + 26)
+    ctxDumb.lineTo(dFbdX, boxMidY + 66)
+    ctxDumb.stroke()
+    ctxDumb.fillStyle = '#f59e0b'
+    ctxDumb.fillText(`W_D = ${weightD.value} N ↓`, dFbdX, boxMidY + 80)
+    ctxDumb.fillStyle = '#22c55e'
+    ctxDumb.fillText(`a_D = ${accelAD.value.toFixed(2)} m/s² ↑`, dFbdX, boxMidY + 96)
+
+    // Power output banner
+    ctxDumb.fillStyle = '#38bdf8'
+    ctxDumb.font = 'bold 11px monospace'
+    ctxDumb.textAlign = 'left'
+    ctxDumb.fillText(`P = F · v_D = ${motorPowerW.toFixed(1)} W (${motorPowerHp.toFixed(2)} hp)`, fbdLeft + 14, h - 42)
+  }
 
   // Kinematic Constraint note
   ctxDumb.fillStyle = '#94a3b8'
   ctxDumb.font = '10px monospace'
   ctxDumb.textAlign = 'left'
-  ctxDumb.fillText('2:1 Pulley: 2 y_C + y_D = const ⇒ v_C = ½ v_D, a_C = ½ a_D', 40, h - 20)
+  ctxDumb.fillText('2:1 Pulley: v_C = ½ v_D ↓ | 2T = W_C - m_C a_C', 34, h - 14)
 }
 
 // ================= ANIMATION TICK (SSR SAFE) =================
@@ -688,6 +833,9 @@ function tick(now: number) {
     }
     drawCollar()
   } else {
+    if (isHoistAnimating.value) {
+      hoistPhase.value = (hoistPhase.value + dt * (speedVD.value / 24)) % 1
+    }
     drawDumbwaiter()
   }
 
@@ -764,7 +912,76 @@ onBeforeUnmount(() => {
 }
 
 .sim-header {
-  margin-bottom: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.sim-header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.4rem;
+}
+
+.ref-toggle-btn {
+  padding: 0.3rem 0.75rem;
+  border-radius: 8px;
+  border: 1px solid var(--vp-c-brand-1, #0284c7);
+  background: var(--vp-c-brand-soft, rgba(2, 132, 199, 0.1));
+  color: var(--vp-c-brand-1, #0284c7);
+  font-size: 0.76rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.slide-ref-panel {
+  display: grid;
+  grid-template-columns: minmax(180px, 240px) 1fr;
+  gap: 1rem;
+  align-items: center;
+  padding: 0.85rem 1rem;
+  margin-bottom: 1rem;
+  border-radius: 10px;
+  background: var(--vp-c-bg, #ffffff);
+  border: 1px solid var(--vp-c-divider, rgba(226, 232, 240, 0.8));
+}
+
+.slide-ref-img-wrap {
+  background: #ffffff;
+  padding: 0.45rem;
+  border-radius: 8px;
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  display: flex;
+  justify-content: center;
+}
+
+.slide-ref-img-wrap img {
+  max-height: 165px;
+  width: auto;
+  object-fit: contain;
+}
+
+.slide-ref-tag {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--vp-c-brand-1, #0284c7);
+  margin-bottom: 0.25rem;
+}
+
+.slide-ref-info p {
+  margin: 0 !important;
+  font-size: 0.83rem;
+  line-height: 1.5;
+  color: var(--vp-c-text-2, #475569);
+}
+
+@media (max-width: 680px) {
+  .slide-ref-panel {
+    grid-template-columns: 1fr;
+  }
 }
 
 .sim-badge-group {

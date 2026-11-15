@@ -92,6 +92,14 @@ $$\sum M_O = \sum M_{O, ext} + \mathbf{r}_{G/O} \times (-m\mathbf{a}) = 0$$
 **Differentiate between static friction, impending friction, and kinetic friction with the aid of a friction-force versus applied-force curve. Explain the microscopic origin of the drop from static to kinetic friction.**
 
 ::: details Click to view Step-by-Step Solution
+
+<LectureFigure
+  src="/images/physics/mod3/mod3_friction_graph_fp.png"
+  caption="Friction force F vs. applied force P showing the static equilibrium line (F = P), limiting static friction peak (F_m = μ_s N), and drop to kinetic sliding friction (F_k = μ_k N)."
+  slide="Mod 3 · Slide 16"
+  max-width="580px"
+/>
+
 #### 1. The Three Friction Regimes
 1. **Static Self-Adjusting Regime ($0 \le P < F_m$):** The body remains at rest. Friction adjusts automatically to exactly balance the applied force ($F = P$). The inequality $F \le \mu_s N$ holds.
 2. **Impending Friction (Limiting Friction, $P = F_m$):** The maximum static threshold where sliding is on the verge of occurring:
@@ -109,6 +117,13 @@ Once relative motion begins, the asperities ride rapidly over one another with i
 
 ### Question 5: Angle of Repose & Incline Stability
 **Define the "Angle of Repose". Prove mathematically that on an inclined plane under gravity alone, the angle of repose is identically equal to the static angle of friction $\phi_s$.**
+
+<LectureFigure
+  src="/images/physics/mod3/mod3_incline_repose.png"
+  caption="Block on an inclined plane illustrating static equilibrium (θ < φ_s), impending slip at the Angle of Repose (θ = φ_s), and accelerated sliding (θ > φ_s)."
+  slide="Mod 3 · Slide 23"
+  max-width="700px"
+/>
 
 ::: details Click to view Step-by-Step Solution
 #### 1. Definition
@@ -163,6 +178,14 @@ If the force is applied below $h_{crit}$, the crate slips. If applied above $h_{
 **Describe the mechanical working of a wedge. Explain why wedges function as force multipliers and sketch the Free-Body Diagrams of a load and wedge during lifting.**
 
 ::: details Click to view Step-by-Step Solution
+
+<LectureFigure
+  src="/images/physics/mod3/mod3_wedge_concepts.png"
+  caption="Free-Body Diagrams of the load block and driving wedge showing normal reactions and friction forces (F = μ_s N) opposing impending motion."
+  slide="Mod 3 · Slide 24"
+  max-width="720px"
+/>
+
 #### 1. Mechanical Principle
 A wedge is an inclined plane machine with a small taper angle $\theta$. When driven horizontally by an effort $P$, it converts horizontal displacement into small vertical displacement of a heavy load $W$. Because the mechanical advantage is approximately $\text{MA} \approx \frac{1}{\tan(\theta + \phi_s)}$, a small force $P$ can lift a disproportionately large weight $W$.
 
@@ -183,6 +206,14 @@ $$P = R_2 \sin(\theta + \phi_s) + \mu_s N_3$$
 **Derive the condition under which a square-threaded power screw is "self-locking". What is the maximum possible mechanical efficiency of a self-locking power screw?**
 
 ::: details Click to view Step-by-Step Solution
+
+<LectureFigure
+  src="/images/physics/mod3/mod3_screw_unwrapped.png"
+  caption="Unwrapped square-thread inclined-plane analysis: (a) impending upward motion, (b) self-locking downward motion (φ_s > θ), and (c) unwinding downward motion (φ_s < θ)."
+  slide="Mod 3 · Slide 27"
+  max-width="720px"
+/>
+
 #### 1. Unwrapped Thread Mechanics
 Let a vertical load $W$ act on a screw of mean radius $r_m$ and lead $L$. The thread unwraps into a ramp of lead angle $\tan\theta = \frac{L}{2\pi r_m}$.
 
@@ -214,6 +245,14 @@ Any self-locking power screw has an efficiency strictly less than $50\%$.
 **Derive the Capstan formula for flat belt friction: $T_2 = T_1 e^{\mu_s \beta}$. State all underlying engineering assumptions.**
 
 ::: details Click to view Step-by-Step Solution
+
+<LectureFigure
+  src="/images/physics/mod3/mod3_belt_capstan_element.png"
+  caption="Belt wrap over arc β and differential element PP' Free-Body Diagram used to derive T_2 = T_1 e^(μ_s β)."
+  slide="Mod 3 · Slide 28"
+  max-width="640px"
+/>
+
 #### 1. Assumptions
 1. The belt is flexible, inextensible, and flat.
 2. The belt has negligible mass (centrifugal forces neglected).
@@ -244,6 +283,13 @@ Consider a differential belt element subtending angle $d\theta$:
 
 ### Question 10: Circle of Friction in Journal Bearings
 **Define the "Circle of Friction" in journal bearings and prove that its radius $r_f$ depends only on the shaft radius and the coefficient of friction, being completely independent of the applied load.**
+
+<LectureFigure
+  src="/images/physics/mod3/mod3_journal_bearing.png"
+  src2="/images/physics/mod3/mod3_pulley_axle_problem.png"
+  caption="(Left) Journal bearing reaction R tangent to the Circle of Friction (r_f = r sin φ_k ≈ r μ_k); (Right) Application to a 4-in. pulley on a 2-in. fixed shaft supporting a 500-lb load during raising and holding."
+  slide="Mod 3 · Slides 31 & 37"
+/>
 
 ::: details Click to view Step-by-Step Solution
 #### 1. Definition
@@ -295,6 +341,13 @@ The effective friction radius is $\bar{r} = \frac{2}{3}R$.
 
 ### Question 12: Numerical — Wedge Under a Heavy Machine Base
 **A $10^\circ$ wedge is driven under a machine block of mass $m = 250\text{ kg}$ resting against a vertical wall. If $\mu_s = 0.25$ between all contact surfaces, determine the horizontal force $P$ required to drive the wedge.**
+
+<LectureFigure
+  src="/images/physics/mod3/mod3_wedge_1500n.png"
+  caption="Reference lecture configuration for a 10° wedge driven horizontally by force P to raise a vertical block against wall and ground friction (Slide 25 benchmark shows the 1500 N, μ_s = 0.3 case)."
+  slide="Mod 3 · Slide 25"
+  max-width="540px"
+/>
 
 ::: details Click to view Step-by-Step Solution
 #### Step 1: Weight and Friction Angles

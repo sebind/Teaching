@@ -19,6 +19,14 @@ This chapter provides the official PSG IAS examination question bank for **Modul
 **What is work done by a force and how is it expressed in scalar product vector notation?**
 
 ::: details Click to view Complete Model Answer
+
+<LectureFigure
+  src="/images/physics/mod4/mod4_work_curved_path.png"
+  src2="/images/physics/mod4/mod4_work_area_incline.png"
+  caption="(Left) Differential work dU = F · dr along a curved path; (Right) Finite work U_{1→2} = ∫ F_t ds as the area under the tangential force-displacement graph."
+  slide="Mod 4 · Slides 3–4"
+/>
+
 #### 1. Definition of Work Done by a Force
 The work done by a force $\mathbf{F}$ acting on a particle during an infinitesimal displacement $d\mathbf{r}$ along its path is defined as the scalar product (dot product) of the force vector and the displacement vector:
 
@@ -100,6 +108,14 @@ If $U_{1\to 2} > 0$, the particle speeds up ($T_2 > T_1$). If $U_{1\to 2} < 0$, 
 **What is the difference between Conservative Force and Non-Conservative Force?**
 
 ::: details Click to view Complete Model Answer
+
+<LectureFigure
+  src="/images/physics/mod4/mod4_conservative_paths.png"
+  caption="Path independence of conservative work between endpoints A_1 and A_2 and zero circulation around any closed loop (∮ F · dr = 0)."
+  slide="Mod 4 · Slide 11"
+  max-width="580px"
+/>
+
 #### Comparative Distinction
 
 ```
@@ -238,6 +254,13 @@ Mechanical efficiency is expressed either as a decimal fraction ($0 \le \eta < 1
 ### Question 9: Automobile Braking on an Incline
 **An automobile weighing $W = 4000\text{ N}$ is driven down a $5^\circ$ incline at a speed of $90\text{ km/h}$ ($25\text{ m/s}$). The brakes are applied, exerting a constant braking force of $1500\text{ N}$. Determine the distance $x$ traveled by the automobile before coming to a stop.**
 
+<LectureFigure
+  src="/images/physics/mod4/mod4_auto_braking_incline.png"
+  caption="Official Problem (Q9): 4000 N automobile braking down a 5° incline from v_1 = 90 km/h to rest (v_2 = 0) over stopping distance x."
+  slide="Mod 4 · Slide 7"
+  max-width="380px"
+/>
+
 ::: details Click to view Step-by-Step Solution
 #### 1. Given Data
 - Weight: $W = 4000\text{ N}$
@@ -281,6 +304,13 @@ $$x = \frac{127,550}{1151.37} = 110.78\text{ m} \approx 110.8\text{ m}$$
 ### Question 10: Coupled Blocks with Friction
 **Two blocks $m_A = 200\text{ kg}$ (resting on a rough horizontal plane with $\mu_k = 0.25$) and $m_B = 300\text{ kg}$ (suspended vertically) are connected by an inextensible cord over a frictionless pulley. If the system is released from rest, determine the velocity of the blocks after block $B$ has moved $2\text{ m}$.**
 
+<LectureFigure
+  src="/images/physics/mod4/mod4_two_blocks_cable.png"
+  caption="Official Problem (Q10): Cable-connected blocks A (200 kg, μ_k = 0.25) and B (300 kg) moving 2 m from rest, with individual Free-Body Diagrams."
+  slide="Mod 4 · Slide 8"
+  max-width="460px"
+/>
+
 ::: details Click to view Step-by-Step Solution
 #### 1. Given Data & Kinematics
 - $m_A = 200\text{ kg}$, $m_B = 300\text{ kg}$
@@ -316,6 +346,13 @@ $$v = \sqrt{19.62} = 4.4294\text{ m/s} \approx 4.43\text{ m/s}$$
 
 ### Question 11: Collar on Vertical Rod with Linear Spring
 **A $2\text{ kg}$ collar slides frictionlessly down a vertical rod. It is attached to a linear spring of stiffness $k = 3\text{ N/m}$ and undeformed length $l_0 = 4\text{ m}$, anchored to a pin at a horizontal distance of $8\text{ m}$ from the rod. The collar is released from rest at Position 1 (horizontally opposite the pin). Determine its velocity at Position 2 after sliding $6\text{ m}$ downward.**
+
+<LectureFigure
+  src="/images/physics/mod4/mod4_collar_spring_rod.png"
+  caption="Official Problem (Q11): 2 kg collar sliding 6 m down a smooth vertical rod from Position 1 to Position 2 while restrained by a spring (l_0 = 4 m, k = 3 N/m, 8 m span)."
+  slide="Mod 4 · Slide 14"
+  max-width="400px"
+/>
 
 ::: details Click to view Step-by-Step Solution
 #### 1. Geometry and Spring Deformations
@@ -360,6 +397,13 @@ $$v_2 = \sqrt{87.6} = 9.359\text{ m/s} \approx 9.36\text{ m/s}$$
 **A dumbwaiter $D$ ($W_D = 600\text{ N}$) and a counterweight $C$ ($W_C = 800\text{ N}$) are connected by a cable system where counterweight $C$ is supported by a movable pulley ($2T$). When dumbwaiter $D$ moves upward at $v_D = 8\text{ m/s}$, determine the motor power required (in Watts and Horsepower) for:**
 **(a) Uniform motion ($a_D = 0$).**
 **(b) Accelerated motion with $a_D = 2.5\text{ m/s}^2\uparrow$.**
+
+<LectureFigure
+  src="/images/physics/mod4/mod4_dumbwaiter_motor.png"
+  caption="Official Problem (Q12): Dumbwaiter D (600 N) and Counterweight C (800 N) hoisted by electric motor M, showing Fig. 1, Fig. 2, and Fig. 3 Free-Body and Kinetic Diagrams."
+  slide="Mod 4 · Slide 17"
+  max-width="440px"
+/>
 
 ::: details Click to view Step-by-Step Solution
 #### 1. Kinematic Cable Constraint

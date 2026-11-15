@@ -51,6 +51,13 @@ Where:
 - $m$ is the invariant inertial mass of the particle ($\text{kg}$).
 - $\mathbf{a}$ is the absolute linear acceleration vector ($\text{m/s}^2$).
 
+<LectureFigure
+  src="/images/physics/mod3/mod3_statics_vs_kinetics.png"
+  caption="Statics (ΣF = 0 equilibrium at rest or constant velocity) vs. Kinetics (ΣF = ma unbalanced forces driving accelerated motion)."
+  slide="Mod 3 · Slide 3"
+  max-width="740px"
+/>
+
 ::: warning Crucial Axiom: Inertial (Newtonian) Reference Frames
 Newton's Second Law $\sum \mathbf{F} = m\mathbf{a}$ is valid **only** when acceleration $\mathbf{a}$ is measured with respect to an **inertial reference frame** (also termed a Newtonian or Galilean frame).
 - An inertial frame is one that is either fixed in space or translating with a strictly constant velocity ($\mathbf{a}_{frame} = \mathbf{0}$).
@@ -92,18 +99,12 @@ The **moment of momentum**, or **angular momentum**, of a particle about a fixed
 
 $$\mathbf{H}_O = \mathbf{r} \times m\mathbf{v}$$
 
-```
-                m v (Linear Momentum)
-               ^
-              /
-             /   
-            /   φ
-           *-------------------> r (Position Vector)
-          Particle P           /
-                              /
-                             /
-                            O (Fixed Center)
-```
+<LectureFigure
+  src="/images/physics/mod3/mod3_angular_momentum.png"
+  src2="/images/physics/mod3/mod3_central_force.png"
+  caption="(Left) Angular momentum H_O = r × mv in 3D space and plane polar coordinates (H_O = m r² θ̇); (Right) Motion of a particle under a central force directed toward fixed center O with conserved angular momentum."
+  slide="Mod 3 · Slides 8–9"
+/>
 
 The magnitude of $\mathbf{H}_O$ is:
 
@@ -152,20 +153,6 @@ Therefore:
 
 $$\dot{\mathbf{H}}_O = \mathbf{0} \implies \mathbf{H}_O = \mathbf{r} \times m\mathbf{v} = \text{constant}$$
 
-```
-                Areal Velocity: dA = (1/2) r (r dθ)
-                         . * P(t + dt)
-                        / /
-                       / / dA
-                      / /
-                     / /
-                    * P(t)
-                   /
-                  / r
-                 /
-                O (Sun / Center of Attraction)
-```
-
 #### Consequences of Angular Momentum Conservation:
 1. **Planar Trajectory:** Since $\mathbf{r} \times m\mathbf{v} = \mathbf{H}_O = \text{const.}$, both $\mathbf{r}$ and $\mathbf{v}$ always lie in a plane perpendicular to the constant vector $\mathbf{H}_O$. The motion is strictly two-dimensional.
 2. **Constant Transverse Area Sweep:** In polar coordinates, $H_O = m r^2 \dot{\theta} = \text{const.} \implies r^2 \dot{\theta} = h = \text{const.}$ (specific angular momentum).
@@ -181,17 +168,12 @@ The radius vector sweeps out **equal areas in equal intervals of time**. When an
 
 The most common error in student dynamics is treating acceleration as an external force and haphazardly drawing it on the Free-Body Diagram. To prevent this, professional engineers enforce the **Free-Body Diagram $\equiv$ Kinetic Diagram** method.
 
-```
-       [ FREE-BODY DIAGRAM (FBD) ]             [ KINETIC DIAGRAM (KD) ]
-    +--------------------------------+      +-----------------------------+
-    |   All Real External Forces:    |      |  Inertial Vector Responses: |
-    |   • Applied forces (P)         |  ==  |  • m a_x, m a_y (Cartesian) |
-    |   • Gravity (W = mg)           |      |  • m a_t, m a_n (Path)      |
-    |   • Normal reactions (N)       |      |  • m a_r, m a_θ (Polar)     |
-    |   • Friction forces (F_f)      |      |                             |
-    +--------------------------------+      +-----------------------------+
-                   Σ F                 ===                m a
-```
+<LectureFigure
+  src="/images/physics/mod3/mod3_fbd_kinetic_diagram.png"
+  caption="Dynamic equivalence between the Free-Body Diagram (all external forces ΣF) and the Kinetic Diagram (resultant inertial/effective vector ma)."
+  slide="Mod 3 · Slide 10"
+  max-width="640px"
+/>
 
 ### The S-M-A-R&T Protocol:
 1. **Strategy:** Identify the physical system, degrees of freedom, and constraints. Select the most natural coordinate system (Cartesian for linear motion, Path coordinates for curved trajectories of known radius, Polar for radial arms or central fields).
@@ -255,6 +237,13 @@ $$\sum F_b = 0$$
 Where $\rho$ is the radius of curvature:
 
 $$\rho = \frac{\left[1 + (dy/dx)^2\right]^{3/2}}{\left|\frac{d^2y}{dx^2}\right|}$$
+
+<LectureFigure
+  src="/images/physics/mod3/mod3_path_coordinates_car.png"
+  caption="Navigating curved trajectories using Normal-Tangential path coordinates: tangential acceleration (a_t = dv/dt) changes speed, while normal acceleration (a_n = v²/ρ) points toward the center of curvature."
+  slide="Mod 3 · Slide 12"
+  max-width="740px"
+/>
 
 #### Physical Application: Roller-Coaster Loop-the-Loop
 Consider a cart of mass $m$ traversing a circular loop of radius $R$ in a vertical plane:
@@ -404,20 +393,12 @@ A block of mass $m = 200\text{ kg}$ rests on a rough horizontal surface. A pushi
 
 *(Also evaluate the classic US Customary textbook variant: $W = 200\text{ lb}, a = 10\text{ ft/s}^2, \mu_k = 0.25$ to verify consistency).*
 
-```
-                     Pushed Block FBD
-                         P (push down at 30°)
-                          \
-                           \ 30°
-                            v
-                      +------------+
-        F_k <-------- |  m = 200kg | --------> a = 3.0 m/s²
-                      +------------+
-                            |
-                            | W = mg
-                            v
-                        ^ N (Normal Reaction)
-```
+<LectureFigure
+  src="/images/physics/mod3/mod3_block_200kg_pull.png"
+  caption="Block on a rough horizontal surface acted upon by force P at 30° showing Free-Body Diagram = Kinetic Diagram (Slide 13's textbook figure illustrates the 200 lb / 200 kg 30° inclined force FBD = Kinetic Diagram geometry)."
+  slide="Mod 3 · Slide 13"
+  max-width="660px"
+/>
 
 ::: details Click to view Step-by-Step Solution
 

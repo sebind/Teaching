@@ -4,18 +4,24 @@ In Module 1, we mastered **Statics**—the art of ensuring structural equilibriu
 
 We now transition into **Dynamics**, where forces cause bodies to accelerate, decelerate, and oscillate. Dynamics divides into two fundamental sub-disciplines:
 
-```
-                          [ Dynamics ]
-                               │
-           ┌───────────────────┴───────────────────┐
-           ▼                                       ▼
-   Kinematics                              Kinetics
-   "How is it moving?"                     "Why is it moving?"
-   (x, v, a, t Geometry)                   (Forces, F = ma, Energy)
-```
+<LectureFigure
+  src="/images/physics/mod2/mod2_kinematics_vs_kinetics.png"
+  caption="The two branches of Dynamics: Kinematics (geometry of motion: x, v, a, t) versus Kinetics (causes of motion: forces, mass, and energy)."
+  slide="Mod 2 Part 1 · Slide 4"
+  max-width="740px"
+/>
 
 - **Kinematics:** Studies the geometry of motion without regard to the causes (forces or moments). It defines the relationships between displacement ($x$), velocity ($v$), acceleration ($a$), and time ($t$).
 - **Kinetics:** Combines kinematics with mass ($m$) and applied forces ($\mathbf{F}$) to determine the resulting motion via Newton's Second Law ($\mathbf{F} = m\mathbf{a}$).
+
+Throughout Module 2, moving bodies—whether an automobile on a highway, an ascending rocket, or a subatomic particle—are modeled via the **Particle Idealization** whenever rotational dimensions are negligible compared to the overall trajectory:
+
+<LectureFigure
+  src="/images/physics/mod2/mod2_particle_idealization.png"
+  caption="The Particle Idealization in Dynamics: concentrating the mass of a car, rocket, or atom at a single trajectory point when rotational effects are secondary."
+  slide="Mod 2 Part 1 · Slide 6"
+  max-width="740px"
+/>
 
 In this chapter, we analyze **Rectilinear Motion** (one-dimensional straight-line translation) using both analytical calculus and geometric motion curves.
 
@@ -25,11 +31,12 @@ In this chapter, we analyze **Rectilinear Motion** (one-dimensional straight-lin
 
 Consider a particle moving along a straight coordinate axis $x$ relative to a fixed origin $O$.
 
-```
-              Origin O                Particle P
-        <--------+-------------------------*---------> x
-        Negative x                      x(t)
-```
+<LectureFigure
+  src="/images/physics/mod2/mod2_rectilinear_axis.png"
+  caption="Rectilinear coordinate axis defining fixed origin O, instantaneous position x at P, displaced position at P', and directed displacement Δx."
+  slide="Mod 2 Part 1 · Slide 9"
+  max-width="540px"
+/>
 
 ### Position & Displacement
 - **Position Coordinate $x(t)$:** The scalar directed distance from the origin $O$ to the particle at instant $t$. It carries units of meters ($\text{m}$) or feet ($\text{ft}$) and can be positive or negative.
@@ -83,6 +90,13 @@ In forward analysis, we differentiate position: $x(t) \xrightarrow{d/dt} v(t) \x
 
 In engineering design, however, sensors or motor controllers specify acceleration $a$, and we must **integrate backwards** to find velocity and position. The solution technique depends strictly on which variables acceleration depends upon:
 
+<LectureFigure
+  src="/images/physics/mod2/mod2_integration_matrix.png"
+  caption="The Analytical Integration Matrix: selecting the exact differential relation for a = f(t), a = f(x), and a = f(v)."
+  slide="Mod 2 Part 1 · Slide 13"
+  max-width="740px"
+/>
+
 | Known Functional Form | Differential Relation | Analytical Integration Protocol |
 | :--- | :--- | :--- |
 | **Case 1: $a = f(t)$**<br/>(Acceleration is a function of time) | $dv = f(t)\,dt$ | $\displaystyle \int_{v_0}^v dv = \int_0^t f(t)\,dt \implies v(t) = v_0 + \int_0^t f(t)\,dt$<br/>$\displaystyle \int_{x_0}^x dx = \int_0^t v(t)\,dt \implies x(t) = x_0 + \int_0^t v(t)\,dt$ |
@@ -123,13 +137,19 @@ If an exam problem states $a = 6t$, $a = 3x^2$, or $a = -0.5v^2$, using these th
 
 When vehicle telemetry or experimental sensors record motion, acceleration is often defined by piecewise curves or tables rather than smooth analytic functions. Engineers analyze motion visually using **Motion Curves** ($x\text{–}t$, $v\text{–}t$, and $a\text{–}t$ graphs):
 
-```
-      Slope = dx/dt                Slope = dv/dt
-   ┌──────────────────►         ┌──────────────────►
-[ x–t Graph ]              [ v–t Graph ]              [ a–t Graph ]
-   ◄──────────────────┘         ◄──────────────────┘
-     Area = ∫ v dt = Δx           Area = ∫ a dt = Δv
-```
+<LectureFigure
+  src="/images/physics/mod2/mod2_graphical_slopes.png"
+  caption="Graphical differentiation via tangent slopes: slope of x–t gives instantaneous velocity (dx/dt = v), and slope of v–t gives instantaneous acceleration (dv/dt = a)."
+  slide="Mod 2 Part 2 · Slide 9"
+  max-width="740px"
+/>
+
+<LectureFigure
+  src="/images/physics/mod2/mod2_graphical_areas.png"
+  caption="Graphical integration via shaded areas: area under a–t equals velocity change (∫a dt = v₂ − v₁), and area under v–t equals displacement (∫v dt = x₂ − x₁)."
+  slide="Mod 2 Part 2 · Slide 10"
+  max-width="740px"
+/>
 
 ### The Slope & Area Mathematical Bridge
 
@@ -201,6 +221,13 @@ Determine:
 2. The position and total distance traveled by the particle at that instant.
 3. The acceleration of the particle at that instant.
 4. The total distance traveled by the particle between $t = 4\text{ s}$ and $t = 6\text{ s}$.
+
+<LectureFigure
+  src="/images/physics/mod2/mod2_cubic_track.png"
+  caption="Worked Problem 2: Rectilinear reversal path and synchronized motion curves for x(t) = t³ − 6t² − 15t + 40."
+  slide="Mod 2 Part 1 · Slide 16"
+  max-width="280px"
+/>
 
 ::: details Click to view Step-by-Step Solution
 #### Part 1: Finding When Velocity is Zero ($v = 0$)
@@ -276,6 +303,13 @@ $$
 2. The maximum velocity of the sled and when it occurs.
 3. The time at which the sled returns to the origin.
 
+<LectureFigure
+  src="/images/physics/mod2/mod2_poly_motion_curves.png"
+  caption="Worked Problem 3: Synchronized x–t, v–t, and a–t motion curves for x = 6t² − t³ highlighting peak velocity at t = 2 s and peak position at t = 4 s."
+  slide="Mod 2 Part 2 · Slide 8"
+  max-width="740px"
+/>
+
 ::: details Click to view Step-by-Step Solution
 #### 1. Kinematic Derivatives:
 $$
@@ -323,17 +357,19 @@ $$
 
 Construct the motion curves and calculate the total distance $d$ between station $A$ and station $B$.
 
-```
-    v (ft/s) ^
-             |                    Cruising (48 ft/s)
-          48 +                   +-------------------+
-             |                  /                     \
-          24 +                 +                       \
-             |                /                         \
-           0 +---------------+---+-------------------+---+---> t (s)
-             0               6   10                  34  40
-               Stage 1        Stage 2   Stage 3       Stage 4
-```
+<LectureFigure
+  src="/images/physics/mod2/mod2_subway_diagram.png"
+  caption="Worked Problem 4 (Physical Setup): Subway car traveling rectilinearly from Station A to Station B across total distance d."
+  slide="Mod 2 Part 2 · Slide 6"
+  max-width="460px"
+/>
+
+<LectureFigure
+  src="/images/physics/mod2/mod2_subway_curves.png"
+  caption="Worked Problem 4 (Motion Curves): Piecewise a–t, v–t, and x–t profiles yielding total inter-station distance d = 1512 ft."
+  slide="Mod 2 Part 2 · Slide 6"
+  max-width="760px"
+/>
 
 ::: details Click to view Step-by-Step Solution
 #### Stage-by-Stage Analysis using $v\text{–}t$ Areas:
@@ -394,6 +430,13 @@ The distance between Station $A$ and Station $B$ is **$1512\text{ ft}$**.
 2. Determine the time $t_{peak}$ required to reach this maximum height.
 3. Calculate the total time $t_{impact}$ when the ball strikes the pavement below ($y = 0$).
 4. Determine the velocity $v_{impact}$ of the ball just prior to ground impact.
+
+<LectureFigure
+  src="/images/physics/mod2/mod2_vertical_ball_20m.png"
+  src2="/images/physics/mod2/mod2_vertical_ball_curves.png"
+  caption="Worked Problem 5: (Left) Ball thrown upward at v₀ = +10 m/s from a y₀ = +20 m window; (Right) Corresponding y–t parabolic curve and linear v–t curve."
+  slide="Mod 2 Part 2 · Slide 11"
+/>
 
 ::: details Click to view Step-by-Step Solution
 #### 1. Maximum Height Calculation:

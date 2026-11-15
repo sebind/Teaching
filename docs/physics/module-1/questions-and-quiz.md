@@ -126,6 +126,13 @@ The spacecraft preserves its linear momentum indefinitely without expending prop
 ### Question 2: Newton's Third Law and the Single-Body Misconception
 **Question:** A student argues: *"If Newton's third law guarantees that for every action there is an equal and opposite reaction ($\mathbf{F}_{AB} = -\mathbf{F}_{BA}$), their vector sum is always zero ($\mathbf{F}_{AB} + \mathbf{F}_{BA} = \mathbf{0}$). Therefore, nothing in the universe should ever be able to accelerate."* Identify and dismantle the student's conceptual error.
 
+<LectureFigure
+  src="/images/physics/mod1/mod1_spring_third_law.png"
+  caption="Action-reaction pairs (F and -F) act simultaneously on two distinct physical bodies, never cancelling on a single isolated Free-Body Diagram."
+  slide="Mod 1 Part 1 · Slide 10"
+  max-width="700px"
+/>
+
 ::: details Click to view Model Answer
 #### The Conceptual Error:
 The student erroneously attempts to superimpose forces acting on **two distinctly different physical bodies** onto a single Free-Body Diagram.
@@ -149,24 +156,19 @@ The student erroneously attempts to superimpose forces acting on **two distinctl
 ### Question 3: Complete Geometric Derivation of the Parallelogram Law
 **Question:** Two concurrent coplanar forces $\mathbf{P}$ and $\mathbf{Q}$ act at point $O$ with an included angle $\theta$. Using a right-triangle geometric construction, derive the formula for the magnitude of the resultant $R = \sqrt{P^2 + Q^2 + 2PQ\cos\theta}$ and its angle of inclination $\alpha$ relative to vector $\mathbf{P}$.
 
+<LectureFigure
+  src="/images/physics/mod1/mod1_parallelogram_proof.png"
+  caption="Reference construction for the Parallelogram Law proof: parallelogram OACB with perpendicular CD dropped onto the extended line of action of P."
+  slide="Mod 1 Part 1 · Slide 17"
+  max-width="500px"
+/>
+
 ::: details Click to view Model Answer
 #### Geometric Construction:
 1. Lay vector $\mathbf{P}$ horizontally along line segment $OA$, with length $OA = P$.
 2. Draw vector $\mathbf{Q}$ along line segment $OB$ inclined at angle $\theta$ to $OA$, with length $OB = Q$.
 3. Complete parallelogram $OACB$, where diagonal $OC$ represents the resultant $\mathbf{R}$.
 4. Extend line $OA$ horizontally and drop a perpendicular from vertex $C$ meeting the extended baseline at point $D$, forming right triangle $\triangle ADC$.
-
-```
-                 C
-                /|
-            Q  / | 
-              /  | Q sin θ
-             /   |
-     θ      /    |
-    O------A-----D
-       P     Q cos θ
-    <------ P + Q cos θ ------>
-```
 
 #### Trigonometric Leg Lengths:
 In right triangle $\triangle BDC$ (or $\triangle ADC$ projection):
@@ -209,6 +211,13 @@ $$
 ### Question 4: Free-Body Diagrams & The Boundary Tracing Protocol
 **Question:** Explain the four-step **Boundary Tracing Protocol** for constructing a Free-Body Diagram. Specify the exact mathematical and physical direction rules for: (a) a cut flexible steel cable, (b) a smooth surface contact, and (c) a rough surface contact.
 
+<LectureFigure
+  src="/images/physics/mod1/mod1_fbd_xray.png"
+  caption="Isolating a body from its physical rigging into a clean Free-Body Diagram showing all active weights and tensile cable reactions."
+  slide="Mod 1 Part 2 · Slide 14"
+  max-width="680px"
+/>
+
 ::: details Click to view Model Answer
 #### The 4-Step Protocol:
 1. **Isolate the System:** Sketch an imaginary closed boundary loop completely surrounding the particle or body of interest, severing it from all mechanical supports and neighboring elements.
@@ -228,6 +237,13 @@ $$
 
 ### Question 5: Derivation of the Fundamental Direction Cosine Identity
 **Question:** Define the direction cosines of a force vector $\mathbf{F}$ in 3D space. Prove that the sum of the squares of the direction cosines is identically equal to one ($\cos^2\theta_x + \cos^2\theta_y + \cos^2\theta_z = 1$), and explain the geometric meaning of the unit vector $\boldsymbol{\lambda}$.
+
+<LectureFigure
+  src="/images/physics/mod1/mod1_3d_direction_angles.png"
+  caption="Spatial force F oriented by coordinate direction angles θx, θy, and θz relative to the positive Cartesian axes."
+  slide="Mod 1 Part 2 · Slide 26"
+  max-width="660px"
+/>
 
 ::: details Click to view Model Answer
 #### Definitions:
@@ -265,6 +281,13 @@ The vector $\boldsymbol{\lambda}$ is a pure, dimensionless vector of length $|\b
 
 ### Question 6 (Numerical): Traffic Light Suspended by Two Cables
 **Question:** A municipal traffic signal of weight $W = 500\text{ N}$ is suspended in equilibrium by two cables tied to a central ring $A$. Cable $AB$ makes an angle of $30^\circ$ with the horizontal ceiling, and cable $AC$ makes an angle of $45^\circ$ with the horizontal ceiling. Determine the tension in cable $AB$ ($T_{AB}$) and cable $AC$ ($T_{AC}$).
+
+<LectureFigure
+  src="/images/physics/mod1/mod1_q2_auto_diagram.png"
+  src2="/images/physics/mod1/mod1_q2_fbd_triangle.png"
+  caption="Reference three-force equilibrium methodology from lecture (Q2): isolating concurrent ring A into a closed force triangle solved via the Law of Sines."
+  slide="Mod 1 Part 2 · Slide 21"
+/>
 
 ::: details Click to view Step-by-Step Solution
 #### 1. Free-Body Diagram at Ring A:
@@ -326,6 +349,13 @@ $$
 - $\mathbf{F}_2 = 400\text{ N}$ at $\theta_2 = 90^\circ$ (along $+y$)
 - $\mathbf{F}_3 = 200\text{ N}$ at $\theta_3 = 210^\circ$
 Calculate the magnitude $R$ of the resultant force and its counter-clockwise inclination angle $\theta$ relative to the positive $x$-axis.
+
+<LectureFigure
+  src="/images/physics/mod1/mod1_q1_bolt_800n.png"
+  caption="Reference lecture technique (Q1): measuring standard CCW angle θ from +x automatically assigns exact algebraic signs to rectangular components."
+  slide="Mod 1 Part 2 · Slide 20"
+  max-width="340px"
+/>
 
 ::: details Click to view Step-by-Step Solution
 #### 1. Component Tabulation:
@@ -436,6 +466,13 @@ $$
 **Question:** A guy wire stabilizing an antenna tower runs from the pole collar $A(0, 5\text{ m}, 0)$ to ground anchor $B(3\text{ m}, 0, 4\text{ m})$. If the tensile force in the wire is $T = 2500\text{ N}$, determine:
 1. The force vector $\mathbf{F}_B$ exerted by the wire on ground anchor $B$.
 2. The force vector $\mathbf{F}_A$ exerted by the wire on tower collar $A$.
+
+<LectureFigure
+  src="/images/physics/mod1/mod1_q5_cylinder_3d.png"
+  caption="Reference 3D spatial cable formulation from lecture (Q5): expressing cable tensions via two-point unit vectors λAB and λAC in 3D Cartesian space."
+  slide="Mod 1 Part 2 · Slide 28"
+  max-width="720px"
+/>
 
 ::: details Click to view Step-by-Step Solution
 #### 1. Position Vector from A to B:

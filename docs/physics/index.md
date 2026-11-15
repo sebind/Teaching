@@ -41,7 +41,7 @@ import { withBase } from 'vitepress'
   <a :href="withBase('/physics/module-2/rectilinear-and-graphical')" class="portal-card">
     <div class="portal-card-header">
       <span class="portal-card-badge physics">Module 2</span>
-      <span style="font-size: 0.78rem; font-weight: 700; color: #2563eb;">4 Chapters · 2 Labs</span>
+      <span style="font-size: 0.78rem; font-weight: 700; color: #2563eb;">4 Chapters · 3 Labs</span>
     </div>
     <h3 class="portal-card-title">Kinematics of Particles</h3>
     <p class="portal-card-desc">
@@ -160,6 +160,7 @@ Access the simulation experiments directly within the relevant module chapters:
 - [Module 1.1: Parallelogram Force Vector Lab](/physics/module-1/newtonian-and-vectors)
 - [Module 1.3: Three.js 3D Space Force Vector Viewer](/physics/module-1/forces-in-space)
 - [Module 2.1: Motion Curves ($x\text{–}v\text{–}a$) Real-Time Plotter](/physics/module-2/rectilinear-and-graphical)
+- [Module 2.2: Elevator Shaft & Thrown Ball Intercept Lab](/physics/module-2/multi-particle-and-curvilinear)
 - [Module 2.3: Projectile Trajectory & Rolling Cycloid Simulator](/physics/module-2/projectile-and-rotary)
 - [Module 3.2: Coulomb Friction Incline & Capstan Belt Bollard Lab](/physics/module-3/dry-wedge-screw-belt-friction)
 - [Module 4.2: Spring-Collar Energy Exchange & Motor Power Sim](/physics/module-4/conservation-power-efficiency)

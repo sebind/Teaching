@@ -14,18 +14,12 @@ $$
 $$
 where $\mathbf{i}$ and $\mathbf{j}$ are dimensionless unit vectors directed along the positive $x$ and $y$ axes.
 
-```
-          y ^
-            |          /| F
-            |         / |
-        F_y +--------*  |
-            |       /|  | F_y = F sin θ
-            |      / |  |
-            |   θ /  |  |
-            +----+---+--+-----> x
-               O    F_x
-                 <-- F_x = F cos θ -->
-```
+<LectureFigure
+  src="/images/physics/mod1/mod1_force_resolution.png"
+  caption="Orthogonal decomposition of a planar force F into horizontal (Fx = F cos θ) and vertical (Fy = F sin θ) rectangular components."
+  slide="Mod 1 Part 1 · Slide 19"
+  max-width="680px"
+/>
 
 ### The "Invisible Teammates" Analogy
 To understand why orthogonal decomposition is so powerful, Dr. Sebin Devasia introduces the **Invisible Teammates** concept:
@@ -184,6 +178,13 @@ These two independent scalar equations allow an engineer to solve for at most **
 ### The Closed Force Polygon & Three-Force Triangle
 Geometrically, if $\sum \mathbf{F} = \mathbf{0}$, drawing all force vectors tip-to-tail must form a **closed polygon** returning exactly to the starting origin.
 
+<LectureFigure
+  src="/images/physics/mod1/mod1_polygon_equilibrium.png"
+  caption="Equilibrium of a particle: four concurrent forces arranged tip-to-tail via the Polygon Law close back onto the starting origin O (ΣF = 0)."
+  slide="Mod 1 Part 2 · Slide 12"
+  max-width="680px"
+/>
+
 For a particle acted upon by exactly **three concurrent forces** ($\mathbf{F}_1 + \mathbf{F}_2 + \mathbf{F}_3 = \mathbf{0}$):
 - The vectors form a closed **Force Triangle**.
 - If one force magnitude is known (such as gravity weight $W$), the unknown forces can be found rapidly without resolving components using the **Law of Sines**:
@@ -198,32 +199,24 @@ where each angle $\theta_i$ is the interior angle opposite force side $F_i$ in t
 
 A **Free-Body Diagram (FBD)** is a sketch of an isolated mechanical body or particle, freed from its physical surroundings, showing all external forces and moments exerted upon it. It is the single most critical engineering tool in mechanics.
 
+<LectureFigure
+  src="/images/physics/mod1/mod1_fbd_xray.png"
+  caption="The Engineer's X-Ray: isolating a suspended crate's Free-Body Diagram from its physical rigging cables and supports."
+  slide="Mod 1 Part 2 · Slide 14"
+  max-width="720px"
+/>
+
 ### Dr. Sebin Devasia's Boundary Tracing Protocol
 To construct an unassailable FBD every single time without missing or inventing forces, execute the **Boundary Tracing Protocol**:
-
-```
-+---------------------------------------------------------------------------------+
-|                   BOUNDARY TRACING PROTOCOL (FBD CONSTRUCTION)                  |
-+---------------------------------------------------------------------------------+
-| Step 1: Isolate System   ──► Draw imaginary closed loop isolating the particle  |
-| Step 2: Set Axes         ──► Draw orthogonal (x, y) axes with + sign conventions|
-| Step 3: Field Forces     ──► Apply non-contact Weight (W = mg) straight down    |
-| Step 4: Trace Boundary   ──► Cut every contact and replace with reaction force: |
-|           • Flexible Cable  ──► Tensile force T pulling AWAY from particle      |
-|           • Smooth Surface  ──► Normal N pushing PERPENDICULAR to contact plane |
-|           • Rough Surface   ──► Normal N + Friction f opposing motion           |
-|           • Pin Support     ──► Two orthogonal reactions (Ax, Ay)               |
-+---------------------------------------------------------------------------------+
-```
-
-### The 4-Step FBD Checklist
-1. **Isolate:** Draw the particle as a single bold dot, completely detached from all cables, pulleys, and walls.
-2. **Apply Active Field Forces:** Place the gravitational force vector $W = mg$ acting strictly vertically downward from the particle.
-3. **Replace Supports with Reactive Forces:**
+1. **Isolate:** Draw the particle as a single bold dot, completely detached from all cables, pulleys, and walls by tracing an imaginary closed boundary around it.
+2. **Establish Coordinate Axes:** Draw orthogonal $(x, y)$ axes with explicit positive sign conventions.
+3. **Apply Active Field Forces:** Place the non-contact gravitational force vector $W = mg$ acting strictly vertically downward from the particle.
+4. **Replace Severed Supports with Reactive Forces:**
    - **Tension Member (Flexible Cable, Chain, Cord):** Always pulls **away** from the connection point along the cable axis. Flexible cables cannot support compression!
    - **Smooth Surface Contact:** Always pushes **into** the body perpendicular (normal) to the tangent contact plane.
    - **Rough Contact:** Adds a tangential friction force $F_f = \mu N$ opposing relative motion.
-4. **Label Dimensions & Orientations:** Clearly indicate reference angles or slope triangles ($3:4:5$) for every vector.
+   - **Pin Support:** Introduces two orthogonal reaction components $(A_x, A_y)$.
+5. **Label Dimensions & Orientations:** Clearly indicate reference angles or slope triangles ($3:4:5$) for every vector.
 
 ---
 
@@ -231,13 +224,12 @@ To construct an unassailable FBD every single time without missing or inventing 
 
 To develop professional engineering discipline, approach every problem using Dr. Sebin Devasia's **S-M-A-R&T Framework**:
 
-```
-+-------------+     +--------------+     +---------------+     +-------------+     +-------------+
-| S: Strategy | ──► | M: Modeling  | ──► | A: Analysis   | ──► | R: Reflect  | ──► | T: Think    |
-| Knowns &    |     | Isolated FBD |     | ∑Fx=0, ∑Fy=0  |     | Units &     |     | Physical    |
-| Unknowns    |     | via Boundary |     | or Sine Rule  |     | Sig Figs    |     | Sense Check |
-+-------------+     +--------------+     +---------------+     +-------------+     +-------------+
-```
+<LectureFigure
+  src="/images/physics/mod1/mod1_smart_methodology.png"
+  caption="The S-M-A-R&T Mechanics Problem-Solving Framework: Strategy, Modeling, Analysis, Reflect, and Think."
+  slide="Mod 1 Part 2 · Slide 17"
+  max-width="760px"
+/>
 
 - **S (Strategy):** Identify which particle connects the unknown forces and count degrees of freedom ($2$ equations $\to$ $2$ unknowns).
 - **M (Modeling):** Isolate the particle and draw an uncompromising Free-Body Diagram.
@@ -271,6 +263,13 @@ The following five problems represent classic engineering benchmark cases from F
 
 ### Problem Q1: Rectangular Resolution of Bolt Force
 **Statement:** A mechanical anchor bolt is embedded into a foundation wall. A cable pulls on the bolt head with a force of magnitude $F = 800\text{ N}$ oriented at an angle of $35^\circ$ above the negative $x$-axis (measured clockwise from $-x$). Determine the rectangular components $F_x$ and $F_y$, and express $\mathbf{F}$ in Cartesian vector form.
+
+<LectureFigure
+  src="/images/physics/mod1/mod1_q1_bolt_800n.png"
+  caption="Worked Problem Q1: 800 N force acting on an anchor bolt at 35° above the negative x-axis (standard CCW angle θ = 145°)."
+  slide="Mod 1 Part 2 · Slide 20"
+  max-width="380px"
+/>
 
 ::: details Click to view Step-by-Step Solution
 #### 1. Strategy & Angle Determination:
@@ -310,23 +309,19 @@ $$
 **Statement:** A $3500\text{-lb}$ automobile is hoisted from a cargo barge by a ship crane using main cable $AB$. To position the vehicle accurately over the dock, a dockworker pulls rope $AC$ attached to the connection eyelet $A$. At the instant of interest, cable $AB$ forms an angle of $2^\circ$ with the vertical, while positioning rope $AC$ forms an angle of $30^\circ$ below the horizontal. 
 Determine the tension in main cable $AB$ ($T_{AB}$) and in positioning rope $AC$ ($T_{AC}$).
 
+<LectureFigure
+  src="/images/physics/mod1/mod1_q2_auto_diagram.png"
+  src2="/images/physics/mod1/mod1_q2_fbd_triangle.png"
+  caption="Worked Problem Q2: (Left) 3500-lb automobile hoisted by ship cable AB (2° to vertical) and guided by rope AC (30° below horizontal); (Right) Free-Body Diagram at A and closed force triangle."
+  slide="Mod 1 Part 2 · Slide 21"
+/>
+
 ::: details Click to view Step-by-Step Solution
 #### 1. System Modeling & Free-Body Diagram at Joint A:
 Particle $A$ is subject to three concurrent coplanar forces in equilibrium:
 1. **Weight $\mathbf{W}$:** Acting vertically downward, magnitude $W = 3500\text{ lb}$.
 2. **Main Cable Tension $\mathbf{T}_{AB}$:** Pulling upward and to the left at $2^\circ$ from the vertical.
 3. **Positioning Rope Tension $\mathbf{T}_{AC}$:** Pulling downward and to the right at $30^\circ$ below the horizontal.
-
-```
-                    | Cable AB (2° from vertical)
-                    | /
-                    |/
-         -----------A-----------> x
-                   /| \
-                  / |  \ Rope AC (30° below horiz.)
-                    |
-                    v W = 3500 lb
-```
 
 #### 2. Geometric Force Triangle Construction:
 Since exactly three forces are in static equilibrium ($\mathbf{T}_{AB} + \mathbf{T}_{AC} + \mathbf{W} = \mathbf{0}$), their tip-to-tail sum forms a closed triangle:
@@ -381,6 +376,13 @@ Because the crane cable is nearly vertical ($2^\circ$), it supports almost the e
 ### Problem Q3: Vector Components of Guy Wire Pulling from Building
 **Statement:** A guy wire attached to the top corner of a transmission building at point $A$ exerts a tension force $F = 300\text{ N}$. The wire anchors to ground point $B$, spanning a horizontal distance of $8\text{ m}$ to the right and descending a vertical height of $6\text{ m}$. Determine the Cartesian vector representation of the tensile force acting at building point $A$.
 
+<LectureFigure
+  src="/images/physics/mod1/mod1_q3_man_rope.png"
+  caption="Worked Problem Q3: A man pulls with 300 N on a rope anchored to a building at point A across an 8 m horizontal by 6 m vertical span."
+  slide="Mod 1 Part 2 · Slide 22"
+  max-width="620px"
+/>
+
 ::: details Click to view Step-by-Step Solution
 #### 1. Geometry & Unit Vector:
 The displacement vector from top attachment $A$ to ground anchor $B$ is:
@@ -427,6 +429,13 @@ $$
 $$
 Calculate the magnitude $F$ of the total resultant load and its angle of inclination $\theta$ with respect to the horizontal.
 
+<LectureFigure
+  src="/images/physics/mod1/mod1_q4_bolt_vector.png"
+  caption="Worked Problem Q4: Recombining orthogonal force components F = (700 lb)i + (1500 lb)j acting on bolt A into magnitude F and inclination θ."
+  slide="Mod 1 Part 2 · Slide 23"
+  max-width="340px"
+/>
+
 ::: details Click to view Step-by-Step Solution
 #### 1. Magnitude Calculation:
 By the Pythagorean theorem:
@@ -455,18 +464,12 @@ The anchor bracket experiences a total tensile pull of **$1655\text{ lb}$** dire
 **Statement:** A heavy equipment crate having a mass of $m = 75\text{ kg}$ is suspended in mid-air between two municipal buildings by two steel cables tied to a central rigging ring $A$. Cable $AB$ rises toward the left at an angle of $50^\circ$ above the horizontal. Cable $AC$ rises toward the right at an angle of $30^\circ$ above the horizontal.
 Determine the tension in cable $AB$ ($T_{AB}$) and cable $AC$ ($T_{AC}$).
 
-```
-                \ 50°               30° /
-                 \                     /
-                  \ Cable AB Cable AC /
-                   \       A         /
-                    \     / \       /
-                     \   /   \     /
-                         |
-                         | Ring A
-                         v
-                    [ Crate ] (m = 75 kg)
-```
+<LectureFigure
+  src="/images/physics/mod1/mod1_crate_fbd.png"
+  src2="/images/physics/mod1/mod1_crate_triangle.png"
+  caption="Worked Problem Q5: (Left) Free-Body Diagram of the 75-kg (736 N) suspended crate and ring A; (Right) Closed equilibrium force triangle solved via the Law of Sines."
+  slide="Mod 1 Part 2 · Slide 24"
+/>
 
 ::: details Click to view Step-by-Step Solution
 #### 1. Weight of Crate:

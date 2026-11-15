@@ -19,19 +19,12 @@ In Newtonian kinetics ($\sum \mathbf{F} = m\mathbf{a}$), predicting velocities a
 
 Consider a particle of mass $m$ moving along an arbitrary curved space trajectory under the influence of an applied force $\mathbf{F}$. Let $d\mathbf{r}$ denote the differential displacement vector of the particle along the curve.
 
-```
-                           Work of a Force Vector
-                                  F
-                                 ^
-                                / 
-                               / α
-                              *----------> dr (Tangent to Path)
-                           Particle P
-                               \
-                                \
-                                 \
-                                  O (Origin)
-```
+<LectureFigure
+  src="/images/physics/mod4/mod4_work_curved_path.png"
+  src2="/images/physics/mod4/mod4_work_area_incline.png"
+  caption="(Left) Infinitesimal work dU = F · dr = F ds cos α along a curved space trajectory; (Right) Total finite work U_{1→2} = ∫ F_t ds interpreted geometrically as the area under the tangential force-position curve and work on an incline."
+  slide="Mod 4 · Slides 3–4"
+/>
 
 The **differential work** $dU$ performed by the force $\mathbf{F}$ during displacement $d\mathbf{r}$ is defined as the scalar dot product:
 
@@ -67,19 +60,6 @@ $$dU = F_x\,dx + F_y\,dy + F_z\,dz$$
 The total work done by force $\mathbf{F}$ as the particle moves from an initial position $A_1$ (at arc coordinate $s_1$) to a final position $A_2$ (at arc coordinate $s_2$) is the line integral along the path:
 
 $$U_{1\to 2} = \int_{A_1}^{A_2} \mathbf{F} \cdot d\mathbf{r} = \int_{s_1}^{s_2} F_t\,ds = \int_{s_1}^{s_2} (F\cos\alpha)\,ds$$
-
-```
-                   Work as Area Under the F_t - s Curve
-          Tangential Force F_t
-                   ^
-                   |                   +------------------+
-                   |                  /                    \
-                   |                 /      WORK DONE       \
-                   |                /      U_{1 -> 2}        \
-                   |               /                          \
-                   +--------------+----------------------------+------->
-                                 s_1                          s_2   Path s
-```
 
 The total work done represents the **area under the tangential force-displacement curve** ($F_t$ vs. $s$).
 
@@ -217,23 +197,17 @@ The total work done by all external forces acting on a particle as it moves betw
 ## 4. Full Step-by-Step Worked Problems
 
 ### Worked Problem 4.1: Automobile Braking on an Incline
-*(From PSG IAS Lecture Slide 16 & Official Important Questions Q9)*
+*(From PSG IAS Lecture Slide 7 & Official Important Questions Q9)*
 
 An automobile of weight $W = 4000\text{ N}$ is driven down a $5^\circ$ inclined road at an initial speed of $v_1 = 90\text{ km/h}$. The driver applies the brakes, generating a constant total braking friction force of $F_{brake} = 1500\text{ N}$ opposing motion.
 Using the Principle of Work and Energy, determine the stopping distance $x$ required for the automobile to come to a complete halt ($v_2 = 0$).
 
-```
-                      Automobile Braking on Incline
-                                      ^ N
-                                      |
-                     F_brake <--------+  (1500 N uphill)
-                                     /|
-                                    / | W = 4000 N
-                                   /  v
-                                  / 5°
-                       ----------+--------------------
-                              <---- x (Stopping Distance) ---->
-```
+<LectureFigure
+  src="/images/physics/mod4/mod4_auto_braking_incline.png"
+  caption="4000 N automobile traveling down a 5° incline at v_1 = 90 km/h (25 m/s) brought to rest (v_2 = 0) over stopping distance x = 110.82 m by a 1500 N braking force."
+  slide="Mod 4 · Slide 7"
+  max-width="400px"
+/>
 
 ::: details Click to view Step-by-Step Solution
 
@@ -284,26 +258,18 @@ The vehicle requires a stopping distance of **$110.8\text{ m}$**. Notice that th
 ---
 
 ### Worked Problem 4.2: Coupled Multi-Particle System with Friction
-*(From PSG IAS Lecture Slide 19 & Official Important Questions Q10)*
+*(From PSG IAS Lecture Slide 8 & Official Important Questions Q10)*
 
 Two blocks $A$ ($m_A = 200\text{ kg}$) and $B$ ($m_B = 300\text{ kg}$) are connected by an inextensible cord passing over a frictionless, massless pulley. Block $A$ rests on a rough horizontal surface with coefficient of kinetic friction $\mu_k = 0.25$, while block $B$ hangs suspended vertically.
 The system is released from rest ($v_1 = 0$).
 Using the Principle of Work and Energy, calculate the velocity $v$ of the blocks after block $B$ has descended a distance of $d = 2\text{ m}$. Take $g = 9.81\text{ m/s}^2$.
 
-```
-                       Coupled Blocks Work-Energy
-                 N_A ^
-                     |    m_A = 200 kg   T
-            F_k <----+----[ A ]--------->----( O )
-                     |                         |
-                     v W_A = m_A g             | T
-                                               |
-                                             +---+
-                                             | B | m_B = 300 kg
-                                             +---+
-                                               |
-                                               v W_B = m_B g (drops 2 m)
-```
+<LectureFigure
+  src="/images/physics/mod4/mod4_two_blocks_cable.png"
+  caption="Two cable-connected blocks (200 kg block A with μ_k = 0.25 and 300 kg hanging block B) moving 2 m from rest to v = 4.43 m/s, along with their individual Free-Body Diagrams (Fig. 1 and Fig. 2)."
+  slide="Mod 4 · Slide 8"
+  max-width="480px"
+/>
 
 ::: details Click to view Step-by-Step Solution
 

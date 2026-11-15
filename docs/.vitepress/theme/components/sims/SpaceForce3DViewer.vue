@@ -1,14 +1,40 @@
 <template>
   <div class="sim-card">
     <div class="sim-header">
-      <div class="sim-badge-group">
-        <span class="sim-badge">MODULE 1</span>
-        <span class="sim-badge-secondary">FORCES IN SPACE</span>
+      <div class="sim-header-top">
+        <div class="sim-badge-group">
+          <span class="sim-badge">MODULE 1</span>
+          <span class="sim-badge-secondary">FORCES IN SPACE</span>
+        </div>
+        <button class="ref-toggle-btn" @click="showSlideRef = !showSlideRef">
+          📐 {{ showSlideRef ? 'Hide' : 'Show' }} PDF Slide Figure
+        </button>
       </div>
       <h3 class="sim-title">3D Space Force & Direction Cosine Visualizer</h3>
       <p class="sim-desc">
-        Explore 3D concurrent vector decomposition in the rectangular cuboid coordinate system (<strong>F</strong> = F<sub>x</sub><strong>i</strong> + F<sub>y</sub><strong>j</strong> + F<sub>z</sub><strong>k</strong>), direction angles (θ<sub>x</sub>, θ<sub>y</sub>, θ<sub>z</sub>), and Dr. Sebin Devasia's 200-kg cylinder 3D equilibrium problem.
+        Modeled directly on Dr. Sebin Devasia's 3D Statics figures: explore the rectangular cuboid coordinate system (Slide 26) and the 200-kg cylinder 3D wall-cable equilibrium problem (Slide 28).
       </p>
+    </div>
+
+    <!-- Original PDF Slide Figure Reference -->
+    <div v-if="showSlideRef" class="slide-ref-panel">
+      <div class="slide-ref-img-wrap">
+        <img
+          :src="withBase(viewerMode === 'cuboid' ? '/images/physics/mod1/mod1_3d_direction_angles.png' : '/images/physics/mod1/mod1_q5_cylinder_3d.png')"
+          :alt="viewerMode === 'cuboid' ? 'Slide 26 3D Direction Angles Figure' : 'Slide 28 200-kg Cylinder 3D Equilibrium Figure'"
+        />
+      </div>
+      <div class="slide-ref-info">
+        <span class="slide-ref-tag">
+          {{ viewerMode === 'cuboid' ? 'Original PDF · Mod 1 Part 2, Slide 26' : 'Original PDF · Mod 1 Part 2, Slide 28' }}
+        </span>
+        <p v-if="viewerMode === 'cuboid'">
+          Coordinate direction angles (θ<sub>x</sub>, θ<sub>y</sub>, θ<sub>z</sub>) define the unit vector <strong>λ</strong> = cos θ<sub>x</sub><strong>i</strong> + cos θ<sub>y</sub><strong>j</strong> + cos θ<sub>z</sub><strong>k</strong> along the diagonal of the 3D force box.
+        </p>
+        <p v-else>
+          A 200-kg yellow cylinder hangs at <strong>A</strong> (1.2 m in front of a 12 m high wall) supported by cables <strong>AB</strong> (8 m side) and <strong>AC</strong> (10 m side) with horizontal pull <strong>P = 235 N</strong>, <strong>T<sub>AB</sub> = 1402 N</strong>, and <strong>T<sub>AC</sub> = 1238 N</strong>.
+        </p>
+      </div>
     </div>
 
     <!-- Mode Selector & Camera Tools -->
@@ -177,10 +203,13 @@
 
 <script setup lang="ts">
 import { ref, computed, watch, onMounted, onBeforeUnmount } from 'vue'
+import { withBase } from 'vitepress'
 import * as THREE from 'three'
 
+const showSlideRef = ref(true)
+
 // Mode & Inputs
-const viewerMode = ref<'cuboid' | 'cylinder'>('cuboid')
+const viewerMode = ref<'cuboid' | 'cylinder'>('cylinder')
 const fx = ref(300)
 const fy = ref(400)
 const fz = ref(250)
@@ -424,23 +453,34 @@ function rebuildCylinderScene() {
   const posB = new THREE.Vector3(-1.2 * s, 10 * s, 8 * s)
   const posC = new THREE.Vector3(-1.2 * s, 10 * s, -10 * s)
 
-  // Wall Representation (at X = -1.2 * s)
-  const wallGeom = new THREE.PlaneGeometry(24 * s, 14 * s)
+  // Wall Representation (warm masonry wall matching Slide 28 at X = -1.2 * s)
+  const wallGeom = new THREE.BoxGeometry(6, 12 * s, 22 * s)
   const wallMat = new THREE.MeshStandardMaterial({ 
-    color: 0x1e293b, 
-    side: THREE.DoubleSide, 
-    roughness: 0.8,
+    color: 0xb45309, 
+    roughness: 0.78,
     transparent: true,
-    opacity: 0.85
+    opacity: 0.82
   })
   const wallMesh = new THREE.Mesh(wallGeom, wallMat)
-  wallMesh.position.set(-1.2 * s - 1, 6 * s, 0)
-  wallMesh.rotation.y = Math.PI / 2
+  wallMesh.position.set(-1.2 * s - 3, 4 * s, -1 * s)
   cylinderGroup.add(wallMesh)
 
+  // Ground plane at Y = -2 * s (2 m below A, matching Slide 28)
+  const floorGeom = new THREE.PlaneGeometry(10 * s, 22 * s)
+  const floorMat = new THREE.MeshStandardMaterial({
+    color: 0x334155,
+    side: THREE.DoubleSide,
+    transparent: true,
+    opacity: 0.55
+  })
+  const floorMesh = new THREE.Mesh(floorGeom, floorMat)
+  floorMesh.rotation.x = Math.PI / 2
+  floorMesh.position.set(2.5 * s, -2 * s, -1 * s)
+  cylinderGroup.add(floorMesh)
+
   // Wall Support Anchors B & C
-  const anchorGeom = new THREE.SphereGeometry(7, 16, 16)
-  const anchorMat = new THREE.MeshStandardMaterial({ color: 0xf59e0b, metalness: 0.5, roughness: 0.2 })
+  const anchorGeom = new THREE.SphereGeometry(6.5, 16, 16)
+  const anchorMat = new THREE.MeshStandardMaterial({ color: 0xfef08a, metalness: 0.4, roughness: 0.25 })
   
   const meshB = new THREE.Mesh(anchorGeom, anchorMat)
   meshB.position.copy(posB)
@@ -450,21 +490,23 @@ function rebuildCylinderScene() {
   meshC.position.copy(posC)
   cylinderGroup.add(meshC)
 
-  // Cable AB (Taut Tube / Line)
+  // Cable AB & Cable AC
   const cableMatAB = new THREE.LineBasicMaterial({ color: 0x38bdf8, linewidth: 3 })
   const geomAB = new THREE.BufferGeometry().setFromPoints([posA, posB])
   cylinderGroup.add(new THREE.Line(geomAB, cableMatAB))
 
-  // Cable AC (Taut Tube / Line)
   const cableMatAC = new THREE.LineBasicMaterial({ color: 0xa855f7, linewidth: 3 })
   const geomAC = new THREE.BufferGeometry().setFromPoints([posA, posC])
   cylinderGroup.add(new THREE.Line(geomAC, cableMatAC))
 
-  // Cylinder at point A
-  const cylGeom = new THREE.CylinderGeometry(14, 14, 32, 24)
-  const cylMat = new THREE.MeshStandardMaterial({ color: 0x94a3b8, metalness: 0.7, roughness: 0.3 })
+  // Short vertical hanger wire from ring A down to golden-yellow 200-kg cylinder (matching Slide 28)
+  const hangerGeom = new THREE.BufferGeometry().setFromPoints([posA, new THREE.Vector3(0, -10, 0)])
+  cylinderGroup.add(new THREE.Line(hangerGeom, new THREE.LineBasicMaterial({ color: 0xe2e8f0 })))
+
+  const cylGeom = new THREE.CylinderGeometry(13, 13, 28, 28)
+  const cylMat = new THREE.MeshStandardMaterial({ color: 0xfacc15, metalness: 0.35, roughness: 0.35 })
   const cylMesh = new THREE.Mesh(cylGeom, cylMat)
-  cylMesh.position.set(0, -16, 0)
+  cylMesh.position.set(0, -22, 0)
   cylinderGroup.add(cylMesh)
 
   // Weight Arrow W (pointing downwards from cylinder)
@@ -598,7 +640,76 @@ onBeforeUnmount(() => {
 }
 
 .sim-header {
-  margin-bottom: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.sim-header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.4rem;
+}
+
+.ref-toggle-btn {
+  padding: 0.3rem 0.75rem;
+  border-radius: 8px;
+  border: 1px solid var(--vp-c-brand-1, #0284c7);
+  background: var(--vp-c-brand-soft, rgba(2, 132, 199, 0.1));
+  color: var(--vp-c-brand-1, #0284c7);
+  font-size: 0.76rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.slide-ref-panel {
+  display: grid;
+  grid-template-columns: minmax(200px, 310px) 1fr;
+  gap: 1rem;
+  align-items: center;
+  padding: 0.85rem 1rem;
+  margin-bottom: 1rem;
+  border-radius: 10px;
+  background: var(--vp-c-bg, #ffffff);
+  border: 1px solid var(--vp-c-divider, rgba(226, 232, 240, 0.8));
+}
+
+.slide-ref-img-wrap {
+  background: #ffffff;
+  padding: 0.45rem;
+  border-radius: 8px;
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  display: flex;
+  justify-content: center;
+}
+
+.slide-ref-img-wrap img {
+  max-height: 155px;
+  width: auto;
+  object-fit: contain;
+}
+
+.slide-ref-tag {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--vp-c-brand-1, #0284c7);
+  margin-bottom: 0.25rem;
+}
+
+.slide-ref-info p {
+  margin: 0 !important;
+  font-size: 0.83rem;
+  line-height: 1.5;
+  color: var(--vp-c-text-2, #475569);
+}
+
+@media (max-width: 680px) {
+  .slide-ref-panel {
+    grid-template-columns: 1fr;
+  }
 }
 
 .sim-badge-group {

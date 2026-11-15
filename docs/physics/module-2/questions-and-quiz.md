@@ -108,6 +108,13 @@ This evaluation module consists of two comprehensive parts:
 ### Question 1: Kinematics vs. Kinetics & The Chain Rule Shortcut
 **Question:** Contrast Kinematics with Kinetics. When analyzing rectilinear motion where acceleration is known as an algebraic function of position $a(x)$, time $t$ is neither given nor required. Derive the **Chain Rule Kinematic Identity** and explain how it solves this problem.
 
+<LectureFigure
+  src="/images/physics/mod2/mod2_kinematics_vs_kinetics.png"
+  caption="Dynamics overview: Kinematics describes the geometry of motion (x, v, a, t) whereas Kinetics connects applied forces and mass to acceleration."
+  slide="Mod 2 Part 1 · Slide 4"
+  max-width="680px"
+/>
+
 ::: details Click to view Model Answer
 #### Kinematics vs. Kinetics:
 - **Kinematics:** The study of the geometry of motion without reference to the forces causing it. It relates position ($x$), displacement ($\Delta x$), velocity ($v$), acceleration ($a$), and time ($t$).
@@ -142,6 +149,13 @@ This bypasses time integration completely, directly yielding velocity as a funct
 
 ### Question 2: The Integration Matrix & Constant Acceleration Caveat
 **Question:** Detail the three canonical integration pathways of the **Integration Matrix** ($a = f(t)$, $a = f(x)$, and $a = f(v)$). State the three constant acceleration equations and provide an explicit warning explaining when they are mathematically invalid.
+
+<LectureFigure
+  src="/images/physics/mod2/mod2_integration_matrix.png"
+  caption="Analytical Integration Matrix governing variable-acceleration rectilinear problems: a = f(t), a = f(x), and a = f(v)."
+  slide="Mod 2 Part 1 · Slide 13"
+  max-width="680px"
+/>
 
 ::: details Click to view Model Answer
 #### The Integration Matrix:
@@ -182,6 +196,13 @@ These three formulas are valid **strictly when acceleration is constant**. If ac
 ### Question 3: Motion Curves Diagnostics & Distance vs. Displacement
 **Question:** Explain how graphical slope and definite area bridge the $x\text{–}t$, $v\text{–}t$, and $a\text{–}t$ motion curves. Explain the difference between net displacement and total distance traveled on a $v\text{–}t$ curve where velocity changes sign.
 
+<LectureFigure
+  src="/images/physics/mod2/mod2_graphical_slopes.png"
+  src2="/images/physics/mod2/mod2_graphical_areas.png"
+  caption="Graphical motion-curve principles: (Left) Tangent slopes yield derivatives v = dx/dt and a = dv/dt; (Right) Definite areas yield integrals Δv = ∫a dt and Δx = ∫v dt."
+  slide="Mod 2 Part 2 · Slides 9–10"
+/>
+
 ::: details Click to view Model Answer
 #### Slope & Area Bridge:
 1. **From Position to Velocity:** The instantaneous slope of the position-time curve ($x\text{–}t$) equals velocity:
@@ -218,6 +239,13 @@ If a particle reverses direction, its $v\text{–}t$ curve crosses the time axis
 ### Question 4: Block-and-Pulley Dependent Kinematics (4-Step Protocol)
 **Question:** Outline the 4-step cable constraint protocol for multi-particle dependent motion. Derive the velocity and acceleration relationships for a block-and-pulley hoist governed by $x_A + 3x_B = C$, and state the mechanical advantage.
 
+<LectureFigure
+  src="/images/physics/mod2/mod2_pulley_dof.png"
+  caption="Inextensible cable-pulley constraint methodology for 1-DOF and 2-DOF block hoisting systems."
+  slide="Mod 2 Part 2 · Slide 14"
+  max-width="620px"
+/>
+
 ::: details Click to view Model Answer
 #### The 4-Step Cable Constraint Protocol:
 1. **Step 1 (Datum Selection):** Select an immovable fixed geometric reference datum (such as a fixed ceiling or stationary pulley axle).
@@ -253,6 +281,13 @@ Specifying the motion of one block uniquely determines the motion of the other (
 ### Question 5: Curvilinear Velocity Tangency & The Hodograph
 **Question:** Prove that for any arbitrary curvilinear path, the instantaneous velocity vector is always tangent to the trajectory. Define the **Hodograph** of motion and contrast where the acceleration vector $\mathbf{a}$ points on the hodograph versus on the physical path.
 
+<LectureFigure
+  src="/images/physics/mod2/mod2_hodograph_vectors.png"
+  caption="Curvilinear velocity vectors mapped to the Hodograph locus, showing acceleration a = dv/dt tangent to the hodograph and directed inward on the trajectory."
+  slide="Mod 2 Part 2 · Slide 18"
+  max-width="700px"
+/>
+
 ::: details Click to view Model Answer
 #### Proof of Velocity Tangency:
 Let $\mathbf{r}(t)$ and $\mathbf{r}(t + \Delta t)$ be position vectors of a particle moving along a smooth space curve:
@@ -270,16 +305,6 @@ Therefore, $\mathbf{v} = v\mathbf{e}_t$ is strictly tangent to the path.
 
 #### The Hodograph:
 Plot all velocity vectors $\mathbf{v}(t)$ originating from a common origin $O'$. The locus traced by the tips of these velocity vectors in velocity-space is the **Hodograph**.
-
-```
-    Velocity Space (Hodograph)               Physical Trajectory Space
-              v_y ^                                     y ^
-                  |     Locus of Hodograph                |      Path Curve
-                  |           *                           |         *
-                  |          / \ a = dv/dt (tangent!)     |        / \ v (tangent)
-                  |    v(t) /   \                         |       /   * a (points inward!)
-                  O'-------+-----+---> v_x                O------+-----+----> x
-```
 
 - **On the Hodograph:** The acceleration vector $\mathbf{a} = \frac{d\mathbf{v}}{dt}$ is **strictly tangent to the Hodograph curve**.
 - **On the Physical Trajectory:** The acceleration vector $\mathbf{a}$ is **not** tangent to the path! It always points toward the **concave (inner) side** of the physical trajectory curve.
@@ -391,6 +416,13 @@ $$
 2. The maximum peak elevation $h_{max}$.
 3. The horizontal distance (range $R$) where the ball lands.
 
+<LectureFigure
+  src="/images/physics/mod2/mod2_projectile_parabola.png"
+  src2="/images/physics/mod2/mod2_cliff_projectile_150m.png"
+  caption="Reference ballistic trajectories from lecture: (Left) Level-ground parabolic decomposition; (Right) Elevated cliff launch superposition."
+  slide="Mod 2 Part 2 · Slides 20 & 23"
+/>
+
 ::: details Click to view Step-by-Step Solution
 #### 1. Initial Velocity Components:
 $$
@@ -426,6 +458,13 @@ $$
 At timestamp $t = 2.0\text{ s}$, calculate:
 1. The radial and transverse components of velocity ($v_r, v_\theta$) and the total speed $v$.
 2. The radial and transverse components of acceleration ($a_r, a_\theta$) and the total acceleration magnitude $a$.
+
+<LectureFigure
+  src="/images/physics/mod2/mod2_polar_vectors.png"
+  caption="Polar unit vectors e_r and e_θ rotating with the telescoping arm to resolve radial, centripetal, and Coriolis kinematics."
+  slide="Mod 2 Part 2 · Slide 24"
+  max-width="380px"
+/>
 
 ::: details Click to view Step-by-Step Solution
 #### 1. Kinematic Derivatives at $t = 2.0\text{ s}$:

@@ -68,16 +68,12 @@ To solve any block-and-pulley dependent motion problem without guessing signs, f
 ### Case A: Single Degree of Freedom (1-DOF) Pulley System
 Consider block $A$ connected to block $B$ by a single inextensible cable passing over a fixed pulley and a movable pulley supporting block $B$:
 
-```
-    //////////////// Fixed Ceiling Datum ////////////////
-           (O) Fixed Pulley
-            | \
-            |  \
-            |   (O) Movable Pulley supporting Block B
-            |   | |
-    [ A ]   |   [ B ]
-      x_A   |     x_B
-```
+<LectureFigure
+  src="/images/physics/mod2/mod2_pulley_dof.png"
+  caption="Dependent pulley-block cable constraints comparing a 1-DOF hoist (xA + 2xB = constant) with a 2-DOF three-block system (2xA + 2xB + xC = constant)."
+  slide="Mod 2 Part 2 · Slide 14"
+  max-width="640px"
+/>
 
 1. **Datum:** Choose the horizontal ceiling as the fixed datum ($x = 0$, positive downward).
 2. **Length Equation:** 
@@ -127,17 +123,12 @@ Neglecting air drag and taking $g = 9.81\text{ m/s}^2$:
 2. Determine the elevation $y$ above the shaft pit where impact occurs.
 3. Determine the relative velocity $v_{B/E}$ of the ball with respect to the platform at the moment of impact.
 
-```
-       y ^
-         |    * Ball B (y_B0 = 12 m, v_B0 = +18 m/s)
-         |    |
-         |    v (accelerating downward under gravity)
-         |
-         |   [===] Elevator Platform E (y_E0 = 5 m, v_E = +2 m/s const.)
-         |    ^
-         |    |
-       0 +----------------------- Shaft Pit Ground Datum
-```
+<LectureFigure
+  src="/images/physics/mod2/mod2_elevator_ball_shaft.png"
+  caption="Worked Problem: Ball thrown vertically upward at 18 m/s from y₀ = 12 m intercepting an open-platform elevator ascending steadily at 2 m/s from y₀ = 5 m."
+  slide="Mod 2 Part 2 · Slide 15"
+  max-width="680px"
+/>
 
 ::: details Click to view Step-by-Step Solution
 #### Step 1: Kinematic Equation for the Ascending Elevator E
@@ -204,25 +195,23 @@ $$
   To an observer riding on the elevator, the ball smashes into the floor at a relative downward speed of **$19.8\text{ m/s}$**!
 :::
 
+### Interactive Simulation: Elevator & Thrown Ball Intercept
+Animate the exact two-particle shaft problem from Slide 15 below—scrub through time or adjust initial elevations and speeds to observe the parabolic trajectory of the ball meeting the linear ascent of the elevator platform:
+
+<ElevatorBallChaseSim />
+
 ---
 
 ## 4. Foundations of Curvilinear Kinematics
 
 When a particle moves along a curved path in two or three dimensions, its position vector changes in both **magnitude** and **direction**.
 
-```
-              y ^               Trajectory Curve
-                |                  * P(t + Δt)
-                |                 /|
-                |   Δr (secant)  / |
-                |       +-------+  |
-                |      /         \ |
-                |   r(t)          * P(t)
-                |    /           /
-                |   /         r(t + Δt)
-                |  /           /
-                O-+-----------+------> x
-```
+<LectureFigure
+  src="/images/physics/mod2/mod2_curvilinear_3d.png"
+  caption="3D Curvilinear Kinematics: position vector r(t), secant displacement Δr, average velocity Δr/Δt, and instantaneous velocity v tangent to the trajectory."
+  slide="Mod 2 Part 2 · Slide 16"
+  max-width="760px"
+/>
 
 ### Position & Displacement
 - **Position Vector $\mathbf{r}(t)$:** Extends from fixed origin $O$ to particle $P$:
@@ -272,17 +261,12 @@ Because velocity $\mathbf{v}$ is a vector, $\mathbf{a}$ accounts for:
 ### The Hodograph Construction
 To understand the direction of $\mathbf{a}$, Sir William Rowan Hamilton introduced the **Hodograph**:
 
-```
-        Physical Trajectory               Hodograph Curve
-             y ^                               v_y ^
-               |    Path Curve                     |       Hodograph Locus
-               |      * P                          |          * Q
-               |     / \                           |         / \
-               |    /   \ v (tangent to path)      |        /   \ a = dv/dt (tangent to hodograph!)
-               |   /     v                         |       /     v
-               O--+-------+---> x                 O'------+-------+---> v_x
-                                                       v(t)
-```
+<LectureFigure
+  src="/images/physics/mod2/mod2_hodograph_vectors.png"
+  caption="Velocity change Δv, the velocity-space Hodograph curve, and instantaneous acceleration a pointing tangent to the hodograph (toward the concave side of the physical path)."
+  slide="Mod 2 Part 2 · Slide 18"
+  max-width="760px"
+/>
 
 1. Pick a fixed origin $O'$.
 2. At every instant $t$, plot the velocity vector $\mathbf{v}(t)$ radiating from $O'$.

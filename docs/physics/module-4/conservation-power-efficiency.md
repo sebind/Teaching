@@ -26,18 +26,12 @@ A force $\mathbf{F}$ acting on a particle is defined as **conservative** if it s
 4. **Irrotational Field:** The curl of the force vector field vanishes everywhere:
    $$\nabla \times \mathbf{F} = \mathbf{0}$$
 
-```
-                     Path Independence of Conservative Work
-                              * A_1
-                             / | \
-                      Path 1/  |  \ Path 3
-                           /   |   \
-                          | Path 2  |
-                           \   |   /
-                            \  |  /
-                              * A_2
-           Work(Path 1) = Work(Path 2) = Work(Path 3) = V_1 - V_2
-```
+<LectureFigure
+  src="/images/physics/mod4/mod4_conservative_paths.png"
+  caption="Path independence of a conservative force between endpoints A_1 and A_2 across distinct trajectories, and zero total work around any closed loop (∮ F · dr = 0)."
+  slide="Mod 4 · Slide 11"
+  max-width="620px"
+/>
 
 ---
 
@@ -55,15 +49,12 @@ For a particle of mass $m$ and weight $W = mg$ located near the Earth's surface 
 
 $$V_g = W y = m g y$$
 
-```
-                       Gravitational Potential Datum
-                               y ^
-                        +y (Above Datum) ---> V_g = +W y
-                                 |
-           ----------------------+---------------------- Datum Line (y = 0, V_g = 0)
-                                 |
-                        -y (Below Datum) ---> V_g = -W y
-```
+<LectureFigure
+  src="/images/physics/mod4/mod4_potential_energy_gravity.png"
+  caption="Gravitational potential energy V_g = Wy measured from a horizontal datum and path-independent work of weight U_{1→2} = W y_1 - W y_2."
+  slide="Mod 4 · Slide 9"
+  max-width="400px"
+/>
 
 - If the particle is **above** the datum: $V_g > 0$.
 - If the particle is **on** the datum: $V_g = 0$.
@@ -139,20 +130,12 @@ $$E = T + V = \text{constant}$$
 When a particle moves under the action of conservative forces alone, the total mechanical energy $E$ (the sum of kinetic energy $T$ and potential energy $V$) remains strictly constant throughout the motion.
 :::
 
-```
-                          Simple Pendulum Energy Exchange
-                                      Fixed Pin
-                                         /
-                                        /
-                   Datum (V_g = 0)     / θ
-                ----------------------*----------------------
-                                     / \
-                        State 1:    /   \   State 2:
-                        v = 0      *     *  Lowest Point: v = v_max
-                        T_1 = 0    |     |  V_2 = 0
-                        V_1 = mgh  v     v  T_2 = ½ m v_max²
-                                  [ T + V = Constant ]
-```
+<LectureFigure
+  src="/images/physics/mod4/mod4_pendulum_energy.png"
+  caption="Conservation of mechanical energy (T_1 + V_1 = T_2 + V_2) illustrated by the continuous exchange between potential and kinetic energy in a swinging pendulum."
+  slide="Mod 4 · Slide 13"
+  max-width="420px"
+/>
 
 ---
 
@@ -205,25 +188,18 @@ $$P_{loss} = P_{in} - P_{out} = P_{in}(1 - \eta)$$
 ## 5. Full Worked Problems from Lecture Slides
 
 ### Worked Problem 4.3: Collar Sliding Down Vertical Rod with Attached Spring
-*(From PSG IAS Lecture Slide 26 & Official Important Questions Q11)*
+*(From PSG IAS Lecture Slide 14 & Official Important Questions Q11)*
 
 A collar of mass $m = 2\text{ kg}$ is constrained to slide along a smooth, frictionless vertical guide rod. A linear spring of stiffness $k = 3\text{ N/m}$ and undeformed free length $l_0 = 4\text{ m}$ is attached to the collar and anchored to a fixed pin $O$ located at a horizontal distance of $8\text{ m}$ from the rod.
 The collar is released from rest at **Position 1**, where it is horizontally aligned with the pin $O$.
 Using the Principle of Conservation of Mechanical Energy, calculate the velocity $v_2$ of the collar as it reaches **Position 2** after sliding vertically downward a distance of $h = 6\text{ m}$. Take $g = 9.81\text{ m/s}^2$ *(also verify with $g = 9.8\text{ m/s}^2$)*.
 
-```
-                   Collar Sliding Down Rod with Spring
-                         8 m (Horizontal)
-                Pin O *---------------------* Collar (Position 1, v_1 = 0)
-                      \                     |
-                       \                    |
-                        \                   | 6 m (Vertical Drop)
-                         \                  |
-                          \ 10 m (Spring)   |
-                           \                |
-                            \               * Collar (Position 2, v_2 = ?)
-                                            v Smooth Rod
-```
+<LectureFigure
+  src="/images/physics/mod4/mod4_collar_spring_rod.png"
+  caption="2 kg collar sliding down a smooth vertical guide rod from Position 1 to Position 2 (6 m vertical drop) while attached to a linear spring (l_0 = 4 m, k = 3 N/m, 8 m horizontal span), reaching v_2 = 9.36 m/s."
+  slide="Mod 4 · Slide 14"
+  max-width="420px"
+/>
 
 ::: details Click to view Step-by-Step Solution
 
@@ -286,7 +262,7 @@ The collar reaches Position 2 with a downward speed of **$9.36\text{ m/s}$**.
 ---
 
 ### Worked Problem 4.4: Dumbwaiter and Counterweight Hoisting System
-*(From PSG IAS Lecture Slide 34 & Official Important Questions Q12)*
+*(From PSG IAS Lecture Slide 17 & Official Important Questions Q12)*
 
 A dumbwaiter $D$ of weight $W_D = 600\text{ N}$ is hoisted by a motor $M$. A counterweight $C$ of weight $W_C = 800\text{ N}$ is suspended by a cable wrapped around a movable pulley. 
 The dumbwaiter travels vertically upward at a constant instantaneous velocity of $v_D = 8\text{ m/s}$.
@@ -294,23 +270,12 @@ Determine the power delivered by motor $M$ (in Watts and Horsepower):
 1. When the system moves with **uniform velocity** ($a_D = 0$).
 2. When the dumbwaiter has an **upward acceleration** of $a_D = 2.5\text{ m/s}^2$.
 
-```
-                       Dumbwaiter & Counterweight System
-                                Fixed Ceiling
-                               ==============
-                                 ||       |
-                            ( O )||       | Cable Anchored
-                             |   ||       |
-                      Motor  |   ||       |
-                     [ M ]   |   ||     ( O ) Movable Pulley
-                       |     |   ||       |
-                       v F   | T ||       |
-                     +---+   |   ||     +---+
-                     | D |<--+   ||     | C | Counterweight
-                     +---+       ||     +---+ (W_C = 800 N)
-                     Dumbwaiter
-                     (W_D = 600 N)
-```
+<LectureFigure
+  src="/images/physics/mod4/mod4_dumbwaiter_motor.png"
+  caption="Dumbwaiter D (600 N) and Counterweight C (800 N) hoisted by electric motor M, complete with Fig. 1 Free-Body Diagrams for uniform motion and Figs. 2–3 Free-Body and Kinetic Diagrams for accelerated motion."
+  slide="Mod 4 · Slide 17"
+  max-width="460px"
+/>
 
 ::: details Click to view Step-by-Step Solution
 

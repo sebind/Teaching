@@ -1,14 +1,30 @@
 <template>
   <div class="sim-card">
     <div class="sim-header">
-      <div class="sim-badge-group">
-        <span class="sim-badge">MODULE 2</span>
-        <span class="sim-badge-secondary">KINEMATICS OF PARTICLES</span>
+      <div class="sim-header-top">
+        <div class="sim-badge-group">
+          <span class="sim-badge">MODULE 2</span>
+          <span class="sim-badge-secondary">KINEMATICS OF PARTICLES</span>
+        </div>
+        <button class="ref-toggle-btn" @click="showSlideRef = !showSlideRef">
+          📐 {{ showSlideRef ? 'Hide' : 'Show' }} PDF Slide Figure
+        </button>
       </div>
-      <h3 class="sim-title">Synchronized Motion Curves & Track Simulator</h3>
+      <h3 class="sim-title">Synchronized Motion Curves & Subway Track Simulator</h3>
       <p class="sim-desc">
-        Observe the direct calculus connection between Position <em>x(t)</em>, Velocity <em>v(t) = dx/dt</em>, and Acceleration <em>a(t) = dv/dt</em> with animated track motion, slope tangents, and area integrals.
+        Modeled directly on Dr. Sebin Devasia's Module 2 motion-curve examples: Station A-to-B Subway Car (Part 2, Slide 6), Polynomial <em>x = 6t² − t³</em> (Part 2, Slide 8), and Cubic Reversal (Part 1, Slide 16).
       </p>
+    </div>
+
+    <!-- Original PDF Slide Figure Reference -->
+    <div v-if="showSlideRef" class="slide-ref-panel">
+      <div class="slide-ref-img-wrap">
+        <img :src="withBase(activeMotionSlide.src)" :alt="activeMotionSlide.tag" />
+      </div>
+      <div class="slide-ref-info">
+        <span class="slide-ref-tag">{{ activeMotionSlide.tag }}</span>
+        <p>{{ activeMotionSlide.desc }}</p>
+      </div>
     </div>
 
     <!-- Presets Bar -->
@@ -126,9 +142,11 @@
 
 <script setup lang="ts">
 import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
+import { withBase } from 'vitepress'
 
-type PresetId = 'subway' | 'cubic' | 'custom'
+type PresetId = 'subway' | 'poly' | 'cubic' | 'custom'
 
+const showSlideRef = ref(true)
 const currentPresetId = ref<PresetId>('subway')
 const isPlaying = ref(false)
 const currentTime = ref(0)
@@ -140,10 +158,38 @@ const customV0 = ref(10)
 const customA = ref(-2)
 
 const presets = [
-  { id: 'subway' as PresetId, name: 'Lecture Subway Car (40s, 1512 ft)' },
-  { id: 'cubic' as PresetId, name: 'Lecture Cubic Motion (x = t³ - 6t² - 15t + 40)' },
+  { id: 'subway' as PresetId, name: 'Slide 6: Subway Car A→B (40s, 1512 ft)' },
+  { id: 'poly' as PresetId, name: 'Slide 8: Polynomial (x = 6t² − t³)' },
+  { id: 'cubic' as PresetId, name: 'Slide 16: Cubic Reversal (t³ − 6t² − 15t + 40)' },
   { id: 'custom' as PresetId, name: 'Custom Constant Acceleration' }
 ]
+
+const activeMotionSlide = computed(() => {
+  if (currentPresetId.value === 'subway') {
+    return {
+      src: '/images/physics/mod2/mod2_subway_diagram.png',
+      tag: 'Original PDF · Mod 2 Part 2, Slide 6',
+      desc: 'Subway car leaves Station A (+4 ft/s² for 6s, then +6 ft/s² to 48 ft/s), cruises until t = 34s, and brakes (−8 ft/s²) to stop at Station B at d = 1512 ft.'
+    }
+  } else if (currentPresetId.value === 'poly') {
+    return {
+      src: '/images/physics/mod2/mod2_poly_motion_curves.png',
+      tag: 'Original PDF · Mod 2 Part 2, Slide 8',
+      desc: 'Particle position x = 6t² − t³ (m): velocity v = 12t − 3t² peaks at t = 2s (v = 12 m/s) and reverses at t = 4s (x_max = 32 m).'
+    }
+  } else if (currentPresetId.value === 'cubic') {
+    return {
+      src: '/images/physics/mod2/mod2_cubic_track.png',
+      tag: 'Original PDF · Mod 2 Part 1, Slide 16',
+      desc: 'Cubic motion x = t³ − 6t² − 15t + 40 (ft): particle reverses direction at t = 5s (x = −60 ft) where v(5) = 0 and a(5) = +18 ft/s².'
+    }
+  }
+  return {
+    src: '/images/physics/mod2/mod2_graphical_areas.png',
+    tag: 'Original PDF · Mod 2 Part 2, Slide 10',
+    desc: 'Graphical calculus laws: area under a–t equals Δv, and area under v–t equals net displacement Δx.'
+  }
+})
 
 function selectPreset(id: PresetId) {
   currentPresetId.value = id
@@ -157,6 +203,7 @@ const unitDist = computed(() => {
 
 const maxTime = computed(() => {
   if (currentPresetId.value === 'subway') return 40
+  if (currentPresetId.value === 'poly') return 6
   if (currentPresetId.value === 'cubic') return 6
   return 10
 })
@@ -189,6 +236,11 @@ function getMotionState(t: number) {
       const x = 1368 + 48 * dt - 4 * dt * dt
       return { x, v, a }
     }
+  } else if (currentPresetId.value === 'poly') {
+    const x = 6 * t * t - t * t * t
+    const v = 12 * t - 3 * t * t
+    const a = 12 - 6 * t
+    return { x, v, a }
   } else if (currentPresetId.value === 'cubic') {
     // x = t^3 - 6t^2 - 15t + 40
     const x = t * t * t - 6 * t * t - 15 * t + 40
@@ -310,9 +362,20 @@ function draw() {
   const trackMaxX = maxX + xMargin
   const trackRange = trackMaxX - trackMinX
 
-  // Track background
+  // Track background (Tunnel roof + rails + Station A & B markers when Subway preset is active)
   ctx.fillStyle = '#1e293b'
   ctx.fillRect(trackLeft, trackY, trackWidth, trackH)
+  if (currentPresetId.value === 'subway') {
+    ctx.fillStyle = '#92400e'
+    ctx.fillRect(trackLeft, trackY, trackWidth, 5)
+    ctx.fillRect(trackLeft, trackY + trackH - 4, trackWidth, 4)
+    const stAX = trackLeft + ((0 - trackMinX) / trackRange) * trackWidth
+    const stBX = trackLeft + ((1512 - trackMinX) / trackRange) * trackWidth
+    ctx.fillStyle = '#fbbf24'
+    ctx.font = 'bold 11px serif'
+    ctx.fillText('Station A', stAX + 18, trackY - 5)
+    ctx.fillText('Station B', stBX - 18, trackY - 5)
+  }
 
   // Calibrated tick marks along track
   ctx.strokeStyle = 'rgba(148, 163, 184, 0.4)'
@@ -344,10 +407,11 @@ function draw() {
   ctx.fillStyle = 'rgba(0, 0, 0, 0.3)'
   ctx.fillRect(-18, 12, 36, 4)
 
-  // Car Body
-  ctx.fillStyle = '#38bdf8'
+  // Car Body (Amber multi-window Subway Car matching Slide 6 when subway preset is active)
+  ctx.fillStyle = currentPresetId.value === 'subway' ? '#f59e0b' : '#38bdf8'
+  const carHalfW = currentPresetId.value === 'subway' ? 28 : 20
   ctx.beginPath()
-  ctx.roundRect(-20, -12, 40, 24, 4)
+  ctx.roundRect(-carHalfW, -12, carHalfW * 2, 22, 4)
   ctx.fill()
   ctx.lineWidth = 1.5
   ctx.strokeStyle = '#ffffff'
@@ -355,12 +419,18 @@ function draw() {
 
   // Windows & Wheels
   ctx.fillStyle = '#0f172a'
-  ctx.fillRect(-14, -8, 10, 8)
-  ctx.fillRect(4, -8, 10, 8)
+  if (currentPresetId.value === 'subway') {
+    ctx.fillRect(-22, -8, 10, 8)
+    ctx.fillRect(-6, -8, 12, 8)
+    ctx.fillRect(12, -8, 10, 8)
+  } else {
+    ctx.fillRect(-14, -8, 10, 8)
+    ctx.fillRect(4, -8, 10, 8)
+  }
   ctx.fillStyle = '#cbd5e1'
   ctx.beginPath()
-  ctx.arc(-10, 12, 3, 0, Math.PI * 2)
-  ctx.arc(10, 12, 3, 0, Math.PI * 2)
+  ctx.arc(-carHalfW + 8, 11, 3, 0, Math.PI * 2)
+  ctx.arc(carHalfW - 8, 11, 3, 0, Math.PI * 2)
   ctx.fill()
 
   // Velocity Vector Arrow (Blue, pointing from car center)
@@ -627,7 +697,76 @@ onBeforeUnmount(() => {
 }
 
 .sim-header {
-  margin-bottom: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.sim-header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.4rem;
+}
+
+.ref-toggle-btn {
+  padding: 0.3rem 0.75rem;
+  border-radius: 8px;
+  border: 1px solid var(--vp-c-brand-1, #0284c7);
+  background: var(--vp-c-brand-soft, rgba(2, 132, 199, 0.1));
+  color: var(--vp-c-brand-1, #0284c7);
+  font-size: 0.76rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.slide-ref-panel {
+  display: grid;
+  grid-template-columns: minmax(180px, 270px) 1fr;
+  gap: 1rem;
+  align-items: center;
+  padding: 0.85rem 1rem;
+  margin-bottom: 1rem;
+  border-radius: 10px;
+  background: var(--vp-c-bg, #ffffff);
+  border: 1px solid var(--vp-c-divider, rgba(226, 232, 240, 0.8));
+}
+
+.slide-ref-img-wrap {
+  background: #ffffff;
+  padding: 0.45rem;
+  border-radius: 8px;
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  display: flex;
+  justify-content: center;
+}
+
+.slide-ref-img-wrap img {
+  max-height: 150px;
+  width: auto;
+  object-fit: contain;
+}
+
+.slide-ref-tag {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--vp-c-brand-1, #0284c7);
+  margin-bottom: 0.25rem;
+}
+
+.slide-ref-info p {
+  margin: 0 !important;
+  font-size: 0.83rem;
+  line-height: 1.5;
+  color: var(--vp-c-text-2, #475569);
+}
+
+@media (max-width: 680px) {
+  .slide-ref-panel {
+    grid-template-columns: 1fr;
+  }
 }
 
 .sim-badge-group {

@@ -18,18 +18,12 @@ $$
 a_x = 0, \qquad a_y = -g = -9.81\text{ m/s}^2
 $$
 
-```
-              y ^                      Peak (v_y = 0)
-                |                           *
-                |                     .     |     .
-                |                 .   |     |h_max    .
-                |             .       |     |             .
-                | v_0     .           |     |                 .
-                |  /  .               |     |                     .
-                | /θ                  |     |                         .
-                O+--------------------+-----+--------------------------*----> x
-                 |                     x_peak                            Range R
-```
+<LectureFigure
+  src="/images/physics/mod2/mod2_projectile_parabola.png"
+  caption="Parabolic projectile trajectory decomposed into uniform horizontal velocity (vx)₀ and uniformly accelerated vertical motion vy under gravity."
+  slide="Mod 2 Part 2 · Slide 20"
+  max-width="520px"
+/>
 
 ### The Kinematic Decoupling Table
 Because $a_x = 0$ and $a_y = -g$ are constant, we integrate both coordinate axes completely independently:
@@ -102,6 +96,13 @@ Second derivative check: $\frac{d^2R}{d\theta^2} = -\frac{4v_0^2}{g}\sin 2\theta
 2. Determine the total time of flight $t_{impact}$ before the shell impacts the ocean surface.
 3. Determine the horizontal distance $x_{impact}$ from the base of the cliff to the splash point.
 
+<LectureFigure
+  src="/images/physics/mod2/mod2_cliff_projectile_150m.png"
+  caption="Worked Problem: Projectile launched at v₀ = 180 m/s and 30° from the edge of a 150 m cliff, decomposed into independent horizontal and vertical motions."
+  slide="Mod 2 Part 2 · Slide 23"
+  max-width="540px"
+/>
+
 ::: details Click to view Step-by-Step Solution
 #### 1. Initial Velocity Components:
 $$
@@ -155,18 +156,12 @@ The artillery shell strikes the ocean **$3.10\text{ km}$** offshore after nearly
 
 When tracking particles that swing about a pivot, travel down rotating spiral chutes, or orbit celestial bodies, Cartesian coordinates $(x, y)$ become cumbersome. We adopt **Polar Coordinates** defined by radial distance $r$ and polar angle $\theta$.
 
-```
-              y ^
-                |                    * P (r, θ)
-                |                   /|
-                |                  / | e_θ (transverse unit vector)
-                |                 /  ^ 
-                |            r   /  / 
-                |               /  /   e_r (radial unit vector)
-                |              /  v 
-                |         θ   /
-                O------------+--------------> x
-```
+<LectureFigure
+  src="/images/physics/mod2/mod2_polar_vectors.png"
+  caption="Polar coordinate frame (r, θ) showing orthogonal rotating unit vectors: radial e_r (outward) and transverse e_θ (in the direction of increasing θ)."
+  slide="Mod 2 Part 2 · Slide 24"
+  max-width="400px"
+/>
 
 ### Rotating Unit Vectors
 In polar coordinates, the unit vectors $\mathbf{e}_r$ and $\mathbf{e}_\theta$ rotate with the particle:
@@ -263,17 +258,12 @@ $$
 2. Determine the angular velocity $\dot{\theta}$ of the cord.
 3. Determine the radial acceleration $\ddot{r}$ of the cord.
 
-```
-       y ^
-         |                                 * Kite (h = 60 m const, v_x = 6 km/h)
-         |                                /|
-         |                         r=75m / |
-         |                              /  | h = 60 m
-         |                             /   |
-         |                            /    |
-         O---------------------------+-----+------> x
-                                     x
-```
+<LectureFigure
+  src="/images/physics/mod2/mod2_kite_problem.png"
+  caption="Worked Problem: Boy flying a kite at a constant altitude of 60 m with 75 m of cord paid out (v = 6 km/h horizontal), modeled in radial-transverse (e_r, e_θ) coordinates."
+  slide="Mod 2 Part 2 · Slide 30"
+  max-width="620px"
+/>
 
 ::: details Click to view Step-by-Step Solution
 #### 1. Conversion to SI Units & Geometric Setup:

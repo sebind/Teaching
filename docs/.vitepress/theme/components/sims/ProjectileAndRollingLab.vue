@@ -1,14 +1,40 @@
 <template>
   <div class="sim-card">
     <div class="sim-header">
-      <div class="sim-badge-group">
-        <span class="sim-badge">MODULE 2</span>
-        <span class="sim-badge-secondary">CURVILINEAR & ROLLING MOTION</span>
+      <div class="sim-header-top">
+        <div class="sim-badge-group">
+          <span class="sim-badge">MODULE 2</span>
+          <span class="sim-badge-secondary">CURVILINEAR & ROLLING MOTION</span>
+        </div>
+        <button class="ref-toggle-btn" @click="showSlideRef = !showSlideRef">
+          📐 {{ showSlideRef ? 'Hide' : 'Show' }} PDF Slide Figure
+        </button>
       </div>
       <h3 class="sim-title">Curvilinear Projectile, Hodograph & Rolling Wheel Lab</h3>
       <p class="sim-desc">
-        Explore 2D trajectory dynamics with the velocity Hodograph, and discover the geometry of pure rolling motion, cycloid trajectories, and the Instantaneous Center of Zero Velocity (v<sub>C</sub> = 0).
+        Modeled directly on Dr. Sebin Devasia's Module 2 & 3 figures: explore the 150 m Cliff Cannon & Hodograph (Mod 2 Part 2, Slides 18 & 23) and Rolling Wheel Kinematics & Resistance (Mod 3, Slide 35).
       </p>
+    </div>
+
+    <!-- Original PDF Slide Figure Reference -->
+    <div v-if="showSlideRef" class="slide-ref-panel">
+      <div class="slide-ref-img-wrap">
+        <img
+          :src="withBase(activeTab === 'projectile' ? '/images/physics/mod2/mod2_cliff_projectile_150m.png' : '/images/physics/mod3/mod3_rolling_resistance.png')"
+          :alt="activeTab === 'projectile' ? 'Slide 23 150m Cliff Projectile Figure' : 'Slide 35 Rolling Wheel Figure'"
+        />
+      </div>
+      <div class="slide-ref-info">
+        <span class="slide-ref-tag">
+          {{ activeTab === 'projectile' ? 'Original PDF · Mod 2 Part 2, Slide 23' : 'Original PDF · Mod 3, Slide 35' }}
+        </span>
+        <p v-if="activeTab === 'projectile'">
+          A projectile is fired from the edge of a <strong>150 m</strong> cliff at <strong>180 m/s</strong> and <strong>30°</strong> above horizontal: range <strong>X = 3100 m</strong> and peak elevation <strong>H<sub>max</sub> = 563 m</strong> above valley floor.
+        </p>
+        <p v-else>
+          Pure rolling wheel kinematics (instantaneous center <em>v<sub>C</sub> = 0</em> at ground contact, top speed <em>2v<sub>O</sub></em>) paired with ground contact mechanics.
+        </p>
+      </div>
     </div>
 
     <!-- Tab Selector -->
@@ -205,8 +231,10 @@
 
 <script setup lang="ts">
 import { ref, computed, watch, nextTick, onMounted, onBeforeUnmount } from 'vue'
+import { withBase } from 'vitepress'
 
 const activeTab = ref<'projectile' | 'rolling'>('projectile')
+const showSlideRef = ref(true)
 
 function switchTab(tab: 'projectile' | 'rolling') {
   activeTab.value = tab
@@ -358,21 +386,50 @@ function drawProjectile() {
   ctxProj.lineTo(marginL + plotW + 10, groundY)
   ctxProj.stroke()
 
-  // Cliff block
+  // Cliff block (stepped beige/stone ledge + 150 m & X dimension callouts matching Slide 23)
   const cliffTopY = toScrY(cliffHeight.value)
-  const cliffWidth = Math.max(25, plotW * 0.06)
+  const cliffWidth = Math.max(28, plotW * 0.07)
   if (cliffHeight.value > 0) {
-    ctxProj.fillStyle = '#334155'
-    ctxProj.fillRect(marginL, cliffTopY, cliffWidth, groundY - cliffTopY)
-    ctxProj.strokeStyle = '#64748b'
-    ctxProj.strokeRect(marginL, cliffTopY, cliffWidth, groundY - cliffTopY)
-    
-    // Cliff label
-    ctxProj.fillStyle = '#94a3b8'
-    ctxProj.font = '10px monospace'
-    ctxProj.textAlign = 'right'
-    ctxProj.fillText(`h₀ = ${cliffHeight.value}m`, marginL + cliffWidth - 4, cliffTopY + 14)
+    ctxProj.fillStyle = '#475569'
+    ctxProj.fillRect(marginL - 10, cliffTopY, cliffWidth + 10, groundY - cliffTopY)
+    ctxProj.strokeStyle = '#cbd5e1'
+    ctxProj.lineWidth = 1.8
+    ctxProj.beginPath()
+    ctxProj.moveTo(marginL - 10, cliffTopY)
+    ctxProj.lineTo(marginL + cliffWidth, cliffTopY)
+    ctxProj.lineTo(marginL + cliffWidth, groundY)
+    ctxProj.stroke()
+
+    // Vertical dimension arrow matching Slide 23 ("150 m")
+    const dimX = marginL + cliffWidth + 16
+    ctxProj.strokeStyle = 'rgba(226, 232, 240, 0.7)'
+    ctxProj.lineWidth = 1.2
+    ctxProj.beginPath()
+    ctxProj.moveTo(dimX, cliffTopY + 2)
+    ctxProj.lineTo(dimX, groundY - 2)
+    ctxProj.stroke()
+    ctxProj.fillStyle = '#f8fafc'
+    ctxProj.font = 'bold 10px serif'
+    ctxProj.textAlign = 'left'
+    ctxProj.fillText(`${cliffHeight.value} m`, dimX + 5, (cliffTopY + groundY) / 2 + 4)
   }
+
+  // Horizontal Range X dimension line below ground (matching Slide 23 "|<--- x --->|")
+  const rangeEndX = toScrX(totalRangeProj.value)
+  ctxProj.strokeStyle = 'rgba(148, 163, 184, 0.65)'
+  ctxProj.lineWidth = 1.2
+  ctxProj.beginPath()
+  ctxProj.moveTo(toScrX(0), groundY + 18)
+  ctxProj.lineTo(rangeEndX, groundY + 18)
+  ctxProj.moveTo(toScrX(0), groundY + 12)
+  ctxProj.lineTo(toScrX(0), groundY + 24)
+  ctxProj.moveTo(rangeEndX, groundY + 12)
+  ctxProj.lineTo(rangeEndX, groundY + 24)
+  ctxProj.stroke()
+  ctxProj.fillStyle = '#bae6fd'
+  ctxProj.font = 'italic bold 11px serif'
+  ctxProj.textAlign = 'center'
+  ctxProj.fillText(`x = ${totalRangeProj.value.toFixed(0)} m`, (toScrX(0) + rangeEndX) / 2, groundY + 31)
 
   // Parabolic Trajectory
   ctxProj.strokeStyle = 'rgba(56, 189, 248, 0.4)'
@@ -867,7 +924,76 @@ onBeforeUnmount(() => {
 }
 
 .sim-header {
-  margin-bottom: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.sim-header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.4rem;
+}
+
+.ref-toggle-btn {
+  padding: 0.3rem 0.75rem;
+  border-radius: 8px;
+  border: 1px solid var(--vp-c-brand-1, #0284c7);
+  background: var(--vp-c-brand-soft, rgba(2, 132, 199, 0.1));
+  color: var(--vp-c-brand-1, #0284c7);
+  font-size: 0.76rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.slide-ref-panel {
+  display: grid;
+  grid-template-columns: minmax(170px, 240px) 1fr;
+  gap: 1rem;
+  align-items: center;
+  padding: 0.85rem 1rem;
+  margin-bottom: 1rem;
+  border-radius: 10px;
+  background: var(--vp-c-bg, #ffffff);
+  border: 1px solid var(--vp-c-divider, rgba(226, 232, 240, 0.8));
+}
+
+.slide-ref-img-wrap {
+  background: #ffffff;
+  padding: 0.45rem;
+  border-radius: 8px;
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  display: flex;
+  justify-content: center;
+}
+
+.slide-ref-img-wrap img {
+  max-height: 155px;
+  width: auto;
+  object-fit: contain;
+}
+
+.slide-ref-tag {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--vp-c-brand-1, #0284c7);
+  margin-bottom: 0.25rem;
+}
+
+.slide-ref-info p {
+  margin: 0 !important;
+  font-size: 0.83rem;
+  line-height: 1.5;
+  color: var(--vp-c-text-2, #475569);
+}
+
+@media (max-width: 680px) {
+  .slide-ref-panel {
+    grid-template-columns: 1fr;
+  }
 }
 
 .sim-badge-group {

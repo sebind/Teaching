@@ -52,21 +52,12 @@ Bearings support rotating machine shafts while constraining their motion:
 
 Consider an axle (or shaft) of radius $r$ carrying a transverse load $\mathbf{W}$ and fitted loosely inside a fixed cylindrical journal bearing.
 
-```
-                           Axle "Climb" & Circle of Friction
-                                      Bearing
-                                    /         \
-                                   /     O     \
-                                  |     /|      |
-                                  | r_f/ | r    |
-                                  |   /  |      |
-                                   \ *---*     /
-                                    \   B     /
-                                     \   ^   /
-                                      \  |  /
-                                       \ | /
-                                         R (tangent to Circle of Friction)
-```
+<LectureFigure
+  src="/images/physics/mod3/mod3_journal_bearing.png"
+  caption="Journal bearing and axle friction: as the shaft rotates and climbs the bearing wall, the bearing reaction R acts tangent to the Circle of Friction of radius r_f = r sin φ_k ≈ r μ_k."
+  slide="Mod 3 · Slide 31"
+  max-width="520px"
+/>
 
 ### 2.1 The Phenomenon of Axle "Climb"
 1. **At Rest:** When no driving torque is applied, the axle sits symmetrically at the lowest point of the bearing ($B_0$). The normal reaction from the bearing acts vertically upward along the line of centers.
@@ -120,18 +111,12 @@ Determine:
 1. The vertical force $P_{raise}$ applied to the rope on the other side required to **raise** the load.
 2. The vertical force $P_{hold}$ required to **hold** the load (preventing it from dropping).
 
-```
-                      4-in Pulley on 2-in Shaft
-                                  P
-                                  |
-                                  |  R_p = 2 in
-                            +-----+-----+
-                            |    ( O )  |
-                            |   r=1 in  |
-                            +-----+-----+
-                                  |
-                                  | W = 500 lb
-```
+<LectureFigure
+  src="/images/physics/mod3/mod3_pulley_axle_problem.png"
+  caption="4-in. diameter pulley rotating on a 2-in. fixed shaft (μ_s = 0.20, r_f = 0.20 in.) supporting W = 500 lb: (Top) raising the load shifts contact to B with R offset right (arms 2.20 in. and 1.80 in.); (Bottom) holding the load shifts contact to C with R offset left (arms 1.80 in. and 2.20 in.)."
+  slide="Mod 3 · Slide 37"
+  max-width="340px"
+/>
 
 ::: details Click to view Step-by-Step Solution
 
@@ -144,8 +129,8 @@ Determine:
 
 #### Step 2: Part (a) — Force $P_{raise}$ Required to Raise the Load
 - To raise the load $W = 500\text{ lb}$ (hanging on the left), force $P$ pulls downward on the right.
-- The pulley rotates counter-clockwise.
-- The contact point on the shaft shifts so that the upward shaft reaction $\mathbf{R}$ must oppose the rotation. The line of action of $\mathbf{R}$ must pass **to the right** of the center $O$, tangent to the circle of friction.
+- Impending rotation of the pulley is **clockwise**.
+- The pulley bore climbs slightly to contact point $B$ on the upper-right of the fixed shaft so that the upward shaft reaction $\mathbf{R}$ opposes clockwise rotation. Its line of action passes **to the right** of center $O$, tangent to the circle of friction ($r_f = 0.20\text{ in.}$).
 - Relative to the line of action of resultant reaction $\mathbf{R}$:
   - The moment arm of load $W$ increases to:
     $$d_W = R_p + r_f = 2.0 + 0.20 = 2.20\text{ in.}$$
@@ -161,8 +146,8 @@ $$P_{raise} = \frac{1100}{1.80} = 611.11\text{ lb} \approx 611\text{ lb}$$
 ---
 
 #### Step 3: Part (b) — Force $P_{hold}$ Required to Hold the Load
-- When the load is on the verge of dropping, rotation is clockwise.
-- Friction now acts in the opposite direction, aiding the holding effort $P$!
+- When the load is on the verge of dropping on the left, impending rotation is **counter-clockwise**.
+- Friction now acts in the opposite direction (contact shifts to point $C$), aiding the holding effort $P$!
 - The line of action of reaction $\mathbf{R}$ shifts to the **left** of center $O$, tangent to the left side of the circle of friction.
 - Moment arms relative to resultant $\mathbf{R}$:
   - The moment arm of load $W$ decreases to:
@@ -257,19 +242,12 @@ $$\sum F_x = 0 \implies P = 0$$
 
 Why, then, does every real vehicle coast to a halt unless engine power or pedaling is continuously supplied?
 
-```
-       Ideal Rigid Wheel (Zero Resistance)          Real Deformable Wheel (Rolling Resistance)
-                  W                                               W
-                  |                                               |
-                  v                                               v
-              +-------+                                       +-------+
-              |   O   |                                       |   O   |
-              +-------+                                       +-------+
-                  |                                               |     |
-                  |                                               |  b  |
-                  ^ N                                             *<--->*
-             (No offset)                                         B      N (Shifted forward by b)
-```
+<LectureFigure
+  src="/images/physics/mod3/mod3_rolling_resistance.png"
+  caption="Wheel rolling resistance caused by ground surface deformation: resultant reaction R acts at forward offset b (coefficient of rolling resistance), requiring horizontal pull P ≈ W b / r."
+  slide="Mod 3 · Slide 35"
+  max-width="320px"
+/>
 
 ### 4.2 The Physical Mechanism: Ground Deformation & Hysteresis
 Real materials are never perfectly rigid:
@@ -304,6 +282,13 @@ Unlike the dimensionless Coulomb friction coefficients $\mu_s$ and $\mu_k$, the 
 ---
 
 ## 5. Comparative Master Table
+
+<LectureFigure
+  src="/images/physics/mod3/mod3_rotation_summary.png"
+  caption="Managing Rotation — Comparative overview of rotational friction mechanisms: Journal Bearings (M ≈ W r μ), Thrust Bearings & Disk Clutches, and Rolling Resistance (P = W b / r)."
+  slide="Mod 3 · Slide 36"
+  max-width="760px"
+/>
 
 ```
 +---------------------+-----------------------+-------------------------+-------------------------+

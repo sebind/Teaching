@@ -1,14 +1,30 @@
 <template>
   <div class="sim-card">
     <div class="sim-header">
-      <div class="sim-badge-group">
-        <span class="sim-badge">MODULE 1</span>
-        <span class="sim-badge-secondary">STATICS OF PARTICLES</span>
+      <div class="sim-header-top">
+        <div class="sim-badge-group">
+          <span class="sim-badge">MODULE 1</span>
+          <span class="sim-badge-secondary">STATICS OF PARTICLES</span>
+        </div>
+        <button class="ref-toggle-btn" @click="showSlideRef = !showSlideRef">
+          📐 {{ showSlideRef ? 'Hide' : 'Show' }} PDF Slide Figure
+        </button>
       </div>
       <h3 class="sim-title">Vector Addition & Resolution Lab</h3>
       <p class="sim-desc">
-        Explore the Parallelogram Law, Tip-to-Tail Triangle Rule, and the "Invisible Teammates" (Rectangular Components) with Dr. Sebin Devasia's lecture examples.
+        Modeled directly on Dr. Sebin Devasia's Module 1 slide figures: explore the Parallelogram Law (Slide 17), Tugboat Resultant (Slide 7), Bolt Q1 & Q4 (Slides 20 & 23), and Rope Tension Q3 (Slide 22).
       </p>
+    </div>
+
+    <!-- Original PDF Slide Figure Reference -->
+    <div v-if="showSlideRef" class="slide-ref-panel">
+      <div class="slide-ref-img-wrap">
+        <img :src="withBase(activeSlideImg.src)" :alt="activeSlideImg.label" />
+      </div>
+      <div class="slide-ref-info">
+        <span class="slide-ref-tag">{{ activeSlideImg.slide }}</span>
+        <p>{{ activeSlideImg.desc }}</p>
+      </div>
     </div>
 
     <!-- Presets Bar -->
@@ -103,7 +119,22 @@
         <text x="270" y="-8" fill="rgba(148, 163, 184, 0.7)" font-size="12" font-family="monospace">+X</text>
         <text x="8" y="-205" fill="rgba(148, 163, 184, 0.7)" font-size="12" font-family="monospace">+Y</text>
         <circle cx="0" cy="0" r="3.5" fill="var(--vp-c-brand-1, #38bdf8)" />
-        <text x="-16" y="18" fill="rgba(148, 163, 184, 0.8)" font-size="12" font-weight="bold">O</text>
+        <text x="-18" y="20" fill="rgba(148, 163, 184, 0.85)" font-size="12" font-weight="bold">A / O</text>
+
+        <!-- Physical Anchor Silhouette matching Lecture PDF Figures -->
+        <g v-if="anchorKind === 'bolt'" opacity="0.88">
+          <rect x="-32" y="10" width="64" height="9" rx="2" fill="#475569" stroke="#94a3b8" stroke-width="1" />
+          <path d="M -10 10 L -10 -4 A 10 10 0 0 1 10 -4 L 10 10 Z" fill="none" stroke="#cbd5e1" stroke-width="2.2" />
+          <circle cx="0" cy="0" r="4" fill="#38bdf8" />
+        </g>
+        <g v-else-if="anchorKind === 'barge'" opacity="0.85">
+          <polygon points="-42,-12 18,-12 34,0 18,12 -42,12" fill="rgba(56, 189, 248, 0.18)" stroke="#38bdf8" stroke-width="1.8" />
+          <text x="-30" y="4" fill="#bae6fd" font-size="9" font-weight="bold">BARGE</text>
+        </g>
+        <g v-else-if="anchorKind === 'tower'" opacity="0.85">
+          <rect x="-26" y="0" width="26" height="115" fill="rgba(100, 116, 139, 0.35)" stroke="#94a3b8" stroke-width="1.4" />
+          <line x1="-45" y1="115" x2="175" y2="115" stroke="#64748b" stroke-width="2" />
+        </g>
 
         <!-- Angle Arcs -->
         <path :d="arcP" fill="none" stroke="rgba(56, 189, 248, 0.4)" stroke-width="1.5" stroke-dasharray="3,3" />
@@ -277,14 +308,17 @@
 
 <script setup lang="ts">
 import { ref, computed } from 'vue'
+import { withBase } from 'vitepress'
+
+const showSlideRef = ref(true)
 
 // State variables
-const forceP = ref(600)
-const angleP = ref(0)
-const forceQ = ref(800)
-const angleQ = ref(90)
-const viewMode = ref<'parallelogram' | 'triangle' | 'components'>('parallelogram')
-const currentPreset = ref<string>('Perpendicular (90°)')
+const forceP = ref(800)
+const angleP = ref(145)
+const forceQ = ref(0)
+const angleQ = ref(0)
+const viewMode = ref<'parallelogram' | 'triangle' | 'components'>('components')
+const currentPreset = ref<string>('Slide 20: Bolt Q1 (800 N @ 145°)')
 
 interface Preset {
   name: string
@@ -293,14 +327,58 @@ interface Preset {
   q: number
   angQ: number
   mode?: 'parallelogram' | 'triangle' | 'components'
+  anchor: 'bolt' | 'barge' | 'tower' | 'ring'
+  img: string
+  slide: string
+  desc: string
 }
 
 const presets: Preset[] = [
-  { name: 'Perpendicular (90°)', p: 600, angP: 0, q: 800, angQ: 90 },
-  { name: 'Collinear Max (0°)', p: 500, angP: 30, q: 500, angQ: 30 },
-  { name: 'Opposing Min (180°)', p: 700, angP: 45, q: 400, angQ: 225 },
-  { name: 'Lecture Bolt (145°)', p: 800, angP: 145, q: 600, angQ: 45, mode: 'components' }
+  {
+    name: 'Slide 20: Bolt Q1 (800 N @ 145°)',
+    p: 800, angP: 145, q: 0, angQ: 0, mode: 'components', anchor: 'bolt',
+    img: '/images/physics/mod1/mod1_q1_bolt_800n.png',
+    slide: 'Original PDF · Mod 1 Part 2, Slide 20',
+    desc: 'A force F = 800 N acts on bolt A at 35° above the negative x-axis (θ = 145° CCW): Fx = −655.3 N, Fy = +458.9 N.'
+  },
+  {
+    name: 'Slide 22: Rope Q3 (300 N, 8m×6m)',
+    p: 300, angP: 323, q: 0, angQ: 0, mode: 'components', anchor: 'tower',
+    img: '/images/physics/mod1/mod1_q3_man_rope.png',
+    slide: 'Original PDF · Mod 1 Part 2, Slide 22',
+    desc: 'A man pulls with 300 N along a 10 m rope (8 m horizontal, 6 m vertical drop from A): Fx = +240 N, Fy = −180 N.'
+  },
+  {
+    name: 'Slide 23: Bolt Q4 (700i + 1500j)',
+    p: 700, angP: 0, q: 1500, angQ: 90, mode: 'parallelogram', anchor: 'bolt',
+    img: '/images/physics/mod1/mod1_q4_bolt_vector.png',
+    slide: 'Original PDF · Mod 1 Part 2, Slide 23',
+    desc: 'Orthogonal force components Fx = 700 lb and Fy = 1500 lb combine on bolt A to give |F| = 1655 lb at θ = 65.0°.'
+  },
+  {
+    name: 'Slide 7: Tugboat Barge Resultant',
+    p: 600, angP: 30, q: 800, angQ: 340, mode: 'parallelogram', anchor: 'barge',
+    img: '/images/physics/mod1/mod1_tugboat_case_study.png',
+    slide: 'Original PDF · Mod 1 Part 2, Slide 7',
+    desc: 'Concurrent tugboat cable tensions acting on a hull combine into a single equivalent resultant R = ΣF.'
+  },
+  {
+    name: 'Slide 17: Parallelogram Law (OACB)',
+    p: 650, angP: 15, q: 500, angQ: 65, mode: 'parallelogram', anchor: 'ring',
+    img: '/images/physics/mod1/mod1_parallelogram_proof.png',
+    slide: 'Original PDF · Mod 1 Part 1, Slide 17',
+    desc: 'Geometric Law of Cosines proof: diagonal OC gives resultant R = P + Q with |R| = √(P² + Q² + 2PQ cos θ).'
+  }
 ]
+
+const activePresetObj = computed(() => presets.find(x => x.name === currentPreset.value) || presets[0])
+const anchorKind = computed(() => activePresetObj.value.anchor)
+const activeSlideImg = computed(() => ({
+  src: activePresetObj.value.img,
+  slide: activePresetObj.value.slide,
+  desc: activePresetObj.value.desc,
+  label: activePresetObj.value.name
+}))
 
 function applyPreset(p: Preset) {
   currentPreset.value = p.name
@@ -394,7 +472,76 @@ const arcR = computed(() => makeArc(70, 0, resultAlpha.value))
 }
 
 .sim-header {
-  margin-bottom: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.sim-header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.4rem;
+}
+
+.ref-toggle-btn {
+  padding: 0.3rem 0.75rem;
+  border-radius: 8px;
+  border: 1px solid var(--vp-c-brand-1, #0284c7);
+  background: var(--vp-c-brand-soft, rgba(2, 132, 199, 0.1));
+  color: var(--vp-c-brand-1, #0284c7);
+  font-size: 0.76rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.slide-ref-panel {
+  display: grid;
+  grid-template-columns: minmax(170px, 240px) 1fr;
+  gap: 1rem;
+  align-items: center;
+  padding: 0.85rem 1rem;
+  margin-bottom: 1rem;
+  border-radius: 10px;
+  background: var(--vp-c-bg, #ffffff);
+  border: 1px solid var(--vp-c-divider, rgba(226, 232, 240, 0.8));
+}
+
+.slide-ref-img-wrap {
+  background: #ffffff;
+  padding: 0.45rem;
+  border-radius: 8px;
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  display: flex;
+  justify-content: center;
+}
+
+.slide-ref-img-wrap img {
+  max-height: 155px;
+  width: auto;
+  object-fit: contain;
+}
+
+.slide-ref-tag {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--vp-c-brand-1, #0284c7);
+  margin-bottom: 0.25rem;
+}
+
+.slide-ref-info p {
+  margin: 0 !important;
+  font-size: 0.83rem;
+  line-height: 1.5;
+  color: var(--vp-c-text-2, #475569);
+}
+
+@media (max-width: 680px) {
+  .slide-ref-panel {
+    grid-template-columns: 1fr;
+  }
 }
 
 .sim-badge-group {

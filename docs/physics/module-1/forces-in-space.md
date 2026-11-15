@@ -10,19 +10,12 @@ In this chapter, we extend vector statics from the 2D plane to three dimensions,
 
 To analyze a force $\mathbf{F}$ in space, consider a rectangular prism (cuboid) whose diagonal represents the force vector $\mathbf{F}$ originating from the origin $O(0, 0, 0)$:
 
-```
-              y ^
-                |       B _________ C (F)
-                |        /|       /|
-                |       / |      / |
-                |    E /__|_____/ D|
-                |      |  |     |  |
-                |      |  O-----|--+---> z
-                |      | /      | /
-                |      |/_______|/
-                +------+--------+-----> x
-                       A
-```
+<LectureFigure
+  src="/images/physics/mod1/mod1_3d_projections.png"
+  caption="Two-stage projection of a 3D force F onto the vertical axis (Fy = F cos θy) and horizontal xz-plane (Fh = F sin θy), followed by planar components Fx and Fz."
+  slide="Mod 1 Part 2 · Slide 25"
+  max-width="700px"
+/>
 
 A force $\mathbf{F}$ in $\mathbb{R}^3$ decomposes into three mutually perpendicular Cartesian components:
 $$
@@ -88,19 +81,12 @@ $$
 F_z = F \cos\theta_z
 $$
 
-```
-              y ^
-                |       / F
-                | θ_y  /
-                |   \ /
-                |    *
-                |   / \
-                |  /θ_x\ θ_z
-                O-+-----+-----> x
-                 /
-                /
-               v z
-```
+<LectureFigure
+  src="/images/physics/mod1/mod1_3d_direction_angles.png"
+  caption="Coordinate direction angles θx, θy, and θz defining the spatial orientation of force F within its 3D rectangular bounding box."
+  slide="Mod 1 Part 2 · Slide 26"
+  max-width="720px"
+/>
 
 The quantities $\cos\theta_x$, $\cos\theta_y$, and $\cos\theta_z$ are the **Direction Cosines** of the force vector.
 
@@ -195,18 +181,12 @@ Determine:
 2. The tension $T_{AC}$ in cable $AC$.
 3. The required horizontal stabilizing force $P$.
 
-```
-                   y ^  Wall
-                     |
-       B(0, 12, 8) * | * C(0, 12, -10)
-                    \|/
-                     |
-                     |  A(1.2, 2, 0)
-                     +------*-----> x
-                    /|      | \
-                   / |      |  \ P i
-                  v z|      v W = mg
-```
+<LectureFigure
+  src="/images/physics/mod1/mod1_q5_cylinder_3d.png"
+  caption="Worked Problem Q5: (Left) 200-kg cylinder suspended at ring A by wall cables AB and AC and stabilized by horizontal force P; (Right) 3D Free-Body Diagram showing unit vectors λAB, λAC, weight W, and force P."
+  slide="Mod 1 Part 2 · Slide 28"
+  max-width="760px"
+/>
 
 ::: details Click to view Step-by-Step Solution
 #### Step 1: Weight of the Cylinder

@@ -80,6 +80,13 @@ Consider a stone of mass $m$ whirling in a horizontal circle of radius $r$ at co
 - By Newton's second law, this acceleration demands a continuous net inward force: the cord tension $T = \frac{mv^2}{r}$. If the cord snaps ($T = 0$), the stone immediately flies off along the instantaneous tangent line, preserving its linear inertia per Newton's First Law.
 :::
 
+<LectureFigure
+  src="/images/physics/mod1/mod1_circular_momentum.png"
+  caption="Newton's Second Law in circular motion: a stone whirled on a string experiences an inward centripetal force producing a continuous rate of change of momentum toward the center."
+  slide="Mod 1 Part 1 · Slide 9"
+  max-width="340px"
+/>
+
 ### Newton's Third Law (Action and Reaction)
 > **To every action there is always opposed an equal reaction; or, the mutual actions of two bodies upon each other are always equal, and directed to contrary parts.**
 
@@ -87,6 +94,13 @@ If body $A$ exerts a force $\mathbf{F}_{AB}$ on body $B$, then body $B$ simultan
 $$
 \mathbf{F}_{AB} = -\mathbf{F}_{BA} \iff \mathbf{F}_{AB} + \mathbf{F}_{BA} = \mathbf{0}
 $$
+
+<LectureFigure
+  src="/images/physics/mod1/mod1_spring_third_law.png"
+  caption="Newton's Third Law: mutual action-reaction force pairs (F and -F) when compressing a coiled spring and between interacting bodies."
+  slide="Mod 1 Part 1 · Slide 10"
+  max-width="760px"
+/>
 
 ::: warning The Action-Reaction Fallacy: Why They Never Cancel
 A frequent rookie trap in structural engineering is arguing: *"If action equals reaction ($\mathbf{F}_{AB} = -\mathbf{F}_{BA}$), why doesn't every force cancel out and prevent everything from ever moving?"*
@@ -251,6 +265,13 @@ In mechanics, vectors are classified according to how their point of application
 | **Free Vector** | Can be moved anywhere in space parallel to itself without change. | The couple moment $\mathbf{M}$, or angular velocity $\boldsymbol{\omega}$ of a translating body. |
 | **Concurrent Vectors** | Multiple vectors whose lines of action all intersect at a single mutual point. | All forces acting on a particle. |
 
+<LectureFigure
+  src="/images/physics/mod1/mod1_vector_concurrent.png"
+  caption="Vector operations comparing collinear and non-collinear vectors alongside concurrent forces intersecting at a common point O."
+  slide="Mod 1 Part 1 · Slide 15"
+  max-width="440px"
+/>
+
 ### The Principle of Transmissibility
 > **The condition of equilibrium or motion of a rigid body remains unchanged if a force $\mathbf{F}$ acting at a given point is replaced by a force of the same magnitude and direction, acting at a different point, provided both forces have the same line of action.**
 
@@ -276,20 +297,23 @@ Vector addition is governed by the **Parallelogram Law of Addition**, an experim
 
 The **Triangle Rule** is the direct tip-to-tail equivalent: translate vector $\mathbf{Q}$ parallel to itself until its tail meets the tip of $\mathbf{P}$. The closing vector from the tail of $\mathbf{P}$ to the tip of $\mathbf{Q}$ is the resultant $\mathbf{R}$.
 
-```
-                 C
-                /|
-            Q  / | 
-              /  | Q sin θ
-             /   |
-     θ      /    |
-    A------B-----D
-       P     Q cos θ
-    <------ P + Q cos θ ------>
-```
+<LectureFigure
+  src="/images/physics/mod1/mod1_resultants_infographic.png"
+  caption="Finding the 'Net Effect' (Resultants): visual comparison of the Parallelogram Law (tail-to-tail diagonal) and the Triangle Rule (tip-to-tail chaining)."
+  slide="Mod 1 Part 2 · Slide 3"
+  max-width="760px"
+/>
 
 ### Full Geometric Derivation via the Pythagorean Theorem
-Consider two vectors $\mathbf{P}$ and $\mathbf{Q}$ originating from point $O$ (labeled $A$ in our diagram) with an included angle $\theta$ between their lines of action.
+
+<LectureFigure
+  src="/images/physics/mod1/mod1_parallelogram_proof.png"
+  caption="Geometric derivation of the Law of Cosines on parallelogram OACB with perpendicular drop CD onto the extended baseline."
+  slide="Mod 1 Part 1 · Slide 17"
+  max-width="540px"
+/>
+
+Consider two vectors $\mathbf{P}$ and $\mathbf{Q}$ originating from point $O$ (labeled $A$ in our equations below) with an included angle $\theta$ between their lines of action.
 1. Let $\vec{AB} = \mathbf{P}$ along the horizontal reference axis.
 2. Let $\vec{BC} = \mathbf{Q}$ inclined at angle $\theta$ to the horizontal.
 3. Drop a perpendicular from vertex $C$ to intersect the extended line $AB$ at point $D$.
@@ -361,6 +385,25 @@ $$
    \cos 90^\circ = 0 \implies R = \sqrt{P^2 + Q^2}, \quad \tan\alpha = \frac{Q}{P}
    $$
    Reduces immediately to the standard right-triangle Pythagorean relation.
+
+### Case Study: Multi-Force Resultant & Rectangular Resolution
+When multiple tugboats act simultaneously on an ocean liner, vector mechanics reduces the complex system of forces into a single equivalent resultant $\mathbf{R} = \sum \mathbf{F}$ that produces the exact same external rigid-body effect:
+
+<LectureFigure
+  src="/images/physics/mod1/mod1_tugboat_case_study.png"
+  caption="Case Study — The Tugboat Resultant: reducing multiple concurrent tugboat forces into one net resultant vector R = ΣF."
+  slide="Mod 1 Part 2 · Slide 7"
+  max-width="740px"
+/>
+
+Conversely, any single force $\mathbf{F}$ inclined at angle $\theta$ can be decomposed into two mutually perpendicular rectangular components $F_x = F\cos\theta$ and $F_y = F\sin\theta$—the analytical foundation we expand in Chapter 1.2:
+
+<LectureFigure
+  src="/images/physics/mod1/mod1_force_resolution.png"
+  caption="Resolving a single force vector F into orthogonal rectangular components F cos θ (horizontal) and F sin θ (vertical)."
+  slide="Mod 1 Part 1 · Slide 19"
+  max-width="680px"
+/>
 
 ---
 

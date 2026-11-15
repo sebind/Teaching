@@ -29,10 +29,10 @@ import { withBase } from 'vitepress'
     </div>
     <h3 class="portal-card-title">Physics (Engineering Mechanics)</h3>
     <p class="portal-card-desc">
-      Comprehensive coverage of Newtonian statics, 2D/3D force systems, particle kinematics, Newton's 2nd law, Coulomb friction, work-energy principles, impulse-momentum, and impact mechanics. Includes 7 interactive simulation labs and complete numerical solutions.
+      Comprehensive coverage of Newtonian statics, 2D/3D force systems, particle kinematics, Newton's 2nd law, Coulomb friction, work-energy principles, impulse-momentum, and impact mechanics. Includes 70 lecture figures, 8 interactive simulation labs, and complete numerical solutions.
     </p>
     <div class="portal-card-footer">
-      <span>5 Modules · 7 Interactive Labs</span>
+      <span>5 Modules · 8 Interactive Labs</span>
       <span>Explore Course →</span>
     </div>
   </a>
@@ -69,16 +69,17 @@ Every analytical example and textbook numerical in this portal is structured fol
 
 ### Interactive Computational Laboratories
 
-This portal incorporates 7 bespoke interactive engineering laboratories built natively with Vue 3, HTML5 Canvas, SVG, and Three.js:
+This portal incorporates 8 bespoke interactive engineering laboratories built natively with Vue 3, HTML5 Canvas, SVG, and Three.js, modeled directly on the official lecture slide diagrams:
 
 | Module | Lab Component | Key Interactive Concepts |
 | :--- | :--- | :--- |
 | **Module 1** | `<ParallelogramForceLab />` | Parallelogram Law, Triangle Rule, 2D component decomposition, concurrent force resultant. |
-| **Module 1** | `<SpaceForce3DViewer />` | Three.js 3D cuboid force vector, direction angles ($\theta_x, \theta_y, \theta_z$), unit vector $\boldsymbol{\lambda}$. |
+| **Module 1** | `<SpaceForce3DViewer />` | Three.js 3D cuboid force vector, 200-kg wall cylinder cables, direction angles ($\theta_x, \theta_y, \theta_z$). |
 | **Module 2** | `<MotionCurvesSimulator />` | Real-time calculus integration of $a(t), v(t), x(t)$ curves with multi-stage subway car preset. |
-| **Module 2** | `<ProjectileAndRollingLab />` | Parabolic cliff projectile trajectory with hodograph inset; pure rolling wheel cycloid trace. |
+| **Module 2** | `<ElevatorBallChaseSim />` | Two-particle vertical chase ($y_B(t)$ vs $y_E(t)$) inside an elevator shaft with relative velocity tracking. |
+| **Module 2** | `<ProjectileAndRollingLab />` | Parabolic 150-m cliff projectile trajectory with hodograph inset; pure rolling wheel cycloid trace. |
 | **Module 3** | `<InclinedFrictionAndBeltLab />` | Coulomb dry friction, impending slip vs tipping, Capstan exponential belt tension bollard. |
-| **Module 4** | `<EnergyCollarAndDumbwaiterSim />` | Spring-collar mechanical energy exchange ($T, V_g, V_e$) and motor power under dynamic acceleration. |
+| **Module 4** | `<EnergyCollarAndDumbwaiterSim />` | Spring-collar mechanical energy exchange ($T, V_g, V_e$) and dumbwaiter hoist motor power. |
 | **Module 5** | `<ImpactCollisionLab />` | Direct & oblique central impact, restitution coefficient $e$, energy dissipation and vector conservation. |
 
 ---
