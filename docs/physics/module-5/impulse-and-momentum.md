@@ -50,9 +50,9 @@ In full-scale crash engineering—such as Sandia National Laboratories propellin
 :::
 
 <LectureFigure
-  src="/images/physics/mod5/mod5_photo13_4_f4_phantom.png"
+  src="/images/physics/mod5/fig5_1.png"
   alt="Sandia National Laboratories impact test of an F-4 Phantom jet against a rigid reinforced target"
-  caption="Photo 13.4: Full-scale impact test of an F-4 Phantom jet against a rigid reinforced target at Sandia National Laboratories, performed to determine the impulsive structural force F(t) as a function of time from the rate of momentum transfer."
+  caption="Fig. 5.1: Full-scale impact test of an F-4 Phantom jet against a rigid reinforced target at Sandia National Laboratories, performed to determine the impulsive structural force F(t) as a function of time from the rate of momentum transfer."
   slide="Sec. 13.3 · Photo 13.4 (p. 858)"
   badge="📖 Textbook Figure"
   maxWidth="360px"

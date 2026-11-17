@@ -1,7 +1,7 @@
 import { defineConfig } from 'vitepress';
 
 export default defineConfig({
-  base: '/Teaching/',
+  base: '/teaching/',
   title: 'PSG IAS Courseware',
   description: 'Interactive Engineering Mechanics & Electronics Courseware — Dr. Sebin Devasia',
   vite: {
