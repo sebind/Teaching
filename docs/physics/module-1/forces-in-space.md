@@ -31,20 +31,12 @@ $$
 ### The Two-Angle Spherical / Cuboid Decomposition
 In engineering practice (such as radar tracking or crane boom rigging), a force $\mathbf{F}$ is frequently defined by its overall magnitude $F$, an angle $\theta_y$ with the vertical $y$-axis, and a horizontal azimuth angle $\phi$ between its horizontal projection and the $x$-axis:
 
-```
-                            [ Force Magnitude F in 3D ]
-                                         │
-              ┌──────────────────────────┴──────────────────────────┐
-              ▼                                                     ▼
-   Vertical Component                                     Horizontal Projection
-     Fy = F cos θy                                            Fh = F sin θy
-                                                                    │
-                                                  ┌─────────────────┴─────────────────┐
-                                                  ▼                                   ▼
-                                             x-Component                         z-Component
-                                       Fx = Fh cos ϕ                       Fz = Fh sin ϕ
-                                          = F sin θy cos ϕ                    = F sin θy sin ϕ
-```
+| Decomposition Stage | Component / Projection | Mathematical Expression | Geometric Reference |
+| :--- | :--- | :--- | :--- |
+| **Stage 1: Vertical–Horizontal Split** | Vertical Component ($F_y$) | $F_y = F \cos\theta_y$ | Polar inclination $\theta_y$ from $+y$ axis |
+| **Stage 1: Vertical–Horizontal Split** | Horizontal Projection ($F_h$) | $F_h = F \sin\theta_y$ | Projected diagonal in the horizontal $xz$-plane |
+| **Stage 2: Planar $xz$ Resolution** | $x$-Component ($F_x$) | $F_x = F_h \cos\phi = F \sin\theta_y \cos\phi$ | Azimuth angle $\phi$ from $+x$ axis in $xz$-plane |
+| **Stage 2: Planar $xz$ Resolution** | $z$-Component ($F_z$) | $F_z = F_h \sin\phi = F \sin\theta_y \sin\phi$ | Orthogonal projection onto $+z$ axis |
 
 1. **Vertical Component ($F_y$):**
    $$
@@ -320,14 +312,12 @@ $$
 
 In 21st-century engineering, static equilibrium is no longer solved solely by hand or traditional Finite Element Analysis (FEA). **Physics-Informed Neural Networks (PINNs)** represent the cutting edge of AI-driven mechanical design.
 
-```
-+-------------+     +--------------------+     +--------------------+     +-------------------+
-| Inputs      | ──► | Deep Neural Net    | ──► | Predicted Internal | ──► | Composite Loss    |
-| (x, y, z)   |     | Weights & Biases   |     | Stresses & T_i     |     |  • Data Residual  |
-+-------------+     +--------------------+     +--------------------+     |  • ∑ Fx, ∑ Fy,    |
-                              ▲                                           |    ∑ Fz = 0 Law   |
-                              └────────────── Backpropagation ────────────+-------------------+
-```
+| PINN Pipeline Stage | Role in 3D Structural Statics | Mathematical Formulation |
+| :--- | :--- | :--- |
+| **1. Spatial Inputs** | Joint & field coordinates fed into the network | $\mathbf{x} = (x, y, z) \in \mathbb{R}^3$ |
+| **2. Deep Neural Network** | Parameterized layers predicting internal stresses & cable tensions | $(\mathbf{x}; \boldsymbol{\theta}) \longrightarrow \hat{\boldsymbol{\sigma}}, \hat{T}_i$ |
+| **3. Composite Loss** | Combines sensor data residual with Newtonian equilibrium laws | $\mathcal{L}_{\text{total}} = \mathcal{L}_{\text{data}} + w_{\text{physics}}\left[\left(\sum F_x\right)^2 + \left(\sum F_y\right)^2 + \left(\sum F_z\right)^2\right]$ |
+| **4. Backpropagation** | Updates weights via automatic differentiation to satisfy $\sum \mathbf{F} = \mathbf{0}$ | $\boldsymbol{\theta} \leftarrow \boldsymbol{\theta} - \eta \nabla_{\boldsymbol{\theta}} \mathcal{L}_{\text{total}}$ |
 
 ### How PINNs Enforce Statics
 Traditional deep neural networks are black boxes: they fit input data without understanding Newton's laws. If trained on noisy structural sensor readings, an ordinary neural net might predict cable tensions that violate basic equilibrium ($\sum \mathbf{F} \ne \mathbf{0}$).

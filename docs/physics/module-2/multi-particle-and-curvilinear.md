@@ -10,14 +10,11 @@ In this chapter, we develop the kinematics of **Independent & Relative Motion**,
 
 When two particles $A$ and $B$ move along the same straight line, their positions are measured relative to a common fixed origin $O$ by coordinates $x_A$ and $x_B$.
 
-```
-         Origin O          Particle A            Particle B
-    <-------+------------------*----------------------*--------> x
-            |                  x_A                    x_B
-            |<---------------> |                      |
-            |                  |<-------------------->|
-            |                          x_{B/A}
-```
+::: info Collinear Reference Coordinates Along the $x$-Axis
+- **Origin $O$ ($x = 0$):** Fixed inertial reference datum along the line of motion.
+- **Absolute Positions ($x_A$, $x_B$):** Directed coordinates measured from fixed origin $O$ to particles $A$ and $B$, respectively.
+- **Relative Position ($x_{B/A}$):** Directed displacement measured from moving observer $A$ to particle $B$, closing the vector relation $x_B = x_A + x_{B/A}$.
+:::
 
 The **relative position coordinate** of $B$ with respect to $A$ (denoted $x_{B/A}$) represents the directed vector from $A$ to $B$:
 $$
@@ -50,20 +47,12 @@ In many mechanical hoisting systems, cranes, and elevator mechanisms, the positi
 ### The 4-Step Cable Constraint Protocol
 To solve any block-and-pulley dependent motion problem without guessing signs, follow Dr. Sebin Devasia's **4-Step Cable Constraint Protocol**:
 
-```
-+--------------------------------------------------------------------------------+
-|                     4-STEP CABLE CONSTRAINT PROTOCOL                           |
-+--------------------------------------------------------------------------------+
-| Step 1: Choose a Fixed Datum Line                                              |
-|         Select an immovable reference line (e.g., ceiling or fixed pulley axle)|
-| Step 2: Express Total Cable Length L                                           |
-|         Define position coordinates xᵢ from datum to each moving block         |
-| Step 3: Differentiate Once (dL/dt = 0)                                         |
-|         Sum of velocity coefficients equals 0 (inextensible cable)             |
-| Step 4: Differentiate Twice (d²L/dt² = 0)                                      |
-|         Obtain direct algebraic coupling between block accelerations             |
-+--------------------------------------------------------------------------------+
-```
+| Step | Protocol Action | Mathematical Formulation & Purpose |
+| :--- | :--- | :--- |
+| **Step 1** | **Choose a Fixed Datum Line** | Select an immovable reference line (e.g., ceiling or fixed pulley axle) where $x = 0$. |
+| **Step 2** | **Express Total Cable Length $L$** | Define directed position coordinates $x_i$ from the datum to each moving block ($\sum n_i x_i + L_{\text{const}} = L$). |
+| **Step 3** | **Differentiate Once ($\frac{dL}{dt} = 0$)** | Inextensible cable condition yields coupled block velocities: $\sum n_i v_i = 0$. |
+| **Step 4** | **Differentiate Twice ($\frac{d^2L}{dt^2} = 0$)** | Second time derivative yields direct algebraic coupling between block accelerations: $\sum n_i a_i = 0$. |
 
 ### Case A: Single Degree of Freedom (1-DOF) Pulley System
 Consider block $A$ connected to block $B$ by a single inextensible cable passing over a fixed pulley and a movable pulley supporting block $B$:

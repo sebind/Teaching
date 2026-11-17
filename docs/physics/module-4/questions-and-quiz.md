@@ -118,31 +118,13 @@ If $U_{1\to 2} > 0$, the particle speeds up ($T_2 > T_1$). If $U_{1\to 2} < 0$, 
 
 #### Comparative Distinction
 
-```
-+---------------------------------------+---------------------------------------+
-|          CONSERVATIVE FORCE           |        NON-CONSERVATIVE FORCE         |
-+---------------------------------------+---------------------------------------+
-| 1. Path Independence:                 | 1. Path Dependence:                   |
-|    The work done depends solely on    |    The work done depends directly on  |
-|    the initial and final positions,   |    the exact geometric path traversed |
-|    independent of the path taken.     |    between two points.                |
-| 2. Closed Loop Circulation:           | 2. Non-Zero Loop Work:                |
-|    The work done around any closed    |    The work done around a closed      |
-|    path is identically zero:          |    path is non-zero:                  |
-|    ∮ F · dr = 0.                      |    ∮ F_nc · dr ≠ 0.                   |
-| 3. Potential Function:                | 3. No Potential Function:             |
-|    Can be derived from the gradient   |    Cannot be represented as the       |
-|    of a scalar potential energy       |    gradient of a scalar potential     |
-|    function: F = -∇V.                 |    function V.                        |
-| 4. Energy Conservation:               | 4. Energy Dissipation:                |
-|    Total mechanical energy is strictly|    Mechanical energy is dissipated    |
-|    conserved: T₁ + V₁ = T₂ + V₂.      |    into thermal energy (heat).        |
-| 5. Engineering Examples:              | 5. Engineering Examples:              |
-|    Gravitational force (W = mg),      |    Dry friction (Coulomb: F_k = μ_k N)|
-|    linear spring force (F = -kx),     |    fluid viscous drag, air drag,      |
-|    electrostatic Coulomb forces.      |    damping forces.                    |
-+---------------------------------------+---------------------------------------+
-```
+| Criterion | Conservative Force | Non-Conservative Force |
+| :--- | :--- | :--- |
+| **1. Path Dependence** | Work done depends solely on initial and final positions, independent of the path taken. | Work done depends directly on the exact geometric path traversed between two points. |
+| **2. Closed-Loop Work** | Work done around any closed path is identically zero: $\oint \mathbf{F}\cdot d\mathbf{r} = 0$. | Work done around a closed path is non-zero: $\oint \mathbf{F}_{nc}\cdot d\mathbf{r} \ne 0$. |
+| **3. Potential Function** | Derivable from the negative gradient of a scalar potential function: $\mathbf{F} = -\nabla V$. | Cannot be represented as the gradient of a scalar potential function $V$. |
+| **4. Energy Balance** | Total mechanical energy is strictly conserved: $T_1 + V_1 = T_2 + V_2$. | Mechanical energy is irreversibly dissipated into thermal energy (heat). |
+| **5. Examples** | Gravitational force ($W = mg$), linear spring force ($F = -kx$), electrostatic Coulomb forces. | Dry Coulomb friction ($F_k = \mu_k N$), viscous fluid drag, air resistance, damping forces. |
 :::
 
 ---

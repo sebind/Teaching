@@ -82,22 +82,13 @@ $$U_{1\to 2} = (V_e)_1 - (V_e)_2 = \frac{1}{2}kx_1^2 - \frac{1}{2}kx_2^2$$
 
 ## 2. Conservative vs. Non-Conservative Forces
 
-```
-+---------------------------------------+---------------------------------------+
-|          CONSERVATIVE FORCES          |        NON-CONSERVATIVE FORCES        |
-+---------------------------------------+---------------------------------------+
-| • Work is strictly independent of the | • Work is highly path-dependent.      |
-|   geometric path taken.               | • Cannot be derived from a scalar     |
-| • Total work around any closed loop   |   potential energy function V.        |
-|   is zero: ∮ F · dr = 0.              | • Work along a closed path is NOT     |
-| • Energy is temporarily stored in the |   zero: ∮ F_nc · dr ≠ 0.              |
-|   system and fully recoverable.       | • Friction and drag always oppose     |
-| • Examples: Gravity, linear spring,   |   motion, performing negative work:   |
-|   Coulomb electrostatic forces.       |   U_friction = -∫ F_k ds < 0.         |
-| • Governed by mechanical potential:   | • Irreversibly transforms mechanical  |
-|   T₁ + V₁ = T₂ + V₂                   |   energy into internal thermal energy.|
-+---------------------------------------+---------------------------------------+
-```
+| Property | Conservative Forces | Non-Conservative Forces |
+| :--- | :--- | :--- |
+| **Path Dependence** | Work is strictly **path-independent** (depends only on endpoints $A_1, A_2$) | Work is **path-dependent** (depends on the exact trajectory traveled) |
+| **Closed-Loop Circulation** | Zero work around any closed path: $\oint \mathbf{F}\cdot d\mathbf{r} = 0$ | Non-zero loop work: $\oint \mathbf{F}_{nc}\cdot d\mathbf{r} \ne 0$ |
+| **Potential Energy Function** | Derivable from a scalar potential: $\mathbf{F} = -\nabla V$ | Cannot be derived from a scalar potential function $V$ |
+| **Energy Reversibility** | Energy is stored reversibly ($T_1 + V_1 = T_2 + V_2$) | Friction/drag oppose motion ($U_{\text{friction}} = -\int F_k\,ds < 0$), dissipating mechanical energy into thermal heat |
+| **Engineering Examples** | Gravity ($\mathbf{W} = -mg\,\mathbf{j}$), linear springs ($F = -kx$), electrostatic Coulomb forces | Dry Coulomb friction ($F_k = \mu_k N$), viscous fluid drag, aerodynamic resistance |
 
 ### The First Law of Thermodynamics in Mechanics
 When non-conservative forces (like dry friction $F_k$ or viscous drag) act on a system, the Principle of Work and Energy states:
@@ -155,19 +146,11 @@ Where:
 - $\mathbf{F}$ is the applied force vector ($\text{N}$).
 - $\mathbf{v}$ is the instantaneous velocity vector of the point of application ($\text{m/s}$).
 
-```
-+-------------------------------------------------------------------------------+
-|                             STANDARD UNITS OF POWER                           |
-+-------------------------------------------------------------------------------+
-| • SI Unit: Watt (W)                                                           |
-|   1 W = 1 J/s = 1 N·m/s = 1 kg·m²/s³                                          |
-| • Common Multiples:                                                           |
-|   1 Kilowatt (kW) = 1,000 W                                                   |
-|   1 Megawatt (MW) = 1,000,000 W                                               |
-| • Imperial Unit: Horsepower (hp)                                              |
-|   1 hp = 550 ft·lb/s = 745.7 W ≈ 746 W = 0.746 kW                             |
-+-------------------------------------------------------------------------------+
-```
+| Unit System / Scale | Standard Unit & Symbol | Exact Definition & Conversion |
+| :--- | :--- | :--- |
+| **SI Base Derived Unit** | Watt ($\text{W}$) | $1\text{ W} = 1\text{ J/s} = 1\text{ N}\cdot\text{m/s} = 1\text{ kg}\cdot\text{m}^2/\text{s}^3$ |
+| **Engineering SI Multiples** | Kilowatt ($\text{kW}$), Megawatt ($\text{MW}$) | $1\text{ kW} = 10^3\text{ W}$; $\quad 1\text{ MW} = 10^6\text{ W}$ |
+| **Imperial / US Customary** | Horsepower ($\text{hp}$) | $1\text{ hp} = 550\text{ ft}\cdot\text{lb/s} = 745.7\text{ W} \approx 746\text{ W} = 0.746\text{ kW}$ |
 
 ---
 
@@ -252,8 +235,9 @@ $$24 = v_2^2 - 63.72$$
 $$v_2^2 = 24 + 63.72 = 87.72$$
 $$v_2 = \sqrt{87.72} = 9.366\text{ m/s} \approx 9.36\text{ m/s}$$
 
-*(Verification with $g = 9.8\text{ m/s}^2$:*
-$$24 = v_2^2 - 117.6 + 54 \implies v_2^2 = 24 + 63.6 = 87.6 \implies v_2 = \sqrt{87.6} = 9.359\text{ m/s} \approx 9.36\text{ m/s}$$*)*
+*Verification with $g = 9.8\text{ m/s}^2$:*
+
+$$24 = v_2^2 - 117.6 + 54 \implies v_2^2 = 24 + 63.6 = 87.6 \implies v_2 = \sqrt{87.6} = 9.359\text{ m/s} \approx 9.36\text{ m/s}$$
 
 #### Conclusion:
 The collar reaches Position 2 with a downward speed of **$9.36\text{ m/s}$**.

@@ -95,17 +95,11 @@ A disabled container vessel in a harbor is steered by three tugboats applying ca
 - **Tugboat B:** Pulls with $T_B = 15\text{ kN}$ at $\theta_B = 135^\circ$ (Quadrant II)
 - **Tugboat C:** Pulls with $T_C = 8\text{ kN}$ at $\theta_C = 240^\circ$ (Quadrant III)
 
-```
-                       y ^
-                         |   T_A = 10 kN (30°)
-           T_B = 15 kN   |   /
-              (135°) \   |  /
-                      \  | /
-       ------------------A------------------> x
-                        /|
-                       / |
-       T_C = 8 kN (240°) |
-```
+::: info Concurrent Quadrant Layout at Bow Eyelet $A(0, 0)$
+- **Tugboat A ($\mathbf{T}_A$):** Directed into **Quadrant I** ($\theta_A = 30^\circ$, $+x$ and $+y$ projections).
+- **Tugboat B ($\mathbf{T}_B$):** Directed into **Quadrant II** ($\theta_B = 135^\circ$, $-x$ and $+y$ projections).
+- **Tugboat C ($\mathbf{T}_C$):** Directed into **Quadrant III** ($\theta_C = 240^\circ$, $-x$ and $-y$ projections).
+:::
 
 We organize the force components systematically into an **Engineering Computation Table**:
 
@@ -162,18 +156,10 @@ $$
 
 These two independent scalar equations allow an engineer to solve for at most **two unknown quantities** (such as two unknown cable tensions, or one unknown magnitude and one unknown angle).
 
-```
-                   [ Particle Equilibrium: ∑ F = 0 ]
-                                   │
-             ┌─────────────────────┴─────────────────────┐
-             ▼                                           ▼
-    Analytical Method                           Geometric Method
-   (∑ Fx = 0, ∑ Fy = 0)                 Closed Force Polygon (Tip-to-Tail)
-                                                         │
-                                                         ▼
-                                            Three-Force Systems (Triangle)
-                                               Solved via Law of Sines
-```
+| Solution Pathway | Governing Formulation | Optimal Engineering Use Case |
+| :--- | :--- | :--- |
+| **Analytical Method** | Orthogonal scalar balances: $\sum F_x = 0$ and $\sum F_y = 0$ | Concurrent systems with $4+$ forces or Cartesian slope geometries |
+| **Geometric Method** | Closed tip-to-tail force polygon ($\sum \mathbf{F} = \mathbf{0}$); **Three-Force Triangle** via Law of Sines | Three-force concurrent equilibrium with one known force and known angles |
 
 ### The Closed Force Polygon & Three-Force Triangle
 Geometrically, if $\sum \mathbf{F} = \mathbf{0}$, drawing all force vectors tip-to-tail must form a **closed polygon** returning exactly to the starting origin.

@@ -120,17 +120,13 @@ import { withBase } from 'vitepress'
 
 To cultivate professional engineering problem-solving habits, all numerical examples throughout this course adhere to the **S-M-A-R&T** blueprint:
 
-```
-[S] Strategy  ──► Identify knowns, coordinate systems, and physical governing laws
-      │
-[M] Modeling  ──► Execute Boundary Tracing Protocol & draw Free-Body Diagram (FBD)
-      │
-[A] Analysis  ──► Apply algebraic equations (ΣF = 0, ΣF = ma, T₁ + U₁₋₂ = T₂, Imp₁₋₂ = Δp)
-      │
-[R] Reflect   ──► Check dimensional units, sign conventions, physical limits (T ≥ 0, 0 ≤ e ≤ 1)
-      │
-[T] Think     ──► Connect to aerospace, robotics, PINNs, and real-world machine applications
-```
+| Stage | Phase | Core Engineering Action |
+| :---: | :--- | :--- |
+| **S** | **Strategy** | Identify knowns, target unknowns, coordinate axes, and governing physical laws. |
+| **M** | **Modeling** | Execute the Boundary Tracing Protocol and draw a clean Free-Body / Impulse–Momentum Diagram. |
+| **A** | **Analysis** | Formulate scalar governing equations ($\sum \mathbf{F} = \mathbf{0}$, $\sum \mathbf{F} = m\mathbf{a}$, $T_1 + U_{1\to 2} = T_2$, $m\mathbf{v}_1 + \mathbf{Imp}_{1\to 2} = m\mathbf{v}_2$). |
+| **R** | **Reflect** | Verify dimensional homogeneity, vector senses, and physical bounds ($T \ge 0$, $0 \le e \le 1$). |
+| **T** | **Think** | Connect idealized models to aerospace structures, robotics, and real-world machine constraints. |
 
 ### Protocol Steps Breakdown
 1. **Strategy (S):** Read the problem actively. State what is given in standard SI units and clearly declare the target unknowns.

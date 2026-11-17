@@ -273,14 +273,11 @@ A freight car $A$ of mass $m_A = 20,000\text{ kg}$ rolls along a horizontal trac
 2. Determine the loss of mechanical kinetic energy $\Delta T$ dissipated during the coupling.
 3. Using the Principle of Work and Energy, determine the maximum compression $x_{\max}$ of the spring bumper as the coupled cars come to a momentary stop.
 
-```
-                      Railway Car Coupling System
-               m_A = 20,000 kg                 m_B = 30,000 kg
-               v_A = 3.0 m/s                   v_B = 0
-             +-----------------+             +-----------------+
-             |   Freight Car A |====(coupler)|   Freight Car B |-----[ k = 80 kN/m ]====| Buffer
-             +-----------------+             +-----------------+
-```
+::: info System Configuration
+- **Freight Car $A$:** $m_A = 20,000\text{ kg}$, initial velocity $v_A = 3.0\text{ m/s}\to$
+- **Freight Car $B$:** $m_B = 30,000\text{ kg}$, initially at rest ($v_B = 0$), attached to rigid end buffer via bumper spring $k = 80\text{ kN/m}$
+- **Interaction Sequence:** Automatic plastic coupling ($e = 0$, momentum conserved) $\longrightarrow$ elastic spring compression ($T_2 + V_{e2} = T_3 + V_{e3}$)
+:::
 
 ::: details Click to view Step-by-Step Solution
 

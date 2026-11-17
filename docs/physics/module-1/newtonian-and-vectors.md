@@ -10,13 +10,11 @@ We begin our journey where modern engineering science was born: the transition f
 
 Engineering mechanics rests upon understanding why objects move—and why they remain stationary. To appreciate the Newtonian paradigm, we must examine the intellectual breakthrough that replaced two millennia of flawed intuition.
 
-```
-+---------------------------+     Refuted by      +-----------------------------+     Axiomatized     +---------------------------+
-| Aristotle (384–322 B.C.)  |     experiment      |  Galileo (1564–1642)        |     via calculus    | Sir Isaac Newton          |
-| "Natural State is Rest"   | ──────────────────► |  "Law of Inertia"           | ──────────────────► | (1642–1727)               |
-| Continuous force required |                     |  In vacuum, motion persists |                     | 3 Laws & F = dp/dt        |
-+---------------------------+                     +-----------------------------+                     +---------------------------+
-```
+| Era & Thinker | Core Postulate | Key Transition / Mechanism |
+| :--- | :--- | :--- |
+| **Aristotle** *(384–322 B.C.)* | *"Natural state is rest"* — continuous external force is required to sustain motion. | Refuted experimentally by Galileo on smooth inclined planes. |
+| **Galileo Galilei** *(1564–1642)* | **Law of Inertia** — in a vacuum without friction, uniform rectilinear motion persists indefinitely. | Axiomatized via fluxional calculus by Newton. |
+| **Sir Isaac Newton** *(1642–1727)* | **Three Laws of Motion** — net force governs the time rate of change of momentum ($\mathbf{F} = \frac{d\mathbf{p}}{dt}$). | Foundation of classical analytical mechanics. |
 
 ### Aristotle's Flaw (384–322 B.C.)
 For nearly two thousand years, Western natural philosophy accepted Aristotle's assertion that the "natural state" of terrestrial matter is rest. Aristotle posited:
@@ -219,22 +217,13 @@ where $u$ is the initial velocity and $g$ is a constant. Use differential calcul
 
 Engineering Mechanics is the physical science that studies the state of rest or motion of bodies subjected to forces. It branches logically into:
 
-```
-                              [ Engineering Mechanics ]
-                                          │
-          ┌───────────────────────────────┼───────────────────────────────┐
-          ▼                               ▼                               ▼
-[ Rigid-Body Mechanics ]       [ Deformable-Body Mechanics ]      [ Fluid Mechanics ]
-          │                        (Mechanics of Materials)
-   ┌──────┴──────┐
-   ▼             ▼
-Statics       Dynamics (a ≠ 0)
-(a = 0)          │
-          ┌──────┴──────┐
-          ▼             ▼
-     Kinematics      Kinetics
-     (x, v, a)    (F = ma, Energy)
-```
+| Primary Branch | Sub-Discipline | Core Scope & Governing Condition |
+| :--- | :--- | :--- |
+| **Rigid-Body Mechanics** | **Statics** | Equilibrium of non-deforming bodies at rest or uniform velocity ($\mathbf{a} = \mathbf{0}$, $\sum \mathbf{F} = \mathbf{0}$). |
+| **Rigid-Body Mechanics** | **Dynamics — Kinematics** | Pure geometry of motion ($\mathbf{r}, \mathbf{v}, \mathbf{a}$) without reference to causative forces. |
+| **Rigid-Body Mechanics** | **Dynamics — Kinetics** | Relates forces and moments to resulting accelerations and energy ($\mathbf{F} = m\mathbf{a}$, work–energy). |
+| **Deformable-Body Mechanics** | *Mechanics of Materials* | Internal stress, strain, elasticity, and failure criteria of solid structures. |
+| **Fluid Mechanics** | *Compressible & Incompressible* | Statics and dynamics of liquids and gases under pressure and viscous shear. |
 
 ### The Particle Idealization
 In engineering mechanics, a **particle** is defined as an entity possessing mass $m$, but whose geometric dimensions are negligible compared to the radius of curvature of its trajectory or the dimensions of the system under study.
@@ -275,11 +264,10 @@ In mechanics, vectors are classified according to how their point of application
 ### The Principle of Transmissibility
 > **The condition of equilibrium or motion of a rigid body remains unchanged if a force $\mathbf{F}$ acting at a given point is replaced by a force of the same magnitude and direction, acting at a different point, provided both forces have the same line of action.**
 
-```
-[ Pushing at Point A ]                      [ Pulling at Point B ]
-   Force F ───► [ A ══ Rigid Body ══ B ]  ≡  [ A ══ Rigid Body ══ B ] ───► Force F
-                    (Identical External Line of Action)
-```
+| Loading Mode | Point of Application | External Rigid-Body Effect | Internal Stress State |
+| :--- | :--- | :--- | :--- |
+| **Pushing Force $\mathbf{F}$** | Rear point $A$ along line $AB$ | Identical net force $\mathbf{F}$ & moment $\mathbf{M}_O$ along line of action $AB$ | Places segment $AB$ in **compression** |
+| **Pulling Force $\mathbf{F}$** | Front point $B$ along line $AB$ | Identical net force $\mathbf{F}$ & moment $\mathbf{M}_O$ along line of action $AB$ | Places segment $AB$ in **tension** |
 
 Whether you push a stalled car from behind with $500\text{ N}$ at bumper point $A$, or attach a tow cable and pull with $500\text{ N}$ from hook point $B$ along the same horizontal line of action, the net acceleration of the rigid car is identical! 
 

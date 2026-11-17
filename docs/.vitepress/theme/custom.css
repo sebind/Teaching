@@ -98,44 +98,57 @@
 }
 
 /* ==========================================================================
-   MathJax Horizontal Scroll & Display Formatting
+   Clean MathJax Vector & Equation Rendering (Zero Scrollbars / Drag Bars)
    ========================================================================== */
+
+mjx-container {
+  overflow: visible !important;
+  outline: none !important;
+}
+
+mjx-assistive-mml {
+  display: none !important;
+}
+
+mjx-container:not([display="true"]) {
+  display: inline !important;
+  overflow: visible !important;
+  margin: 0 0.05em !important;
+  padding: 0 !important;
+  vertical-align: baseline !important;
+}
 
 mjx-container[display="true"],
 .MathJax_Display {
   display: block !important;
   max-width: 100% !important;
-  overflow-x: auto !important;
-  overflow-y: hidden !important;
-  padding: 0.75rem 0.5rem !important;
+  overflow: visible !important;
+  padding: 0.85rem 1rem !important;
   margin: 1.25rem 0 !important;
-  border-radius: 6px !important;
+  border-radius: 8px !important;
   background: var(--vp-c-bg-soft);
   text-align: center;
+  outline: none !important;
 }
 
-mjx-container[display="true"]::-webkit-scrollbar {
-  height: 5px;
-}
-
-mjx-container[display="true"]::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-mjx-container[display="true"]::-webkit-scrollbar-thumb {
-  background: var(--vp-c-divider);
-  border-radius: 4px;
-}
-
-mjx-container[display="true"]::-webkit-scrollbar-thumb:hover {
-  background: var(--vp-c-text-3);
-}
-
-/* Inline math safety */
-mjx-container:not([display="true"]) {
+mjx-container > svg {
   display: inline-block;
-  margin: 0 0.15em;
-  vertical-align: middle;
+  overflow: visible !important;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+mjx-container[display="true"] > svg {
+  max-width: 100% !important;
+  height: auto !important;
+}
+
+/* Clean full-width tables on desktop without unnecessary horizontal drag bars */
+.vp-doc table {
+  display: table !important;
+  width: 100% !important;
+  overflow: visible !important;
 }
 
 /* ==========================================================================

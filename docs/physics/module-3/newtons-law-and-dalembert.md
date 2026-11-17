@@ -19,22 +19,11 @@ Mechanics is structured into two fundamental pillars:
 1. **Kinematics:** *How does a body move?* Quantities involved are geometric: time $t$, position $\mathbf{r}$, path distance $s$, velocity $\mathbf{v} = \dot{\mathbf{r}}$, and acceleration $\mathbf{a} = \ddot{\mathbf{r}}$.
 2. **Kinetics:** *Why does a body move?* Quantities involved couple geometry with physical nature: force $\mathbf{F}$, mass $m$, linear momentum $\mathbf{L}$, angular momentum $\mathbf{H}_O$, work $U$, kinetic energy $T$, and power $P$.
 
-```
-+-------------------------------------------------------------------------------+
-|                                  DYNAMICS                                     |
-+---------------------------------------+---------------------------------------+
-|              KINEMATICS               |                KINETICS               |
-|      (Geometry & Time Relations)      |        (Forces, Mass & Motion)        |
-+---------------------------------------+---------------------------------------+
-|  • Position: r(t), s(t)               |  • Newton's 2nd Law: ΣF = m a         |
-|  • Velocity: v = dr/dt                |  • Linear Momentum: L = m v           |
-|  • Acceleration: a = dv/dt            |  • Angular Momentum: H_O = r × (m v)  |
-|  • Coordinate frames:                 |  • D'Alembert's Principle: ΣF - m a = 0|
-|    - Rectangular (x, y, z)            |  • Work-Energy & Power                |
-|    - Normal-Tangential (t, n, b)      |  • Impulse-Momentum & Impact          |
-|    - Polar/Cylindrical (r, θ, z)      |                                       |
-+---------------------------------------+---------------------------------------+
-```
+| Pillar | Kinematics *(Geometry & Time Relations)* | Kinetics *(Forces, Mass & Motion)* |
+| :--- | :--- | :--- |
+| **Core Question** | *How* does a body move? | *Why* does a body move? |
+| **Primary Relations** | • Position: $\mathbf{r}(t)$, path coordinate $s(t)$<br>• Velocity: $\mathbf{v} = \dfrac{d\mathbf{r}}{dt}$<br>• Acceleration: $\mathbf{a} = \dfrac{d\mathbf{v}}{dt}$ | • Newton's 2nd Law: $\sum \mathbf{F} = m\mathbf{a}$<br>• Linear Momentum: $\mathbf{L} = m\mathbf{v}$<br>• Angular Momentum: $\mathbf{H}_O = \mathbf{r} \times m\mathbf{v}$<br>• D'Alembert's Principle: $\sum \mathbf{F} - m\mathbf{a} = \mathbf{0}$ |
+| **Analytical Frameworks** | • Rectangular $(x, y, z)$<br>• Normal-Tangential $(t, n, b)$<br>• Polar / Cylindrical $(r, \theta, z)$ | • Equations of Motion ($\text{FBD} \equiv \text{KD}$)<br>• Work-Energy & Power<br>• Impulse-Momentum & Impact |
 
 ### 1.1 Newton's Second Law of Motion
 
@@ -188,22 +177,11 @@ The most common error in student dynamics is treating acceleration as an externa
 
 Depending on the geometry of the physical constraint, we decompose $\sum \mathbf{F} = m\mathbf{a}$ into three standard coordinate frames:
 
-```
-+---------------------+------------------------------------+------------------------------------+
-|  Coordinate Frame   |         Acceleration Vector        |        Equations of Motion         |
-+---------------------+------------------------------------+------------------------------------+
-| Rectangular         | a_x = d²x/dt²                      | Σ F_x = m a_x                      |
-| (x, y, z)           | a_y = d²y/dt²                      | Σ F_y = m a_y                      |
-|                     | a_z = d²z/dt²                      | Σ F_z = m a_z                      |
-+---------------------+------------------------------------+------------------------------------+
-| Path Coordinates    | a_t = dv/dt = v (dv/ds)            | Σ F_t = m a_t = m (dv/dt)          |
-| (t, n, b)           | a_n = v² / ρ                       | Σ F_n = m a_n = m (v² / ρ)         |
-|                     | a_b = 0                            | Σ F_b = 0                          |
-+---------------------+------------------------------------+------------------------------------+
-| Polar Coordinates   | a_r = d²r/dt² - r (dθ/dt)²         | Σ F_r = m (d²r/dt² - r θ̇²)         |
-| (r, θ)              | a_θ = r d²θ/dt² + 2 (dr/dt)(dθ/dt) | Σ F_θ = m (r θ̈ + 2 ṙ θ̇)           |
-+---------------------+------------------------------------+------------------------------------+
-```
+| Coordinate Frame | Acceleration Components | Scalar Equations of Motion |
+| :--- | :--- | :--- |
+| **Rectangular** $(x, y, z)$ | $a_x = \ddot{x} = \dfrac{d^2x}{dt^2}$<br>$a_y = \ddot{y} = \dfrac{d^2y}{dt^2}$<br>$a_z = \ddot{z} = \dfrac{d^2z}{dt^2}$ | $\sum F_x = m a_x$<br>$\sum F_y = m a_y$<br>$\sum F_z = m a_z$ |
+| **Path Coordinates** $(t, n, b)$ | $a_t = \dfrac{dv}{dt} = v\dfrac{dv}{ds}$<br>$a_n = \dfrac{v^2}{\rho}$<br>$a_b = 0$ | $\sum F_t = m a_t = m\dfrac{dv}{dt}$<br>$\sum F_n = m a_n = m\dfrac{v^2}{\rho}$<br>$\sum F_b = 0$ |
+| **Polar Coordinates** $(r, \theta)$ | $a_r = \ddot{r} - r\dot{\theta}^2$<br>$a_\theta = r\ddot{\theta} + 2\dot{r}\dot{\theta}$ | $\sum F_r = m(\ddot{r} - r\dot{\theta}^2)$<br>$\sum F_\theta = m(r\ddot{\theta} + 2\dot{r}\dot{\theta})$ |
 
 ---
 
@@ -259,38 +237,20 @@ Consider a cart of mass $m$ traversing a circular loop of radius $R$ in a vertic
    $$\sum F_n = N - mg = m \frac{v^2}{R} \implies N = m\left(g + \frac{v^2}{R}\right)$$
    The rider experiences maximum apparent weight (heavy "g-force").
 
-```
-             Loop-the-Loop Normal Force Distribution
-                         Apex: N + mg = m v²/R
-                               [ o ]
-                              /     \
-                             /   |   \
-                            |    |    |
-                            |    v g  |
-                             \       /
-                              \ [o] /
-                          Bottom: N - mg = m v²/R
-```
+| Loop Position | Inward Normal Axis ($\mathbf{e}_n$) | Normal Force Balance ($\sum F_n = m a_n$) | Track Reaction $N$ & Physical Condition |
+| :--- | :--- | :--- | :--- |
+| **Apex (Top)** | Vertically downward | $N + mg = m\dfrac{v^2}{R}$ | $N = m\left(\dfrac{v^2}{R} - g\right)$; requires $v \ge \sqrt{gR}$ to maintain contact ($N \ge 0$) |
+| **Bottom** | Vertically upward | $N - mg = m\dfrac{v^2}{R}$ | $N = m\left(g + \dfrac{v^2}{R}\right)$; maximum apparent weight ("g-force") |
 
 ---
 
 #### Physical Application: Banked Highway Curves
 When an automobile of mass $m$ travels around a horizontal circular curve of radius $\rho$ banked at an angle $\theta$:
 
-```
-                        Banked Curve Cross-Section
-                                   y ^
-                                     |    N
-                                     |   ^ 
-                                     |  / θ
-                                     | /   
-                              +------|/------+
-                              |    [car]     |
-                              +-----/--------+ 
-                             θ    /  |
-                       ----------*---|---------> x (toward center C)
-                                     | mg
-```
+::: info Free-Body Geometry on a Banked Curve (Cross-Section)
+- **Coordinate Axes:** Choose $+x$ (normal axis $\mathbf{e}_n$) horizontally inward toward the center of curvature $C$, and $+y$ vertically upward (since the vehicle remains in a horizontal plane, $a_y = 0$ and $a_n = v^2/\rho$).
+- **Resolved External Forces:** Gravity $\mathbf{W} = -mg\,\mathbf{j}$ acts vertically downward; road normal reaction $\mathbf{N}$ tilts inward at angle $\theta$ to the vertical ($N_x = N\sin\theta$, $N_y = N\cos\theta$); lateral static friction $\mathbf{F}_f$ ($\le \mu_s N$) acts parallel to the banked slope opposing impending side-slip.
+:::
 
 1. **Ideal Banking (No Friction Needed, $\mu_s = 0$):**
    - Vertical equilibrium: $\sum F_y = N\cos\theta - mg = 0 \implies N\cos\theta = mg$.
@@ -335,17 +295,7 @@ We define the vector $-m\mathbf{a}$ as the **inertia vector** (or *D'Alembert fo
 An accelerating body can be brought into formal **dynamic equilibrium** by adding an imaginary inertia vector $-m\mathbf{a}$ (directed strictly opposite to acceleration) to the system of external forces acting on the body.
 :::
 
-$$\sum \mathbf{F}_{ext} + \mathbf{F}_{inertia} = \mathbf{0}$$
-
-```
-    [ Real External Forces ]           [ Inertia Vector ]           [ Dynamic Equilibrium ]
-          \   |   /                          |                              \   |   /
-           \  |  /                           |                               \  |  /
-      -----[ m ]-----> a        +        <---[ -m a ]         ====      <-----[ m ]----->
-            / | \                                                            / | \
-           /  |  \                                                          /  |  \
-           Σ F = m a                     Inertia Force                  Σ F + (-m a) = 0
-```
+$$\underbrace{\sum \mathbf{F}_{\text{ext}}}_{\text{Real External Forces}} + \underbrace{(-m\mathbf{a})}_{\text{D'Alembert Inertia Vector}} = \underbrace{\mathbf{0}}_{\text{Dynamic Equilibrium}}$$
 
 ### Engineering Power of D'Alembert's Principle:
 1. **Statics Toolset Becomes Available:** Once in dynamic equilibrium, all familiar static equations apply:
@@ -360,19 +310,9 @@ $$\sum \mathbf{F}_{ext} + \mathbf{F}_{inertia} = \mathbf{0}$$
 
 When two or more bodies are interconnected by inextensible cables wrapped around pulleys, their accelerations are kinematically coupled.
 
-```
-                  Coupled Pulley-Block System
-                     +-------------------+
-                     |      [ M_A ]      |----> T
-                     +-------------------+
-                               |
-                              ( O ) Fixed Pulley
-                               |
-                               | Cable
-                               |
-                             [ M_B ]
-                               v a_B
-```
+::: info Canonical Coupled Pulley-Block Configuration
+Consider block $A$ (mass $m_A$, position coordinate $x_A$ along its support surface) linked via an inextensible cable over a fixed guide pulley $O$ to a suspended block $B$ (mass $m_B$, vertical position coordinate $y_B$ supported by $n$ active cable strands). Because total cable length $L$ is invariant, internal tension $T$ transmits motion instantaneously while kinematic derivatives couple $a_A$ and $a_B$.
+:::
 
 ### Protocol for Coupled Systems:
 1. **Establish Coordinate Datums:** Measure position coordinates $x_A, y_B$ from fixed support datums along the line of motion of each block.
@@ -485,18 +425,10 @@ Determine:
 
 Solve using **D'Alembert's Dynamic Equilibrium**.
 
-```
-                           D'Alembert Dynamic Equilibrium
-               N_A ^
-                   |    m_A = 30 kg   T
-          F_k <----+----[ A ]--------->----( O )
-          <---     |                         |
-         m_A a     v W_A = m_A g             | T
-                                             v
-                                           +---+
-                                           | B |  <-- W_B = m_B g (down)
-                                           +---+  <-- m_B a (inertia, up)
-```
+| Subsystem | Active & Constraint Forces | Acceleration $\mathbf{a}$ | D'Alembert Inertia Vector ($-m\mathbf{a}$) | Dynamic Equilibrium ($\sum F^{\text{dyn}} = 0$) |
+| :--- | :--- | :--- | :--- | :--- |
+| **Block $A$** ($30\text{ kg}$, tabletop) | $T \to$, $F_k = \mu_k N_A \leftarrow$, $N_A \uparrow$, $W_A = m_A g \downarrow$ | $a \to$ (rightward) | $m_A a \leftarrow$ (leftward) | $T - F_k - m_A a = 0$ |
+| **Block $B$** ($20\text{ kg}$, hanging) | $T \uparrow$, $W_B = m_B g \downarrow$ | $a \downarrow$ (downward) | $m_B a \uparrow$ (upward) | $T + m_B a - W_B = 0$ |
 
 ::: details Click to view Step-by-Step Solution
 

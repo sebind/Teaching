@@ -18,33 +18,11 @@ Rotating shafts, axles, clutches, and wheels represent the lifeblood of mechanic
 
 Bearings support rotating machine shafts while constraining their motion:
 
-```
-+---------------------------------------+---------------------------------------+
-|            JOURNAL BEARINGS           |            THRUST BEARINGS            |
-+---------------------------------------+---------------------------------------+
-| • Support RADIAL (transverse) loads   | • Support AXIAL (longitudinal) loads  |
-|   acting perpendicular to the shaft   |   acting parallel to the shaft        |
-|   axis of rotation.                   |   centerline.                         |
-| • Contact takes place along a         | • Contact takes place along flat      |
-|   cylindrical surface of radius r.    |   annular disks, collars, or pivots.  |
-| • Frictional resistance creates a     | • Resisting torque is found by        |
-|   couple governed by the Circle of    |   integrating shear across concentric |
-|   Friction: M = R r sin φ_k           |   differential rings.                 |
-+---------------------------------------+---------------------------------------+
-```
-
-```
-               Radial Load W                            Axial Load P
-                    |                                       |
-                    v                                       v
-             +--------------+                       +---------------+
-             | Shaft/Journal|                       |    Shaft      |
-       ======|==============|======                 +-------+-------+
-             |   Bearing    |                               |
-             +--------------+                               v
-            [ JOURNAL BEARING ]                     ================= Collar/Disk
-                                                    [ THRUST BEARING ]
-```
+| Design Attribute | Journal Bearings *(Radial Support)* | Thrust Bearings *(Axial Support)* |
+| :--- | :--- | :--- |
+| **Supported Load Direction** | **Radial (transverse)** load $\mathbf{W}$ acting perpendicular to the shaft axis | **Axial (longitudinal)** load $\mathbf{P}$ acting parallel to the shaft centerline |
+| **Contact Geometry** | Cylindrical shaft/journal surface of radius $r$ inside a sleeve | Flat annular collars, end pivots, or clutch disks ($R_1 \le r \le R_2$) |
+| **Frictional Resistance Law** | Couple governed by the **Circle of Friction**: $M_f = R\,r\sin\phi_k \approx W r \mu_k$ | Resisting torque found by integrating shear across concentric rings ($dA = 2\pi r\,dr$) |
 
 ---
 
@@ -173,21 +151,9 @@ $$P_{hold} = \frac{900}{2.20} = 409.09\text{ lb} \approx 409\text{ lb}$$
 
 Thrust bearings support an axial compressive load $P$ acting along the centerline of a rotating shaft.
 
-```
-                           Hollow Collar Thrust Bearing
-                                        P
-                                        |
-                               +--------+--------+
-                               |      Shaft      |
-                               +--------+--------+
-                                     /  |  \
-                                   /    |    \
-                                 +------+------+ Collar
-                                 |             |
-                                 +------+------+
-                                     ||   ||
-                             R_1 <---+|   |+---> R_2
-```
+::: info Annular Collar Contact Geometry
+A rotating shaft transmits an axial compressive thrust $P$ along its centerline onto a flat annular collar bearing of **inner radius $R_1$** and **outer radius $R_2$**. Because sliding speed $v = \omega r$ and moment arm $r$ vary radially across the contact ring $A = \pi(R_2^2 - R_1^2)$, the total frictional torque must be evaluated by integrating concentric differential rings of radius $r$ and width $dr$.
+:::
 
 ### 3.1 Derivation for Hollow Collar Bearing (Uniform Pressure Theory)
 Consider a hollow annular bearing of inner radius $R_1$ and outer radius $R_2$ supporting total axial force $P$.
@@ -290,20 +256,11 @@ Unlike the dimensionless Coulomb friction coefficients $\mu_s$ and $\mu_k$, the 
   max-width="760px"
 />
 
-```
-+---------------------+-----------------------+-------------------------+-------------------------+
-|      Mechanism      |  Physical Origin      |    Governing Formula    |     Key Parameters      |
-+---------------------+-----------------------+-------------------------+-------------------------+
-| Journal Bearing     | Axle climbing bearing | M = W r sin φ_k         | Circle of Friction      |
-| (Axle Friction)     | wall; shear at rim.   |     ≈ W r μ_k           | radius r_f = r μ_k      |
-+---------------------+-----------------------+-------------------------+-------------------------+
-| Thrust Bearing      | Continuous annular    | M = ⅔ μ_k P (R₂³ - R₁³) | Inner/outer radii,      |
-| & Disk Clutch       | surface shear.        |     / (R₂² - R₁²)       | contact pressure p      |
-+---------------------+-----------------------+-------------------------+-------------------------+
-| Rolling Resistance  | Contact deformation   | P = W (b / r)           | Rolling coeff b (length)|
-| (Wheel Friction)    | & material hysteresis | M_resist = W b          | Wheel radius r          |
-+---------------------+-----------------------+-------------------------+-------------------------+
-```
+| Mechanism | Physical Origin | Governing Formula | Key Parameters |
+| :--- | :--- | :--- | :--- |
+| **Journal Bearing** *(Axle Friction)* | Rotating axle climbs bearing wall; tangential shear at rim | $M_f = W r \sin\phi_k \approx W r \mu_k$ | Circle of Friction radius $r_f = r\sin\phi_k \approx r\mu_k$ |
+| **Thrust Bearing & Disk Clutch** | Continuous circumferential shear across annular ring | $M = \dfrac{2}{3}\mu_k P \dfrac{R_2^3 - R_1^3}{R_2^2 - R_1^2}$ | Inner/outer radii $R_1, R_2$; uniform contact pressure $p$ |
+| **Rolling Resistance** *(Wheel Friction)* | Contact patch deformation & viscoelastic hysteresis | $P = W\dfrac{b}{r}, \quad M_{\text{resist}} = W b$ | Coefficient of rolling resistance $b$ *(length)*; wheel radius $r$ |
 
 ---
 

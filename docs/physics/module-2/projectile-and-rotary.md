@@ -343,17 +343,11 @@ $$
 
 Rolling motion without slipping is one of the most fundamental kinematic phenomena in mechanical engineering, governing automotive wheels, roller bearings, and locomotive traction.
 
-```
-                  v_top = 2 R ω = 2 v_O
-                       +--------->
-                      /|         \
-                     / |          \
-                    |  * Center O  | ----> v_O = R ω, a_O = R α
-                     \ |          /
-                      \|         /
-        ---------------+---------+-------------- Ground
-                       C (v_C = 0: Instantaneous Center of Zero Velocity)
-```
+| Wheel Reference Point | Radial Distance from Contact $C$ | Instantaneous Linear Velocity | Physical Kinematic Role |
+| :--- | :--- | :--- | :--- |
+| **Contact Point ($C$)** *(Ground)* | $r_{C/C} = 0$ | $v_C = 0$ | **Instantaneous Center (IC)** of zero velocity (no-slip point) |
+| **Wheel Center ($O$)** *(Axle)* | $r_{O/C} = R$ | $v_O = R\omega$ | Forward axle translation ($a_O = R\alpha$) |
+| **Top Crest ($T$)** *(Upper Rim)* | $r_{T/C} = 2R$ | $v_{\text{top}} = 2R\omega = 2v_O$ | Moves forward at **twice** the center speed |
 
 ### The Pure Rolling No-Slip Condition
 When a cylindrical wheel of radius $R$ rolls without slipping along a flat surface:

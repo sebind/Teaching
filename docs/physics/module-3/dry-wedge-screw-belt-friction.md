@@ -17,20 +17,12 @@ In this chapter, we master the macroscopic and microscopic origins of **Coulomb 
 
 Engineers classify contact resistance into two primary thermodynamic classes:
 
-```
-+---------------------------------------+---------------------------------------+
-|          DRY (COULOMB) FRICTION       |             FLUID FRICTION            |
-+---------------------------------------+---------------------------------------+
-| • Occurs between two unlubricated     | • Occurs between adjacent layers of a |
-|   solid rigid bodies in contact.      |   viscous fluid moving at different   |
-| • Governed by mechanical adhesion and |   velocities (shear stress τ = μ dv/dy)|
-|   shearing of microscopic asperities. | • Highly dependent on relative        |
-| • Largely independent of velocity     |   velocity, fluid dynamic viscosity,  |
-|   over ordinary engineering speeds.   |   and surface boundary geometry.      |
-| • Governed by Coulomb's Laws:         | • Governed by Navier-Stokes equations |
-|   F_s ≤ μ_s N,   F_k = μ_k N          |   and Reynolds numbers.               |
-+---------------------------------------+---------------------------------------+
-```
+| Characteristic | Dry (Coulomb) Friction | Fluid Friction |
+| :--- | :--- | :--- |
+| **Contact Medium** | Unlubricated solid rigid bodies in direct contact | Adjacent layers of a viscous fluid moving at different velocities |
+| **Microscopic Mechanism** | Mechanical adhesion and shearing of interlocking surface asperities | Viscous Newtonian shear stress $\tau = \mu \dfrac{dv}{dy}$ |
+| **Velocity Dependence** | Largely independent of sliding speed over ordinary engineering ranges | Strongly dependent on relative velocity, dynamic viscosity $\mu$, and film thickness |
+| **Governing Relations** | Coulomb's Laws: $F_s \le \mu_s N$ and $F_k = \mu_k N$ | Navier–Stokes equations and Reynolds number regimes |
 
 ### Automotive Friction Map
 Consider how modern mechanical systems balance both friction regimes simultaneously:
@@ -42,16 +34,7 @@ Consider how modern mechanical systems balance both friction regimes simultaneou
 
 ## 2. Microscopic Asperities & The Three Regimes of Dry Friction
 
-Even surfaces polished to a mirror finish exhibit microscopic irregularities known as **asperities** (peaks and valleys of height $0.1\text{ to }10\,\mu\text{m}$). 
-
-```
-                       Microscopic Asperity Contact
-       Upper Body      / \      / \  / \      / \
-      ----------------/   \----/   \/   \----/   \----------------
-                         *        *    *        *  <-- Real Contact Spots (A_real << A_apparent)
-      ----------------\   /----\   /\   /----\   /----------------
-       Lower Body      \_/      \_/  \_/      \_/
-```
+Even surfaces polished to a mirror finish exhibit microscopic irregularities known as **asperities** (peaks and valleys of height $0.1\text{ to }10\,\mu\text{m}$), so that true solid-to-solid contact occurs only across discrete micro-junctions ($A_{\text{real}} \ll A_{\text{apparent}}$).
 
 When two surfaces rest against each other:
 1. They touch **only at the tips of these asperities**. The true area of contact $A_{real}$ is often less than $0.01\%$ of the apparent geometric surface area $A_{apparent}$!
@@ -106,19 +89,15 @@ The friction force $F$ exhibits three distinct physical regimes:
 
 ### 2.2 Comparison Table: Coefficients of Friction
 
-```
-+-----------------------------------+--------------------+--------------------+
-|         Contact Surfaces          | Static Coeff (μ_s) | Kinetic Coeff(μ_k) |
-+-----------------------------------+--------------------+--------------------+
-| Steel on Steel (Clean / Dry)      |    0.70 – 0.80     |    0.40 – 0.60     |
-| Steel on Steel (Lubricated)       |    0.10 – 0.15     |    0.05 – 0.10     |
-| Rubber Tire on Dry Concrete Road  |    0.80 – 1.00     |    0.60 – 0.80     |
-| Rubber Tire on Wet / Icy Concrete |    0.20 – 0.35     |    0.10 – 0.20     |
-| Wood on Wood (Dry)                |    0.40 – 0.60     |    0.25 – 0.35     |
-| Teflon on Steel (PTFE)            |    0.04 – 0.05     |    0.04 – 0.05     |
-| Synovial Joints in Human Body     |    0.01 – 0.02     |    0.003 – 0.01    |
-+-----------------------------------+--------------------+--------------------+
-```
+| Contact Surfaces | Static Coefficient ($\mu_s$) | Kinetic Coefficient ($\mu_k$) |
+| :--- | :---: | :---: |
+| Steel on Steel *(Clean / Dry)* | $0.70 \text{ – } 0.80$ | $0.40 \text{ – } 0.60$ |
+| Steel on Steel *(Lubricated)* | $0.10 \text{ – } 0.15$ | $0.05 \text{ – } 0.10$ |
+| Rubber Tire on Dry Concrete Road | $0.80 \text{ – } 1.00$ | $0.60 \text{ – } 0.80$ |
+| Rubber Tire on Wet / Icy Concrete | $0.20 \text{ – } 0.35$ | $0.10 \text{ – } 0.20$ |
+| Wood on Wood *(Dry)* | $0.40 \text{ – } 0.60$ | $0.25 \text{ – } 0.35$ |
+| Teflon (PTFE) on Steel | $0.04 \text{ – } 0.05$ | $0.04 \text{ – } 0.05$ |
+| Synovial Joints in Human Body | $0.01 \text{ – } 0.02$ | $0.003 \text{ – } 0.01$ |
 
 ---
 
@@ -131,16 +110,12 @@ The friction force $F$ exhibits three distinct physical regimes:
   max-width="780px"
 />
 
-```
-+----------------+--------------------+---------------------+---------------------------+
-|      Case      | Applied Force (P)  |  Friction Force (F) |       Dynamic State       |
-+----------------+--------------------+---------------------+---------------------------+
-| 1. No Pull     | P = 0              | F = 0               | Static Equilibrium (Rest) |
-| 2. Below Limit | 0 < P < μ_s N      | F = P               | Static Equilibrium (Rest) |
-| 3. At Limit    | P = μ_s N          | F = F_m = μ_s N     | Impending Slip (Verge)    |
-| 4. Exceeding   | P > μ_s N          | F = F_k = μ_k N     | Kinetic Sliding (Accel a) |
-+----------------+--------------------+---------------------+---------------------------+
-```
+| Case | Applied Force ($P$) | Friction Force ($F$) | Dynamic State |
+| :--- | :--- | :--- | :--- |
+| **1. No Pull** | $P = 0$ | $F = 0$ | Static Equilibrium *(At Rest)* |
+| **2. Below Limit** | $0 < P < \mu_s N$ | $F = P$ | Static Equilibrium *(Self-Adjusting)* |
+| **3. At Limit** | $P = \mu_s N$ | $F = F_m = \mu_s N$ | Impending Slip *(Verge of Motion)* |
+| **4. Exceeding Limit** | $P > \mu_s N$ | $F = F_k = \mu_k N$ | Kinetic Sliding *(Accelerated Motion $a > 0$)* |
 
 ---
 
@@ -148,21 +123,10 @@ The friction force $F$ exhibits three distinct physical regimes:
 
 When an external force $P$ is applied to a real rigid body of width $b$ and height $h$, the body may either **slide** along the floor or **tip over** (topple) about its forward edge.
 
-```
-                      Slipping vs. Tipping Mechanics
-                                     b
-                              +-------------+
-                              |             |
-                              |      G      |
-                              |      *      |
-                     P ------>|      |      |
-                    (at h_p)  |      | W    |
-                              |      v      |
-                              +------+------+
-                                     |  x   |
-                              <----->*<-----+
-                              F_f    N      Corner B
-```
+::: info Free-Body Geometry for Overturning vs. Sliding
+- **Block Geometry:** Rectangular rigid crate of base width $b$, height $h$, and weight $W$ acting downward through centroid $G$ (at $b/2$ from either vertical face and $h/2$ above the floor).
+- **Applied & Support Forces:** Horizontal push/pull $P$ acts rightward at elevation $h_p$ above the base; floor shear friction $F_f$ acts leftward along the base; resultant normal force $N$ shifts forward by eccentricity $x$ from the centerline toward the leading bottom corner $B$ (bounded physically by $0 \le x \le b/2$).
+:::
 
 ### Mathematical Derivation:
 Consider a rectangular crate of weight $W$, width $b$, and height $h$. A horizontal force $P$ is applied at a height $h_p$ above the floor.

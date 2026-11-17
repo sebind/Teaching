@@ -72,18 +72,7 @@ If a force $\mathbf{F}$ is constant in both magnitude and direction, and the par
 
 $$U_{1\to 2} = (F\cos\alpha)\Delta x$$
 
-```
-                          Work of Gravity
-                                 y ^
-                                   |  * A_1 (Elevation y_1)
-                                   |   \
-                                   |    \  Arbitrary Trajectory
-                                   |     \
-                                   |      * A_2 (Elevation y_2)
-                               ----+----------------------------> x
-                                   |  | W = mg (downward)
-                                   |  v
-```
+---
 
 #### 2. Work of Gravity (Weight)
 Let a body of weight $W = mg$ move from elevation $y_1$ to elevation $y_2$ along any arbitrary 3D curve:
@@ -106,18 +95,12 @@ $$U_{1\to 2} = \int_{y_1}^{y_2} (-mg)\,dy = -mg(y_2 - y_1) = -W(y_2 - y_1) = -W\
 
 Consider a linear helical spring conforming to Hooke's Law: $F = k x$, where $k$ is the spring stiffness ($\text{N/m}$) and $x$ is the elongation or compression measured from the undeformed (free) length $l_0$.
 
-```
-                        Work of a Linear Spring
-                                        x = 0 (Undeformed)
-                                           |
-                    //////////////////[ k ]* (Free length l_0)
-                                           |
-                    //////////////////[ k ]=======* x_1 (Initial stretch)
-                                           |      |
-                    //////////////////[ k ]==============* x_2 (Final stretch)
-                                           |<---->|
-                                             F_spring = k x (pulls backward)
-```
+::: info Spring Deformation Coordinates
+Measure deformation $x = l - l_0$ strictly from the **undeformed free-length datum ($x = 0$ at $l = l_0$)**:
+- **Initial State 1:** Deformation $x_1 = l_1 - l_0$ (stored energy $\frac{1}{2}kx_1^2$).
+- **Final State 2:** Deformation $x_2 = l_2 - l_0$ (stored energy $\frac{1}{2}kx_2^2$).
+- **Restoring Force:** $\mathbf{F}_s = -kx\,\mathbf{i}$ always pulls back toward the undeformed position $x = 0$.
+:::
 
 As the spring is stretched by an external agent by amount $x$, the restoring force exerted by the spring on the particle opposes displacement: $\mathbf{F}_s = -kx\,\mathbf{i}$.
 $$dU = \mathbf{F}_s \cdot d\mathbf{r} = (-kx\,\mathbf{i})\cdot(dx\,\mathbf{i}) = -kx\,dx$$
@@ -181,10 +164,7 @@ $$U_{1\to 2} = T_2 - T_1 = \Delta T$$
 The total work done by all external forces acting on a particle as it moves between two arbitrary points equals the net change in the kinetic energy of the particle.
 :::
 
-```
-    [ Initial Kinetic Energy ]     [ Net Work of All Forces ]     [ Final Kinetic Energy ]
-          T_1 = ½ m v₁²       +           U_{1 -> 2}         =         T_2 = ½ m v₂²
-```
+$$\underbrace{\frac{1}{2}m v_1^2}_{\text{Initial Kinetic Energy } (T_1)} + \underbrace{U_{1\to 2}}_{\text{Net Work of All Forces}} = \underbrace{\frac{1}{2}m v_2^2}_{\text{Final Kinetic Energy } (T_2)}$$
 
 ### Strategic Engineering Advantages Over $\sum \mathbf{F} = m\mathbf{a}$:
 1. **Direct Velocity-Displacement Link:** Connects forces, distances, and speeds directly in a single scalar equation, completely eliminating the need to solve for acceleration $a(t)$ or integrate over time $t$.
@@ -248,8 +228,9 @@ $$127,422 - 1151.38 x = 0$$
 $$1151.38 x = 127,422$$
 $$x = \frac{127,422}{1151.38} = 110.67\text{ m} \approx 110.8\text{ m}$$
 
-*(Using the textbook slide values with $g = 9.8\text{ m/s}^2$:*
-$$127,550 - 1151.37 x = 0 \implies x = \frac{127,550}{1151.37} = 110.78\text{ m} \approx 110.82\text{ m}$$*)*
+*Using the textbook slide values with $g = 9.8\text{ m/s}^2$:*
+
+$$127,550 - 1151.37 x = 0 \implies x = \frac{127,550}{1151.37} = 110.78\text{ m} \approx 110.82\text{ m}$$
 
 #### Conclusion:
 The vehicle requires a stopping distance of **$110.8\text{ m}$**. Notice that the downhill component of weight ($+348.62\text{ N}$) actively fights the brakes, significantly extending the stopping distance compared to level ground ($x_{level} = \frac{127,422}{1500} = 85.0\text{ m}$).
