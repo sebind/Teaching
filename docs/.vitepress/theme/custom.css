@@ -1,100 +1,317 @@
 /**
- * GitBook-Inspired Academic Styling for PSG IAS Courseware
- * Primary Accent: Deep Indigo / Royal Blue (#2563eb / #3b82f6)
+ * Google Keyword ("Introducing Gemini 4 Hydrogen" — blog.google) Editorial Design System
+ * Typography: Google Sans Flex, Google Sans, Google Sans Mono
+ * Palette: Google Grey (#202124 / #5f6368 / #f8f9fa / #dadce0) & Google Blue (#1a73e8 / #1967d2 / #e8f0fe)
  */
 
 :root {
-  /* Brand color scales */
-  --vp-c-brand-1: #2563eb;
-  --vp-c-brand-2: #3b82f6;
-  --vp-c-brand-3: #1d4ed8;
-  --vp-c-brand-soft: rgba(37, 99, 235, 0.1);
+  /* Google Keyword Core Palette */
+  --g-grey-0: #ffffff;
+  --g-grey-50: #f8f9fa;
+  --g-grey-100: #f1f3f4;
+  --g-grey-200: #e8eaed;
+  --g-grey-300: #dadce0;
+  --g-grey-500: #9aa0a6;
+  --g-grey-600: #80868b;
+  --g-grey-700: #5f6368;
+  --g-grey-800: #3c4043;
+  --g-grey-900: #202124;
+  --g-grey-1100: #18191d;
 
-  /* Light mode palette */
+  --g-blue-50: #e8f0fe;
+  --g-blue-100: #d2e3fc;
+  --g-blue-300: #8ab4f8;
+  --g-blue-500: #4285f4;
+  --g-blue-600: #1a73e8;
+  --g-blue-700: #1967d2;
+  --g-blue-800: #185abc;
+  --g-blue-900: #174ea6;
+
+  --g-green-50: #e6f4ea;
+  --g-green-600: #1e8e3e;
+  --g-yellow-50: #fef7e0;
+  --g-yellow-800: #ea8600;
+  --g-red-50: #fce8e6;
+  --g-red-600: #d93025;
+
+  /* Radii & Motion (from blog.google tokens) */
+  --radius-8: 8px;
+  --radius-12: 12px;
+  --radius-16: 16px;
+  --radius-main: 24px;
+  --radius-pill: 999px;
+  --motion-google: cubic-bezier(0.34, 0.8, 0.34, 1);
+
+  /* VitePress Brand & Surface Mappings (Light Mode) */
+  --vp-c-brand-1: #1a73e8;
+  --vp-c-brand-2: #1967d2;
+  --vp-c-brand-3: #185abc;
+  --vp-c-brand-soft: #e8f0fe;
+
   --vp-c-bg: #ffffff;
-  --vp-c-bg-alt: #f8fafc;
-  --vp-c-bg-soft: #f1f5f9;
+  --vp-c-bg-alt: #f8f9fa;
+  --vp-c-bg-soft: #f8f9fa;
   --vp-c-bg-elv: #ffffff;
-  --vp-sidebar-bg-color: #f8fafc;
-  
-  /* Borders & Dividers */
-  --vp-c-divider: #e2e8f0;
-  --vp-c-gutter: #cbd5e1;
+  --vp-sidebar-bg-color: #f8f9fa;
 
-  /* Typography */
-  --vp-font-family-base: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  --vp-font-family-mono: 'JetBrains Mono', 'Fira Code', Menlo, Monaco, Consolas, monospace;
+  --vp-c-text-1: #202124;
+  --vp-c-text-2: #5f6368;
+  --vp-c-text-3: #80868b;
+
+  --vp-c-divider: #dadce0;
+  --vp-c-gutter: #e8eaed;
+
+  /* Google Sans Flex & Google Sans Mono Typography */
+  --vp-font-family-base: 'Google Sans Flex', 'Google Sans', 'Product Sans', Roboto, Arial, Helvetica, sans-serif;
+  --vp-font-family-mono: 'Google Sans Mono', 'Roboto Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
 
 .dark {
-  /* Dark mode brand colors */
-  --vp-c-brand-1: #3b82f6;
-  --vp-c-brand-2: #60a5fa;
-  --vp-c-brand-3: #2563eb;
-  --vp-c-brand-soft: rgba(59, 130, 246, 0.16);
+  --vp-c-brand-1: #8ab4f8;
+  --vp-c-brand-2: #aecbfa;
+  --vp-c-brand-3: #669df6;
+  --vp-c-brand-soft: rgba(138, 180, 248, 0.16);
 
-  /* Dark mode background */
-  --vp-c-bg: #0b0f17;
-  --vp-c-bg-alt: #111827;
-  --vp-c-bg-soft: #1a2234;
-  --vp-c-bg-elv: #151d2d;
-  --vp-sidebar-bg-color: #0d121c;
+  --vp-c-bg: #131314;
+  --vp-c-bg-alt: #18191d;
+  --vp-c-bg-soft: #1e1f22;
+  --vp-c-bg-elv: #232529;
+  --vp-sidebar-bg-color: #18191d;
 
-  /* Dark borders */
-  --vp-c-divider: #1f293d;
-  --vp-c-gutter: #2d3b55;
+  --vp-c-text-1: #e8eaed;
+  --vp-c-text-2: #9aa0a6;
+  --vp-c-text-3: #80868b;
+
+  --vp-c-divider: #3c4043;
+  --vp-c-gutter: #2d3135;
 }
 
 /* ==========================================================================
-   GitBook-Style Sidebar Navigation
+   Global Base & Google Editorial Typography
+   ========================================================================== */
+
+html,
+body {
+  font-family: var(--vp-font-family-base) !important;
+  color: var(--vp-c-text-1);
+  background-color: var(--vp-c-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: var(--vp-font-family-base);
+}
+
+/* Editorial Heading Scale (matching blog.google --typography-h1..h4) */
+.vp-doc h1 {
+  font-family: var(--vp-font-family-base) !important;
+  font-size: clamp(2.05rem, 3.3vw, 2.75rem) !important;
+  font-weight: 400 !important;
+  line-height: 1.18 !important;
+  letter-spacing: -0.02em !important;
+  color: var(--vp-c-text-1) !important;
+  margin-bottom: 1.15rem !important;
+}
+
+.vp-doc h1 strong {
+  font-weight: 500 !important;
+}
+
+.vp-doc h2 {
+  font-family: var(--vp-font-family-base) !important;
+  font-size: clamp(1.48rem, 2.25vw, 1.9rem) !important;
+  font-weight: 400 !important;
+  line-height: 1.26 !important;
+  letter-spacing: -0.25px !important;
+  color: var(--vp-c-text-1) !important;
+  border-top: 1px solid var(--vp-c-gutter) !important;
+  padding-top: 2rem !important;
+  margin: 2.75rem 0 1rem !important;
+}
+
+.vp-doc h3 {
+  font-family: var(--vp-font-family-base) !important;
+  font-size: 1.32rem !important;
+  font-weight: 500 !important;
+  line-height: 1.35 !important;
+  letter-spacing: 0px !important;
+  color: var(--vp-c-text-1) !important;
+  margin: 1.9rem 0 0.7rem !important;
+}
+
+.vp-doc h4 {
+  font-family: var(--vp-font-family-base) !important;
+  font-size: 1.08rem !important;
+  font-weight: 500 !important;
+  line-height: 1.45 !important;
+  letter-spacing: 0px !important;
+  color: var(--vp-c-text-1) !important;
+  margin: 1.35rem 0 0.45rem !important;
+}
+
+/* Article Body Copy & Lists (matching blog.google 16px / 26-28px line-height) */
+.vp-doc p,
+.vp-doc li {
+  font-family: var(--vp-font-family-base) !important;
+  font-size: 1.02rem !important;
+  font-weight: 400;
+  line-height: 1.68 !important;
+  letter-spacing: 0px;
+  color: var(--vp-c-text-1);
+}
+
+.vp-doc strong {
+  font-weight: 600;
+  color: var(--vp-c-text-1);
+}
+
+.vp-doc a {
+  color: var(--vp-c-brand-1);
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: color 0.18s ease;
+}
+
+.vp-doc a:hover {
+  color: var(--vp-c-brand-3);
+}
+
+.vp-doc :not(pre) > code {
+  font-family: var(--vp-font-family-mono) !important;
+  font-size: 0.875em !important;
+  padding: 0.18rem 0.48rem !important;
+  border-radius: 6px !important;
+  background-color: #f1f3f4 !important;
+  color: #202124 !important;
+}
+
+.dark .vp-doc :not(pre) > code {
+  background-color: #282a2e !important;
+  color: #e8eaed !important;
+}
+
+.vp-doc hr {
+  border-color: var(--vp-c-gutter) !important;
+  margin: 2.5rem 0 !important;
+}
+
+/* ==========================================================================
+   Google Keyword Top Navigation Bar & Gemini Spectrum Hairline
+   ========================================================================== */
+
+.VPNavBar {
+  background-color: rgba(255, 255, 255, 0.92) !important;
+  backdrop-filter: blur(12px) !important;
+  border-bottom: 1px solid var(--vp-c-gutter) !important;
+}
+
+.dark .VPNavBar {
+  background-color: rgba(19, 19, 20, 0.92) !important;
+}
+
+.VPNavBar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #4285f4 0%, #7baaf7 22%, #a142f4 48%, #ea4335 70%, #fbbc04 86%, #34a853 100%);
+  z-index: 20;
+}
+
+.VPNavBarTitle .title {
+  font-family: var(--vp-font-family-base) !important;
+  font-size: 1.08rem !important;
+  font-weight: 500 !important;
+  letter-spacing: -0.01em !important;
+  color: var(--vp-c-text-1) !important;
+}
+
+.VPNavBarMenuLink {
+  font-family: var(--vp-font-family-base) !important;
+  font-size: 0.9rem !important;
+  font-weight: 500 !important;
+  color: var(--vp-c-text-2) !important;
+  padding: 0 14px !important;
+  margin: 0 2px !important;
+  border-radius: var(--radius-pill) !important;
+  transition: color 0.18s ease, background-color 0.18s ease !important;
+}
+
+.VPNavBarMenuLink:hover {
+  color: var(--vp-c-text-1) !important;
+}
+
+.VPNavBarMenuLink.active {
+  color: var(--vp-c-brand-2) !important;
+}
+
+/* ==========================================================================
+   Google Material 3 / Keyword Pill Sidebar Navigation
    ========================================================================== */
 
 .VPSidebar {
   background-color: var(--vp-sidebar-bg-color) !important;
-  border-right: 1px solid var(--vp-c-divider) !important;
+  border-right: 1px solid var(--vp-c-gutter) !important;
 }
 
-/* Sidebar Group Headers */
 .VPSidebarItem.level-0 > .item {
-  padding-top: 14px;
+  padding-top: 16px;
   padding-bottom: 6px;
 }
 
 .VPSidebarItem.level-0 > .item .text {
-  font-size: 0.72rem !important;
-  font-weight: 700 !important;
-  letter-spacing: 0.08em !important;
+  font-family: var(--vp-font-family-base) !important;
+  font-size: 0.76rem !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.04em !important;
   text-transform: uppercase !important;
   color: var(--vp-c-text-2) !important;
 }
 
-/* Sidebar Item Links */
 .VPSidebarItem .item .link {
-  padding: 6px 12px !important;
-  border-radius: 6px !important;
-  margin: 1px 0 !important;
+  padding: 7px 14px !important;
+  border-radius: var(--radius-pill) !important;
+  margin: 2px 0 !important;
+  font-family: var(--vp-font-family-base) !important;
   font-size: 0.88rem !important;
-  line-height: 1.4 !important;
-  color: var(--vp-c-text-1) !important;
-  transition: all 0.15s ease-in-out !important;
-  border-left: 3px solid transparent !important;
+  font-weight: 400 !important;
+  line-height: 1.42 !important;
+  color: var(--vp-c-text-2) !important;
+  transition: background-color 0.18s var(--motion-google), color 0.18s ease !important;
+  border-left: none !important;
+  text-decoration: none !important;
 }
 
 .VPSidebarItem .item .link:hover {
-  background-color: var(--vp-c-bg-soft) !important;
-  color: var(--vp-c-brand-1) !important;
+  background-color: #f1f3f4 !important;
+  color: var(--vp-c-text-1) !important;
 }
 
-/* Active Sidebar Link: GitBook Rounded Pill with Left Accent Border */
+.dark .VPSidebarItem .item .link:hover {
+  background-color: #282a2e !important;
+  color: var(--vp-c-text-1) !important;
+}
+
+/* Active Sidebar Link: Authentic Google Pill (#e8f0fe / #1967d2) */
 .VPSidebarItem.is-active > .item > .link {
   background-color: var(--vp-c-brand-soft) !important;
-  color: var(--vp-c-brand-1) !important;
-  font-weight: 600 !important;
-  border-left: 3px solid var(--vp-c-brand-1) !important;
+  color: var(--vp-c-brand-2) !important;
+  font-weight: 500 !important;
+  border-left: none !important;
 }
 
 .VPSidebarItem.is-active > .item > .link .text {
-  color: var(--vp-c-brand-1) !important;
+  color: var(--vp-c-brand-2) !important;
+  font-weight: 500 !important;
 }
 
 /* ==========================================================================
@@ -123,10 +340,11 @@ mjx-container[display="true"],
   display: block !important;
   max-width: 100% !important;
   overflow: visible !important;
-  padding: 0.85rem 1rem !important;
-  margin: 1.25rem 0 !important;
-  border-radius: 8px !important;
+  padding: 1rem 1.25rem !important;
+  margin: 1.35rem 0 !important;
+  border-radius: var(--radius-16) !important;
   background: var(--vp-c-bg-soft);
+  border: 1px solid var(--vp-c-gutter);
   text-align: center;
   outline: none !important;
 }
@@ -144,175 +362,308 @@ mjx-container[display="true"] > svg {
   height: auto !important;
 }
 
-/* Clean full-width tables on desktop without unnecessary horizontal drag bars */
+/* ==========================================================================
+   Editorial Tables (Rounded Google Surface Cards, Zero Unnecessary Scrollbars)
+   ========================================================================== */
+
 .vp-doc table {
   display: table !important;
   width: 100% !important;
   overflow: visible !important;
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+  border: 1px solid var(--vp-c-divider) !important;
+  border-radius: var(--radius-16) !important;
+  margin: 1.5rem 0 !important;
+  background: var(--vp-c-bg) !important;
+  font-size: 0.94rem !important;
+}
+
+.vp-doc th {
+  background-color: var(--vp-c-bg-soft) !important;
+  color: var(--vp-c-text-1) !important;
+  font-family: var(--vp-font-family-base) !important;
+  font-weight: 500 !important;
+  font-size: 0.86rem !important;
+  letter-spacing: 0.01em !important;
+  padding: 0.8rem 1rem !important;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: 1px solid var(--vp-c-gutter) !important;
+  border-bottom: 1px solid var(--vp-c-divider) !important;
+}
+
+.vp-doc th:first-child {
+  border-top-left-radius: 15px !important;
+}
+
+.vp-doc th:last-child {
+  border-right: none !important;
+  border-top-right-radius: 15px !important;
+}
+
+.vp-doc td {
+  padding: 0.78rem 1rem !important;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: 1px solid var(--vp-c-gutter) !important;
+  border-bottom: 1px solid var(--vp-c-gutter) !important;
+  color: var(--vp-c-text-1) !important;
+  line-height: 1.58 !important;
+}
+
+.vp-doc td:last-child {
+  border-right: none !important;
+}
+
+.vp-doc tr:last-child td {
+  border-bottom: none !important;
+}
+
+.vp-doc tr:last-child td:first-child {
+  border-bottom-left-radius: 15px !important;
+}
+
+.vp-doc tr:last-child td:last-child {
+  border-bottom-right-radius: 15px !important;
+}
+
+.vp-doc tr:nth-child(2n) {
+  background-color: transparent !important;
 }
 
 /* ==========================================================================
-   GitBook-Style Prev/Next Pager Navigation Cards (VPDocFooter)
+   Google Keyword Editorial Callouts & Collapsible Solution Cards
+   ========================================================================== */
+
+.custom-block {
+  border-radius: 20px !important;
+  margin: 1.5rem 0 !important;
+  padding: 1.15rem 1.4rem !important;
+  border: 1px solid var(--vp-c-divider) !important;
+  font-family: var(--vp-font-family-base) !important;
+}
+
+.custom-block.tip {
+  border-color: #d2e3fc !important;
+  background-color: #f4f8fe !important;
+}
+
+.dark .custom-block.tip {
+  border-color: rgba(138, 180, 248, 0.28) !important;
+  background-color: rgba(138, 180, 248, 0.08) !important;
+}
+
+.custom-block.info {
+  border-color: var(--vp-c-divider) !important;
+  background-color: var(--vp-c-bg-soft) !important;
+}
+
+.custom-block.warning {
+  border-color: #fde293 !important;
+  background-color: #fef9eb !important;
+}
+
+.dark .custom-block.warning {
+  border-color: rgba(253, 214, 99, 0.28) !important;
+  background-color: rgba(251, 188, 4, 0.08) !important;
+}
+
+.custom-block.danger {
+  border-color: #fad2cf !important;
+  background-color: #fef3f2 !important;
+}
+
+.dark .custom-block.danger {
+  border-color: rgba(242, 139, 130, 0.28) !important;
+  background-color: rgba(234, 67, 53, 0.08) !important;
+}
+
+.custom-block-title {
+  font-family: var(--vp-font-family-base) !important;
+  font-weight: 500 !important;
+  font-size: 0.94rem !important;
+  letter-spacing: 0.01em !important;
+  margin-bottom: 0.45rem !important;
+  color: var(--vp-c-text-1) !important;
+}
+
+.custom-block.tip .custom-block-title {
+  color: var(--vp-c-brand-2) !important;
+}
+
+.custom-block.details {
+  background-color: var(--vp-c-bg-soft) !important;
+  border: 1px solid var(--vp-c-divider) !important;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.custom-block.details:hover {
+  border-color: var(--vp-c-brand-1) !important;
+}
+
+.custom-block.details summary {
+  font-family: var(--vp-font-family-base) !important;
+  font-weight: 500 !important;
+  font-size: 0.96rem !important;
+  color: var(--vp-c-brand-1) !important;
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   Prev / Next Pager Navigation Cards (24px Google Radius)
    ========================================================================== */
 
 .VPDocFooter .pager-link {
   display: flex !important;
   flex-direction: column !important;
-  padding: 14px 18px !important;
+  padding: 18px 22px !important;
   border: 1px solid var(--vp-c-divider) !important;
-  border-radius: 10px !important;
-  background: var(--vp-c-bg) !important;
-  transition: all 0.2s ease !important;
+  border-radius: var(--radius-main) !important;
+  background: var(--vp-c-bg-soft) !important;
+  transition: background-color 0.2s var(--motion-google), border-color 0.2s ease, transform 0.2s var(--motion-google) !important;
   text-decoration: none !important;
 }
 
 .VPDocFooter .pager-link:hover {
-  border-color: var(--vp-c-brand-1) !important;
-  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.08) !important;
+  background: var(--vp-c-brand-soft) !important;
+  border-color: #d2e3fc !important;
   transform: translateY(-2px) !important;
 }
 
+.dark .VPDocFooter .pager-link:hover {
+  border-color: rgba(138, 180, 248, 0.35) !important;
+}
+
 .VPDocFooter .pager-link .desc {
-  font-size: 0.72rem !important;
-  font-weight: 700 !important;
+  font-family: var(--vp-font-family-base) !important;
+  font-size: 0.75rem !important;
+  font-weight: 500 !important;
   text-transform: uppercase !important;
-  letter-spacing: 0.06em !important;
-  color: var(--vp-c-text-3) !important;
+  letter-spacing: 0.05em !important;
+  color: var(--vp-c-text-2) !important;
   margin-bottom: 4px !important;
 }
 
 .VPDocFooter .pager-link .title {
-  font-size: 0.96rem !important;
-  font-weight: 600 !important;
+  font-family: var(--vp-font-family-base) !important;
+  font-size: 1rem !important;
+  font-weight: 500 !important;
   color: var(--vp-c-brand-1) !important;
 }
 
 /* ==========================================================================
-   Custom Block Callouts
-   ========================================================================== */
-
-.custom-block {
-  border-radius: 8px !important;
-  margin: 1.5rem 0 !important;
-  padding: 1rem 1.25rem !important;
-  border-left-width: 4px !important;
-}
-
-.custom-block.tip {
-  border-color: #2563eb !important;
-  background-color: rgba(37, 99, 235, 0.06) !important;
-}
-
-.custom-block.info {
-  border-color: #0284c7 !important;
-  background-color: rgba(2, 132, 199, 0.06) !important;
-}
-
-.custom-block.warning {
-  border-color: #d97706 !important;
-  background-color: rgba(217, 119, 6, 0.06) !important;
-}
-
-.custom-block.danger {
-  border-color: #dc2626 !important;
-  background-color: rgba(220, 38, 38, 0.06) !important;
-}
-
-.custom-block-title {
-  font-weight: 700 !important;
-  font-size: 0.92rem !important;
-  margin-bottom: 0.4rem !important;
-}
-
-/* ==========================================================================
-   Table of Contents & On This Page (VPDocAside)
+   On This Page Outline (VPDocAside)
    ========================================================================== */
 
 .VPDocAsideOutline .outline-title {
-  font-size: 0.75rem !important;
-  font-weight: 700 !important;
-  letter-spacing: 0.06em !important;
+  font-family: var(--vp-font-family-base) !important;
+  font-size: 0.76rem !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.05em !important;
   text-transform: uppercase !important;
   color: var(--vp-c-text-2) !important;
 }
 
 .VPDocAsideOutline .outline-link {
-  font-size: 0.82rem !important;
-  line-height: 1.5 !important;
+  font-family: var(--vp-font-family-base) !important;
+  font-size: 0.84rem !important;
+  line-height: 1.55 !important;
   padding: 2px 0 !important;
+  color: var(--vp-c-text-2) !important;
 }
 
 .VPDocAsideOutline .outline-link.active {
   color: var(--vp-c-brand-1) !important;
-  font-weight: 600 !important;
+  font-weight: 500 !important;
 }
 
 /* ==========================================================================
-   Card Grids & Utility Layouts for Course Portal
+   Google Keyword Portal Cards & Instructor Profile Banner (24px Radius)
    ========================================================================== */
 
 .portal-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.25rem;
-  margin: 1.75rem 0;
+  gap: 1.35rem;
+  margin: 1.85rem 0;
 }
 
 .portal-card {
   display: flex;
   flex-direction: column;
-  padding: 1.4rem;
-  border-radius: 10px;
+  padding: 1.6rem;
+  border-radius: var(--radius-main);
   background: var(--vp-c-bg-soft);
-  border: 1px solid var(--vp-c-divider);
+  border: 1px solid var(--vp-c-gutter);
   text-decoration: none !important;
   color: inherit !important;
-  transition: all 0.2s ease;
+  transition: background-color 0.22s var(--motion-google), border-color 0.22s ease, transform 0.22s var(--motion-google), box-shadow 0.22s ease;
 }
 
 .portal-card:hover {
-  border-color: var(--vp-c-brand-1);
-  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.08);
+  background: #f1f3f4;
+  border-color: var(--vp-c-divider);
+  box-shadow: 0 8px 24px rgba(32, 33, 36, 0.06);
   transform: translateY(-2px);
+}
+
+.dark .portal-card:hover {
+  background: #25272c;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
 }
 
 .portal-card-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.85rem;
 }
 
 .portal-card-badge {
-  font-size: 0.7rem;
-  font-weight: 700;
-  padding: 0.2rem 0.55rem;
-  border-radius: 999px;
-  text-transform: uppercase;
+  font-family: var(--vp-font-family-base);
+  font-size: 0.74rem;
+  font-weight: 500;
+  padding: 0.22rem 0.7rem;
+  border-radius: var(--radius-pill);
+  letter-spacing: 0.02em;
 }
 
 .portal-card-badge.physics {
-  background: rgba(37, 99, 235, 0.12);
-  color: #2563eb;
+  background: var(--g-blue-50);
+  color: var(--g-blue-700);
+}
+
+.dark .portal-card-badge.physics {
+  background: rgba(138, 180, 248, 0.16);
+  color: #8ab4f8;
 }
 
 .portal-card-badge.stage2 {
-  background: rgba(245, 158, 11, 0.12);
-  color: #d97706;
+  background: var(--g-yellow-50);
+  color: var(--g-yellow-800);
+}
+
+.dark .portal-card-badge.stage2 {
+  background: rgba(251, 188, 4, 0.16);
+  color: #fdd663;
 }
 
 .portal-card-title {
-  margin: 0 0 0.4rem 0 !important;
-  font-size: 1.2rem !important;
-  font-weight: 700 !important;
+  margin: 0 0 0.45rem 0 !important;
+  font-family: var(--vp-font-family-base) !important;
+  font-size: 1.28rem !important;
+  font-weight: 400 !important;
+  letter-spacing: -0.01em !important;
   color: var(--vp-c-text-1) !important;
 }
 
 .portal-card-desc {
-  margin: 0 0 1rem 0 !important;
-  font-size: 0.88rem !important;
+  margin: 0 0 1.15rem 0 !important;
+  font-family: var(--vp-font-family-base) !important;
+  font-size: 0.92rem !important;
   color: var(--vp-c-text-2) !important;
-  line-height: 1.5 !important;
+  line-height: 1.58 !important;
   flex: 1;
 }
 
@@ -320,11 +671,12 @@ mjx-container[display="true"] > svg {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 0.82rem;
-  font-weight: 600;
+  font-family: var(--vp-font-family-base);
+  font-size: 0.86rem;
+  font-weight: 500;
   color: var(--vp-c-brand-1);
   border-top: 1px solid var(--vp-c-divider);
-  padding-top: 0.75rem;
+  padding-top: 0.85rem;
 }
 
 /* Instructor Banner */
@@ -332,44 +684,86 @@ mjx-container[display="true"] > svg {
   display: flex;
   align-items: center;
   gap: 1.25rem;
-  padding: 1.25rem 1.5rem;
-  margin: 1.5rem 0;
-  border-radius: 12px;
+  padding: 1.35rem 1.6rem;
+  margin: 1.65rem 0;
+  border-radius: var(--radius-main);
   background: var(--vp-c-bg-soft);
-  border: 1px solid var(--vp-c-divider);
+  border: 1px solid var(--vp-c-gutter);
 }
 
 .instructor-avatar {
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #2563eb, #3b82f6);
+  background: linear-gradient(135deg, #1a73e8 0%, #4285f4 55%, #7baaf7 100%);
   color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.4rem;
-  font-weight: 700;
+  font-family: var(--vp-font-family-base);
+  font-size: 1.3rem;
+  font-weight: 500;
   flex-shrink: 0;
 }
 
 .instructor-details h3 {
-  margin: 0 0 0.25rem 0 !important;
-  font-size: 1.1rem !important;
-  font-weight: 700 !important;
+  margin: 0 0 0.2rem 0 !important;
+  font-family: var(--vp-font-family-base) !important;
+  font-size: 1.12rem !important;
+  font-weight: 500 !important;
   color: var(--vp-c-text-1) !important;
 }
 
 .instructor-details p {
   margin: 0 !important;
-  font-size: 0.86rem !important;
+  font-family: var(--vp-font-family-base) !important;
+  font-size: 0.88rem !important;
+  line-height: 1.5 !important;
   color: var(--vp-c-text-2) !important;
 }
 
 .instructor-email {
   display: inline-block;
-  margin-top: 0.25rem !important;
+  margin-top: 0.28rem !important;
   font-size: 0.82rem !important;
   font-family: var(--vp-font-family-mono);
+  text-decoration: none !important;
   color: var(--vp-c-brand-1) !important;
+}
+
+/* ==========================================================================
+   Global Unification for Interactive Simulator Cards (.sim-card)
+   ========================================================================== */
+
+.sim-card {
+  font-family: var(--vp-font-family-base) !important;
+  border-radius: var(--radius-main) !important;
+  border-color: var(--vp-c-divider) !important;
+}
+
+.sim-card .sim-title {
+  font-family: var(--vp-font-family-base) !important;
+  font-weight: 400 !important;
+  letter-spacing: -0.015em !important;
+}
+
+.sim-card .sim-desc,
+.sim-card label,
+.sim-card button {
+  font-family: var(--vp-font-family-base) !important;
+}
+
+.sim-card .play-btn,
+.sim-card .action-btn,
+.sim-card .preset-btn,
+.sim-card .mode-btn,
+.sim-card .tab-btn,
+.sim-card .slide-ref-toggle {
+  border-radius: var(--radius-pill) !important;
+}
+
+.sim-card .val-chip,
+.sim-card .dash-val,
+.sim-card .range-unit {
+  font-family: var(--vp-font-family-mono) !important;
 }

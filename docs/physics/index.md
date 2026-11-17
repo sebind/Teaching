@@ -25,7 +25,7 @@ import { withBase } from 'vitepress'
   <a :href="withBase('/physics/module-1/newtonian-and-vectors')" class="portal-card">
     <div class="portal-card-header">
       <span class="portal-card-badge physics">Module 1</span>
-      <span style="font-size: 0.78rem; font-weight: 700; color: #2563eb;">4 Chapters · 2 Labs</span>
+      <span style="font-size: 0.78rem; font-weight: 700; color: var(--vp-c-brand-1); font-weight: 500;">4 Chapters · 2 Labs</span>
     </div>
     <h3 class="portal-card-title">Statics of Particles</h3>
     <p class="portal-card-desc">
@@ -41,7 +41,7 @@ import { withBase } from 'vitepress'
   <a :href="withBase('/physics/module-2/rectilinear-and-graphical')" class="portal-card">
     <div class="portal-card-header">
       <span class="portal-card-badge physics">Module 2</span>
-      <span style="font-size: 0.78rem; font-weight: 700; color: #2563eb;">4 Chapters · 3 Labs</span>
+      <span style="font-size: 0.78rem; font-weight: 700; color: var(--vp-c-brand-1); font-weight: 500;">4 Chapters · 3 Labs</span>
     </div>
     <h3 class="portal-card-title">Kinematics of Particles</h3>
     <p class="portal-card-desc">
@@ -57,7 +57,7 @@ import { withBase } from 'vitepress'
   <a :href="withBase('/physics/module-3/newtons-law-and-dalembert')" class="portal-card">
     <div class="portal-card-header">
       <span class="portal-card-badge physics">Module 3</span>
-      <span style="font-size: 0.78rem; font-weight: 700; color: #2563eb;">4 Chapters · 1 Lab</span>
+      <span style="font-size: 0.78rem; font-weight: 700; color: var(--vp-c-brand-1); font-weight: 500;">4 Chapters · 1 Lab</span>
     </div>
     <h3 class="portal-card-title">Kinetics: Newton's 2nd Law & Friction</h3>
     <p class="portal-card-desc">
@@ -73,7 +73,7 @@ import { withBase } from 'vitepress'
   <a :href="withBase('/physics/module-4/work-and-kinetic-energy')" class="portal-card">
     <div class="portal-card-header">
       <span class="portal-card-badge physics">Module 4</span>
-      <span style="font-size: 0.78rem; font-weight: 700; color: #2563eb;">3 Chapters · 1 Lab</span>
+      <span style="font-size: 0.78rem; font-weight: 700; color: var(--vp-c-brand-1); font-weight: 500;">3 Chapters · 1 Lab</span>
     </div>
     <h3 class="portal-card-title">Kinetics: Energy Methods</h3>
     <p class="portal-card-desc">
@@ -89,7 +89,7 @@ import { withBase } from 'vitepress'
   <a :href="withBase('/physics/module-5/impulse-and-momentum')" class="portal-card">
     <div class="portal-card-header">
       <span class="portal-card-badge physics">Module 5</span>
-      <span style="font-size: 0.78rem; font-weight: 700; color: #2563eb;">3 Chapters · 3 Labs</span>
+      <span style="font-size: 0.78rem; font-weight: 700; color: var(--vp-c-brand-1); font-weight: 500;">3 Chapters · 3 Labs</span>
     </div>
     <h3 class="portal-card-title">Kinetics: Momentum Methods</h3>
     <p class="portal-card-desc">

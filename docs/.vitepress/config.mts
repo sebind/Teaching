@@ -4,6 +4,24 @@ export default defineConfig({
   base: '/teaching/',
   title: 'PSG IAS Courseware',
   description: 'Interactive Engineering Mechanics & Electronics Courseware — Dr. Sebin Devasia',
+  head: [
+    ['link', { rel: 'preconnect', href: 'https://fonts.googleapis.com' }],
+    ['link', { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' }],
+    [
+      'link',
+      {
+        rel: 'stylesheet',
+        href: 'https://fonts.googleapis.com/css?family=Google+Sans:400,500,600,700|Google+Sans+Flex:400,500,600,700|Product+Sans:400&display=swap&lang=en'
+      }
+    ],
+    [
+      'link',
+      {
+        rel: 'stylesheet',
+        href: 'https://fonts.googleapis.com/css2?family=Google+Sans+Mono:wght@400;500;600&family=Roboto+Mono:wght@400;500&display=swap'
+      }
+    ]
+  ],
   vite: {
     build: {
       chunkSizeWarningLimit: 2500

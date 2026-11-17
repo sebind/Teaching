@@ -87,12 +87,12 @@ onUnmounted(() => {
 
 <style scoped>
 .lecture-fig-card {
-  margin: 1.5rem 0;
-  border-radius: 12px;
+  margin: 1.75rem 0;
+  border-radius: 24px;
   border: 1px solid var(--vp-c-divider);
   background: var(--vp-c-bg-soft);
   overflow: hidden;
-  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.05);
+  font-family: var(--vp-font-family-base);
 }
 
 .lecture-fig-stage {
@@ -101,9 +101,9 @@ onUnmounted(() => {
   justify-content: center;
   align-items: center;
   gap: 1rem;
-  padding: 1.1rem 1.25rem;
+  padding: 1.35rem 1.5rem;
   background: #ffffff;
-  border-bottom: 1px solid var(--vp-c-divider);
+  border-bottom: 1px solid var(--vp-c-gutter);
 }
 
 .lecture-fig-frame {
@@ -169,21 +169,20 @@ onUnmounted(() => {
 .lecture-fig-badge {
   display: inline-flex;
   align-items: center;
-  padding: 0.12rem 0.55rem;
+  padding: 0.16rem 0.65rem;
   border-radius: 999px;
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.03em;
-  text-transform: uppercase;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
   background: var(--vp-c-brand-soft);
-  color: var(--vp-c-brand-1);
+  color: var(--vp-c-brand-2);
 }
 
 .lecture-fig-slide {
-  font-size: 0.75rem;
-  font-weight: 600;
+  font-size: 0.76rem;
+  font-weight: 500;
   font-family: var(--vp-font-family-mono);
-  color: var(--vp-c-text-3);
+  color: var(--vp-c-text-2);
 }
 
 .lecture-fig-text {

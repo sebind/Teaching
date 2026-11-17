@@ -27,7 +27,7 @@ import { withBase } from 'vitepress'
   <a :href="withBase('/electronics/module-1/')" class="portal-card">
     <div class="portal-card-header">
       <span class="portal-card-badge stage2">Module 1 · Stage 2</span>
-      <span style="font-size: 0.78rem; font-weight: 700; color: #d97706;">Semiconductors</span>
+      <span style="font-size: 0.78rem; font-weight: 700; color: #ea8600; font-weight: 500;">Semiconductors</span>
     </div>
     <h3 class="portal-card-title">Semiconductor Physics & Diode Theory</h3>
     <p class="portal-card-desc">
@@ -43,7 +43,7 @@ import { withBase } from 'vitepress'
   <a :href="withBase('/electronics/module-2/')" class="portal-card">
     <div class="portal-card-header">
       <span class="portal-card-badge stage2">Module 2 · Stage 2</span>
-      <span style="font-size: 0.78rem; font-weight: 700; color: #d97706;">Transistors</span>
+      <span style="font-size: 0.78rem; font-weight: 700; color: #ea8600; font-weight: 500;">Transistors</span>
     </div>
     <h3 class="portal-card-title">Bipolar Junction Transistors (BJT)</h3>
     <p class="portal-card-desc">
@@ -59,7 +59,7 @@ import { withBase } from 'vitepress'
   <a :href="withBase('/electronics/module-3/')" class="portal-card">
     <div class="portal-card-header">
       <span class="portal-card-badge stage2">Module 3 · Stage 2</span>
-      <span style="font-size: 0.78rem; font-weight: 700; color: #d97706;">Circuits</span>
+      <span style="font-size: 0.78rem; font-weight: 700; color: #ea8600; font-weight: 500;">Circuits</span>
     </div>
     <h3 class="portal-card-title">Amplifiers & Oscillators</h3>
     <p class="portal-card-desc">
@@ -75,7 +75,7 @@ import { withBase } from 'vitepress'
   <a :href="withBase('/electronics/module-4/')" class="portal-card">
     <div class="portal-card-header">
       <span class="portal-card-badge stage2">Module 4 · Stage 2</span>
-      <span style="font-size: 0.78rem; font-weight: 700; color: #d97706;">Linear ICs</span>
+      <span style="font-size: 0.78rem; font-weight: 700; color: #ea8600; font-weight: 500;">Linear ICs</span>
     </div>
     <h3 class="portal-card-title">Operational Amplifiers (Op-Amps)</h3>
     <p class="portal-card-desc">
@@ -91,7 +91,7 @@ import { withBase } from 'vitepress'
   <a :href="withBase('/electronics/module-5/')" class="portal-card">
     <div class="portal-card-header">
       <span class="portal-card-badge stage2">Module 5 · Stage 2</span>
-      <span style="font-size: 0.78rem; font-weight: 700; color: #d97706;">Regulators & Timing</span>
+      <span style="font-size: 0.78rem; font-weight: 700; color: #ea8600; font-weight: 500;">Regulators & Timing</span>
     </div>
     <h3 class="portal-card-title">Voltage Regulators & Timing Circuits</h3>
     <p class="portal-card-desc">

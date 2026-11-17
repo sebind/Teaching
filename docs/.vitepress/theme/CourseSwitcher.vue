@@ -25,7 +25,7 @@
             <span class="badge-active">Full Course</span>
           </div>
           <div class="course-name">Physics & Mechanics</div>
-          <div class="course-meta">5 Modules · 7 Interactive Labs</div>
+          <div class="course-meta">5 Modules · 10 Interactive Labs</div>
         </div>
         <div v-if="isPhysicsActive" class="active-indicator">
           <span class="dot"></span>
@@ -107,32 +107,32 @@ const isPhysicsActive = computed(() => {
 }
 
 .institution-pill {
-  font-size: 0.65rem;
-  font-weight: 700;
-  padding: 0.15rem 0.45rem;
+  font-size: 0.68rem;
+  font-weight: 500;
+  padding: 0.16rem 0.55rem;
   background: var(--vp-c-brand-soft);
-  color: var(--vp-c-brand-1);
-  border-radius: 4px;
-  letter-spacing: 0.05em;
+  color: var(--vp-c-brand-2);
+  border-radius: 999px;
+  letter-spacing: 0.04em;
 }
 
 .course-list {
   display: flex;
   flex-direction: column;
-  gap: 0.45rem;
+  gap: 0.5rem;
 }
 
 .course-card {
   display: flex;
   align-items: center;
-  gap: 0.65rem;
-  padding: 0.55rem 0.65rem;
-  border-radius: 8px;
-  background: var(--vp-c-bg-soft);
-  border: 1px solid transparent;
+  gap: 0.68rem;
+  padding: 0.62rem 0.78rem;
+  border-radius: 16px;
+  background: var(--vp-c-bg-elv);
+  border: 1px solid var(--vp-c-gutter);
   text-decoration: none !important;
   color: inherit;
-  transition: all 0.18s ease;
+  transition: all 0.2s cubic-bezier(0.34, 0.8, 0.34, 1);
   position: relative;
 }
 
@@ -143,15 +143,15 @@ const isPhysicsActive = computed(() => {
 }
 
 .course-card.is-active {
-  background: var(--vp-c-bg-elv);
-  border-color: rgba(37, 99, 235, 0.3);
-  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.08);
+  background: var(--vp-c-brand-soft);
+  border-color: rgba(26, 115, 232, 0.28);
+  box-shadow: none;
 }
 
 .course-icon {
-  width: 32px;
-  height: 32px;
-  border-radius: 6px;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -164,13 +164,13 @@ const isPhysicsActive = computed(() => {
 }
 
 .physics-icon {
-  background: rgba(37, 99, 235, 0.12);
-  color: #2563eb;
+  background: rgba(26, 115, 232, 0.12);
+  color: #1a73e8;
 }
 
 .electronics-icon {
-  background: rgba(245, 158, 11, 0.14);
-  color: #d97706;
+  background: rgba(251, 188, 4, 0.18);
+  color: #ea8600;
 }
 
 .course-info {
@@ -196,36 +196,36 @@ const isPhysicsActive = computed(() => {
 
 .badge-active {
   font-size: 0.62rem;
-  font-weight: 700;
-  color: #16a34a;
-  background: rgba(34, 197, 94, 0.14);
-  padding: 0.1rem 0.4rem;
-  border-radius: 4px;
+  font-weight: 500;
+  color: #137333;
+  background: #e6f4ea;
+  padding: 0.12rem 0.48rem;
+  border-radius: 999px;
 }
 
 .badge-stage2 {
   font-size: 0.62rem;
-  font-weight: 700;
-  color: #d97706;
-  background: rgba(245, 158, 11, 0.14);
-  padding: 0.1rem 0.4rem;
-  border-radius: 4px;
+  font-weight: 500;
+  color: #ea8600;
+  background: #fef7e0;
+  padding: 0.12rem 0.48rem;
+  border-radius: 999px;
 }
 
 .course-name {
-  font-size: 0.84rem;
-  font-weight: 600;
+  font-size: 0.85rem;
+  font-weight: 500;
   color: var(--vp-c-text-1);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  line-height: 1.25;
+  line-height: 1.28;
 }
 
 .course-meta {
-  font-size: 0.68rem;
+  font-size: 0.7rem;
   color: var(--vp-c-text-2);
-  line-height: 1.2;
+  line-height: 1.25;
 }
 
 .active-indicator {
@@ -238,20 +238,21 @@ const isPhysicsActive = computed(() => {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: #2563eb;
-  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+  background: #1a73e8;
+  box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.22);
 }
 
 .instructor-tag {
-  margin-top: 0.65rem;
-  padding: 0.35rem 0.45rem;
-  font-size: 0.7rem;
+  margin-top: 0.68rem;
+  padding: 0.4rem 0.65rem;
+  font-size: 0.72rem;
   color: var(--vp-c-text-2);
   display: flex;
   align-items: center;
-  gap: 0.35rem;
-  border-radius: 6px;
-  background: var(--vp-c-bg-alt);
+  gap: 0.4rem;
+  border-radius: 999px;
+  background: var(--vp-c-bg-elv);
+  border: 1px solid var(--vp-c-gutter);
 }
 
 .inst-icon {

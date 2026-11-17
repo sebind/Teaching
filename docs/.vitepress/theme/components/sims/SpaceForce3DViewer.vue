@@ -912,7 +912,7 @@ onBeforeUnmount(() => {
   padding: 0.2rem 0.5rem;
   border-radius: 4px;
   font-size: 0.8rem;
-  font-family: monospace;
+  font-family: var(--vp-font-family-mono);
   color: var(--vp-c-text-2, #475569);
 }
 
@@ -950,7 +950,7 @@ input[type="range"] {
 
 .range-unit {
   font-size: 0.82rem;
-  font-family: monospace;
+  font-family: var(--vp-font-family-mono);
   text-align: right;
   color: var(--vp-c-text-1, #1e293b);
   font-weight: 600;
@@ -1014,7 +1014,7 @@ input[type="range"] {
 .dash-val {
   font-size: 1.2rem;
   font-weight: 700;
-  font-family: monospace;
+  font-family: var(--vp-font-family-mono);
   color: var(--vp-c-text-1, #0f172a);
 }
 

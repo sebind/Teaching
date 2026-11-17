@@ -720,7 +720,7 @@ const arcR = computed(() => makeArc(70, 0, resultAlpha.value))
   padding: 0.2rem 0.5rem;
   border-radius: 4px;
   font-size: 0.8rem;
-  font-family: monospace;
+  font-family: var(--vp-font-family-mono);
   color: var(--vp-c-text-2, #475569);
 }
 
@@ -745,7 +745,7 @@ const arcR = computed(() => makeArc(70, 0, resultAlpha.value))
 
 .range-unit {
   font-size: 0.8rem;
-  font-family: monospace;
+  font-family: var(--vp-font-family-mono);
   text-align: right;
   color: var(--vp-c-text-1, #1e293b);
   font-weight: 500;
@@ -782,7 +782,7 @@ const arcR = computed(() => makeArc(70, 0, resultAlpha.value))
 .dash-val {
   font-size: 1.25rem;
   font-weight: 700;
-  font-family: monospace;
+  font-family: var(--vp-font-family-mono);
   color: var(--vp-c-text-1, #0f172a);
 }
 

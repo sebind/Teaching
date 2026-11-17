@@ -25,7 +25,7 @@ import { withBase } from 'vitepress'
   <a :href="withBase('/physics/')" class="portal-card">
     <div class="portal-card-header">
       <span class="portal-card-badge physics">Active · Full Course</span>
-      <span style="font-size: 0.8rem; font-weight: 700; color: #2563eb;">23IM102</span>
+      <span style="font-size: 0.8rem; font-weight: 700; color: var(--vp-c-brand-1); font-weight: 500;">23IM102</span>
     </div>
     <h3 class="portal-card-title">Physics (Engineering Mechanics)</h3>
     <p class="portal-card-desc">
@@ -41,7 +41,7 @@ import { withBase } from 'vitepress'
   <a :href="withBase('/electronics/')" class="portal-card">
     <div class="portal-card-header">
       <span class="portal-card-badge stage2">Stage 2 · Syllabus Roadmap</span>
-      <span style="font-size: 0.8rem; font-weight: 700; color: #d97706;">23IR202</span>
+      <span style="font-size: 0.8rem; font-weight: 700; color: #ea8600; font-weight: 500;">23IR202</span>
     </div>
     <h3 class="portal-card-title">Basics of Electronics</h3>
     <p class="portal-card-desc">

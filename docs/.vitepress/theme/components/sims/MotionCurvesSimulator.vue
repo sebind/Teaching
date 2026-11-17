@@ -894,7 +894,7 @@ onBeforeUnmount(() => {
 
 .time-label {
   font-size: 0.8rem;
-  font-family: monospace;
+  font-family: var(--vp-font-family-mono);
   color: var(--vp-c-text-2, #475569);
   white-space: nowrap;
 }
@@ -953,7 +953,7 @@ onBeforeUnmount(() => {
   background: var(--vp-c-bg-elv, #f1f5f9);
   padding: 0.15rem 0.45rem;
   border-radius: 4px;
-  font-family: monospace;
+  font-family: var(--vp-font-family-mono);
   font-size: 0.78rem;
 }
 
@@ -1004,7 +1004,7 @@ onBeforeUnmount(() => {
 .dash-val {
   font-size: 1.25rem;
   font-weight: 700;
-  font-family: monospace;
+  font-family: var(--vp-font-family-mono);
   color: var(--vp-c-text-1, #0f172a);
 }
 

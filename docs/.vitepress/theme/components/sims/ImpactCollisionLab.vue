@@ -2235,7 +2235,7 @@ onBeforeUnmount(() => {
 
 .time-label {
   font-size: 0.78rem;
-  font-family: monospace;
+  font-family: var(--vp-font-family-mono);
   color: var(--vp-c-text-2, #475569);
   white-space: nowrap;
 }
@@ -2306,7 +2306,7 @@ onBeforeUnmount(() => {
   background: var(--vp-c-bg-elv, #f1f5f9);
   padding: 0.14rem 0.45rem;
   border-radius: 4px;
-  font-family: monospace;
+  font-family: var(--vp-font-family-mono);
   font-size: 0.76rem;
   white-space: nowrap;
 }
@@ -2346,7 +2346,7 @@ input[type="range"] {
 
 .range-unit {
   font-size: 0.76rem;
-  font-family: monospace;
+  font-family: var(--vp-font-family-mono);
   text-align: right;
   color: var(--vp-c-text-1, #1e293b);
   font-weight: 600;
@@ -2409,7 +2409,7 @@ input[type="range"] {
 .dash-val {
   font-size: 1.16rem;
   font-weight: 800;
-  font-family: monospace;
+  font-family: var(--vp-font-family-mono);
   color: var(--vp-c-text-1, #0f172a);
 }
 
